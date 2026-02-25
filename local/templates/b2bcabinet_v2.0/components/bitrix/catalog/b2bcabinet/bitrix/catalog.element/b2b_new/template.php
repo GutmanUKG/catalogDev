@@ -1,4 +1,4 @@
-<? if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
+﻿<? if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
@@ -426,7 +426,7 @@ $this->EndViewTarget();
                         if($USER->isAdmin()):
                         ?>
                             <?if($arResult['HAS_SECOND']):?>
-                            <button type="button" class="btn btn-danger btn-small mt-2" data-bs-toggle="modal" data-bs-target="#markdownModal-<?=$mainId?>">Уценка</button>
+                            <button type="button" class="btn btn-danger btn-small mt-2" data-bs-toggle="modal" data-bs-target="#markdownModal-<?=$mainId?>"><?=Loc::getMessage('CT_BZD_MARKDOWN_BUTTON')?></button>
                             <?endif;?>
                         <?endif;?>
 
@@ -743,32 +743,40 @@ $this->EndViewTarget();
 
         <?if ($arResult['HAS_SECOND'] && $USER->isAdmin()):?>
         <?
-        $secondProduct = $arResult['SECOND_PRODUCT'];
-        $secondStores = $arResult['SECOND_STORES'];
-        $secondId = $secondProduct['ID'];
+        $secondItems = $arResult['SECOND_ITEMS'];
         $markdownCarouselId = 'bzd-markdown-slider-' . $mainId;
 
-        // Register markdown product in itemIds for JS
-        $itemIds['SECOND_PRODUCT'] = [
-            'ID' => $secondId,
-            'QUANTITY' => $mainId . '_second_quantity',
-            'QUANTITY_DECREMENT' => $mainId . '_second_quantity-decrement',
-            'QUANTITY_VALUE' => $mainId . '_second_quantity-value',
-            'QUANTITY_INCREMENT' => $mainId . '_second_quantity-increment',
+                        
+        $categoryDescriptions = [
+            56 => Loc::getMessage('CT_BZD_MARKDOWN_DESC_CAT_1'),
+            55 => Loc::getMessage('CT_BZD_MARKDOWN_DESC_CAT_2'),
+            58 => Loc::getMessage('CT_BZD_MARKDOWN_DESC_CAT_3'),
+            57 => Loc::getMessage('CT_BZD_MARKDOWN_DESC_CAT_4'),
+        ];
+        $categoryBadges = [
+            56 => Loc::getMessage('CT_BZD_MARKDOWN_CAT_1'),
+            55 => Loc::getMessage('CT_BZD_MARKDOWN_CAT_2'),
+            58 => Loc::getMessage('CT_BZD_MARKDOWN_CAT_3'),
+            57 => Loc::getMessage('CT_BZD_MARKDOWN_CAT_4'),
         ];
 
-        $categoryDescriptions = [
-            'КАТ-1' => 'Любые повреждения упаковки (помятости, срыв стикера и т.д.), при этом товар не имеет внешних повреждений, исправен, укомплектован на 100%',
-            'КАТ-2' => 'Имеются видимые следы повреждения товара (царапины, потертости, незначительные сколы и вмятины и т.д.), при этом товар исправен, укомплектован на 100%',
-            'КАТ-3' => 'Бывший в употреблении товар, имеются следы использования, некомплект, при этом товар исправен',
-            'КАТ-4' => 'Товар после сервиса, производилось внутреннее, программное или иное вмешательство',
-        ];
+        $itemIds['SECOND_PRODUCTS'] = [];
+        foreach ($secondItems as $secondItem) {
+            $rowKey = $secondItem['ROW_KEY'];
+            $itemIds['SECOND_PRODUCTS'][$rowKey] = [
+                'ID' => $secondItem['ID'],
+                'QUANTITY' => $mainId . '_second_' . $rowKey . '_quantity',
+                'QUANTITY_DECREMENT' => $mainId . '_second_' . $rowKey . '_quantity-decrement',
+                'QUANTITY_VALUE' => $mainId . '_second_' . $rowKey . '_quantity-value',
+                'QUANTITY_INCREMENT' => $mainId . '_second_' . $rowKey . '_quantity-increment',
+            ];
+        }
         ?>
         <div class="modal fade" id="markdownModal-<?=$mainId?>" tabindex="-1" aria-labelledby="markdownModalLabel-<?=$mainId?>" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="markdownModalLabel-<?=$mainId?>">Уценка: <?=htmlspecialcharsEx($name)?></h5>
+                        <h5 class="modal-title" id="markdownModalLabel-<?=$mainId?>"><?=Loc::getMessage('CT_BZD_MARKDOWN_TITLE')?>: <?=htmlspecialcharsEx($name)?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
@@ -816,64 +824,72 @@ $this->EndViewTarget();
                                 </div>
                             </div>
                             <div class="bzd-markdown-main">
-                                <?foreach ($secondStores as $storeRow):?>
-                                <div class="bzd-markdown-item">
+                                <?foreach ($secondItems as $secondItem):?>
+                                <?
+                                $rowKey = $secondItem['ROW_KEY'];
+                                $selectedPrice = $secondItem['SELECTED_PRICE'];
+                                $secondIds = $itemIds['SECOND_PRODUCTS'][$rowKey];
+                                ?>
+                                <div class="bzd-markdown-item" data-row-key="<?=$rowKey?>">
                                     <div class="bzd-markdown-item__info">
-                                        <div class="bzd-markdown-item__name"><?=htmlspecialcharsEx($secondProduct['NAME'])?></div>
-                                        <?if ($secondProduct['CML2_ARTICLE']):?>
-                                            <div class="bzd-markdown-item__article">Артикул: <?=htmlspecialcharsEx($secondProduct['CML2_ARTICLE'])?></div>
+                                        <div class="bzd-markdown-item__name"><?=htmlspecialcharsEx($secondItem['NAME'])?></div>
+                                        <?if ($secondItem['CML2_ARTICLE']):?>
+                                            <div class="bzd-markdown-item__article"><?=Loc::getMessage('CT_BZD_MARKDOWN_ARTICLE')?>: <?=htmlspecialcharsEx($secondItem['CML2_ARTICLE'])?></div>
                                         <?endif;?>
                                     </div>
                                     <div class="bzd-markdown-item__category">
-                                        <span class="badge bg-warning text-dark"><?=$storeRow['CATEGORY']?></span>
-                                        <span class="bzd-markdown-item__category-info" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=htmlspecialcharsEx($categoryDescriptions[$storeRow['CATEGORY']])?>" style="cursor:pointer;">
+                                        <span class="badge bg-warning text-dark"><?=htmlspecialcharsEx($categoryBadges[(int)$secondItem['STORE_ID']] ?? '')?></span>
+                                        <span class="bzd-markdown-item__category-info" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=htmlspecialcharsEx($categoryDescriptions[$secondItem['STORE_ID']] ?? '')?>" style="cursor:pointer;">
                                             <i class="ph-info"></i>
                                         </span>
                                     </div>
                                     <div class="bzd-markdown-item__quantity-col">
-                                        В наличии: <strong><?=$storeRow['AMOUNT']?></strong> шт
+                                        <?=Loc::getMessage('CT_BZD_MARKDOWN_AVAILABLE')?>: <strong><?=$secondItem['AMOUNT']?></strong> <?=Loc::getMessage('CT_BZD_MARKDOWN_MEASURE')?>
                                     </div>
                                     <div class="bzd-markdown-item__prices">
-                                        <?foreach ($secondProduct['PRICES'] as $priceCode => $ranges):?>
-                                            <?foreach ($ranges as $rangeKey => $priceData):?>
-                                                <?if ($priceData['PRINT_OLD']):?>
-                                                    <span class="bzd-markdown-item__price-old"><?=$priceData['PRINT_OLD']?></span>
-                                                <?endif;?>
-                                                <span class="bzd-markdown-item__price-current"><?=$priceData['PRINT']?></span>
-                                                <?break;?>
-                                            <?endforeach;?>
-                                            <?break;?>
-                                        <?endforeach;?>
+                                        <?if (!empty($selectedPrice)):?>
+                                            <?if (!empty($selectedPrice['PRINT_OLD'])):?>
+                                                <span class="bzd-markdown-item__price-old"><?=$selectedPrice['PRINT_OLD']?></span>
+                                            <?endif;?>
+                                            <span class="bzd-markdown-item__price-current"><?=$selectedPrice['PRINT']?></span>
+                                            <?if ($USER->IsAdmin() && !empty($selectedPrice['DISCOUNT_IDS']) && is_array($selectedPrice['DISCOUNT_IDS'])):?>
+                                                <small class="d-block text-muted"><?=Loc::getMessage('CT_BZD_MARKDOWN_PROMO_ID')?>: <?=implode(', ', array_map('intval', $selectedPrice['DISCOUNT_IDS']))?></small>
+                                            <?endif;?>
+                                        <?endif;?>
                                     </div>
                                     <div class="bzd-markdown-item__actions">
-                                        <button type="button" class="btn btn-primary btn-sm bzd-markdown-add-basket" data-product-id="<?=$secondId?>">В Корзину</button>
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary btn-sm bzd-markdown-add-basket"
+                                            data-row-key="<?=$rowKey?>"
+                                            <?if ($secondItem['ACTUAL_QUANTITY'] > 0):?>style="display: none"<?endif;?>
+                                        ><?=Loc::getMessage('CT_BZD_MARKDOWN_ADD_TO_BASKET')?></button>
+                                        <div class="bzd-markdown-touchspin" <?if($secondItem['ACTUAL_QUANTITY'] < 1):?>style="display: none"<?endif;?>>
+                                            <div class="bootstrap-touchspin input-group" id="<?=$secondIds['QUANTITY']?>">
+                                                <span class="input-group-btn input-group-prepend">
+                                                    <button class="btn bootstrap-touchspin-down" type="button" id="<?=$secondIds['QUANTITY_DECREMENT']?>">
+                                                        <i class="ph-minus"></i>
+                                                    </button>
+                                                </span>
+                                                <input class="touchspin-basic form-control" type="text" value="<?=$secondItem['ACTUAL_QUANTITY']?>" id="<?=$secondIds['QUANTITY_VALUE']?>">
+                                                <span class="input-group-btn input-group-append">
+                                                    <button class="btn bootstrap-touchspin-up" type="button" id="<?=$secondIds['QUANTITY_INCREMENT']?>">
+                                                        <i class="ph-plus"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <?endforeach;?>
 
-                                <div class="bzd-markdown-touchspin" <?if($secondProduct['ACTUAL_QUANTITY'] < 1):?>style="display: none"<?endif;?>>
-                                    <div class="bootstrap-touchspin input-group" id="<?=$itemIds['SECOND_PRODUCT']['QUANTITY']?>">
-                                        <span class="input-group-btn input-group-prepend">
-                                            <button class="btn bootstrap-touchspin-down" type="button" id="<?=$itemIds['SECOND_PRODUCT']['QUANTITY_DECREMENT']?>">
-                                                <i class="ph-minus"></i>
-                                            </button>
-                                        </span>
-                                        <input class="touchspin-basic form-control" type="text" value="<?=$secondProduct['ACTUAL_QUANTITY']?>" id="<?=$itemIds['SECOND_PRODUCT']['QUANTITY_VALUE']?>">
-                                        <span class="input-group-btn input-group-append">
-                                            <button class="btn bootstrap-touchspin-up" type="button" id="<?=$itemIds['SECOND_PRODUCT']['QUANTITY_INCREMENT']?>">
-                                                <i class="ph-plus"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="bzd-markdown-categories-info mt-3">
-                                    <p class="mb-1"><strong>Описание категорий уценки:</strong></p>
+                                                                <div class="bzd-markdown-categories-info mt-3">
+                                    <p class="mb-1"><strong><?=Loc::getMessage('CT_BZD_MARKDOWN_DESC_TITLE')?>:</strong></p>
                                     <ul class="bzd-markdown-categories-list">
-                                        <li><strong>КАТ-1</strong> — <?=$categoryDescriptions['КАТ-1']?></li>
-                                        <li><strong>КАТ-2</strong> — <?=$categoryDescriptions['КАТ-2']?></li>
-                                        <li><strong>КАТ-3</strong> — <?=$categoryDescriptions['КАТ-3']?></li>
-                                        <li><strong>КАТ-4</strong> — <?=$categoryDescriptions['КАТ-4']?></li>
+                                        <li><strong><?=Loc::getMessage('CT_BZD_MARKDOWN_CAT_1')?></strong> - <?=$categoryDescriptions[56]?></li>
+                                        <li><strong><?=Loc::getMessage('CT_BZD_MARKDOWN_CAT_2')?></strong> - <?=$categoryDescriptions[55]?></li>
+                                        <li><strong><?=Loc::getMessage('CT_BZD_MARKDOWN_CAT_3')?></strong> - <?=$categoryDescriptions[58]?></li>
+                                        <li><strong><?=Loc::getMessage('CT_BZD_MARKDOWN_CAT_4')?></strong> - <?=$categoryDescriptions[57]?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -893,6 +909,10 @@ $this->EndViewTarget();
             BZI_PRODUCT_ADD_TO_BASKET: '<?=Loc::getMessage('CT_BZD_PRODUCT_ADD_TO_BASKET')?>',
             BZD_PRODUCT_ADD_TO_BASKET: '<?=Loc::getMessage('CT_BZD_PRODUCT_ADD_TO_BASKET')?>',
             BZD_PRODUCT_REMOVE_FORM_BASKET: '<?=Loc::getMessage('CT_BZD_PRODUCT_REMOVE_FORM_BASKET')?>',
+            BZD_MARKDOWN_PROP_STORE: '<?=Loc::getMessage('CT_BZD_MARKDOWN_PROP_STORE')?>',
+            BZD_MARKDOWN_PROP_CATEGORY: '<?=Loc::getMessage('CT_BZD_MARKDOWN_PROP_CATEGORY')?>',
+            BZD_MARKDOWN_PROP_ROW_KEY: '<?=Loc::getMessage('CT_BZD_MARKDOWN_PROP_ROW_KEY')?>',
+            BZD_MARKDOWN_MEASURE: '<?=Loc::getMessage('CT_BZD_MARKDOWN_MEASURE')?>',
         });
         var <?=$obName?> = new JCBlankZakazaDetail(
             <?=CUtil::PhpToJSObject($arResult)?>,
@@ -974,4 +994,3 @@ document.addEventListener('DOMContentLoaded', function () {
     updateUI(); // инициализация на загрузке
 });
 </script>
-

@@ -1,2 +1,7 @@
 <?php
 $MESS["CT_BCS_CATALOG_MESS_PRIVATE_PRICE_TITLE"] = "Индивидуальная цена";
+
+$MESS['CT_BZD_MARKDOWN_CAT_1'] = 'КАТ-1';
+$MESS['CT_BZD_MARKDOWN_CAT_2'] = 'КАТ-2';
+$MESS['CT_BZD_MARKDOWN_CAT_3'] = 'КАТ-3';
+$MESS['CT_BZD_MARKDOWN_CAT_4'] = 'КАТ-4';

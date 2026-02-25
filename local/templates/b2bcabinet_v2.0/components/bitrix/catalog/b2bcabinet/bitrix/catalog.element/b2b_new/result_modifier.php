@@ -311,12 +311,21 @@ unset(
 );
 
 $SALE_IBLOCK_ID = 37;
-$storeCategories = [56 => 'КАТ-1', 55 => 'КАТ-2', 58 => 'КАТ-3', 57 => 'КАТ-4'];
+$storeCategories = [
+    56 => Loc::getMessage('CT_BZD_MARKDOWN_CAT_1'),
+    55 => Loc::getMessage('CT_BZD_MARKDOWN_CAT_2'),
+    58 => Loc::getMessage('CT_BZD_MARKDOWN_CAT_3'),
+    57 => Loc::getMessage('CT_BZD_MARKDOWN_CAT_4')
+];
 
 $article = $arResult['PROPERTIES']['CML2_ARTICLE']['VALUE'];
 $arResult['HAS_SECOND'] = false;
+$arResult['SECOND_ITEMS'] = [];
 
 if ($article) {
+    $secondProducts = [];
+    $secondProductIds = [];
+
     $res = CIBlockElement::GetList(
         [],
         [
@@ -329,39 +338,42 @@ if ($article) {
         ['ID', 'NAME', 'PROPERTY_CML2_ARTICLE']
     );
 
-    if ($row = $res->Fetch()) {
-        $secondId = $row['ID'];
+    while ($row = $res->Fetch()) {
+        $secondId = (int)$row['ID'];
+        $secondProductIds[] = $secondId;
+        $secondProducts[$secondId] = [
+            'ID' => $secondId,
+            'NAME' => $row['NAME'],
+            'CML2_ARTICLE' => $row['PROPERTY_CML2_ARTICLE_VALUE'],
+        ];
+    }
 
-        // Fetch store quantities for markdown stores
-        $secondStores = [];
+    if (!empty($secondProductIds)) {
+        $storeAmountsByProduct = [];
         $resStores = CCatalogStoreProduct::GetList(
             [],
-            ['PRODUCT_ID' => $secondId, 'STORE_ID' => array_keys($storeCategories)],
+            ['PRODUCT_ID' => $secondProductIds, 'STORE_ID' => array_keys($storeCategories)],
             false,
             false,
-            ['STORE_ID', 'AMOUNT']
+            ['PRODUCT_ID', 'STORE_ID', 'AMOUNT']
         );
-        $totalMarkdownQuantity = 0;
         while ($store = $resStores->Fetch()) {
-            if ($store['AMOUNT'] > 0) {
-                $secondStores[] = [
-                    'STORE_ID' => $store['STORE_ID'],
-                    'CATEGORY' => $storeCategories[$store['STORE_ID']],
-                    'AMOUNT' => $store['AMOUNT'],
-                ];
-                $totalMarkdownQuantity += $store['AMOUNT'];
+            $amount = (float)$store['AMOUNT'];
+            if ($amount > 0) {
+                $productId = (int)$store['PRODUCT_ID'];
+                $storeId = (int)$store['STORE_ID'];
+                $storeAmountsByProduct[$productId][$storeId] = $amount;
             }
         }
 
-        if (!empty($secondStores)) {
-            // Fetch prices for markdown product
+        if (!empty($storeAmountsByProduct)) {
             $secondPricesRaw = \Bitrix\Catalog\PriceTable::getList([
                 'select' => ['*', 'CATALOG_GROUP_ID'],
                 'filter' => [
-                    '=PRODUCT_ID' => $secondId,
+                    '=PRODUCT_ID' => $secondProductIds,
                     'CATALOG_GROUP_ID' => $arResult['PRICES_ALLOW'],
                 ],
-                'order' => ['CATALOG_GROUP_ID' => 'ASC'],
+                'order' => ['CATALOG_GROUP_ID' => 'ASC', 'PRODUCT_ID' => 'ASC'],
             ])->fetchAll();
 
             $secondPrices = [];
@@ -372,18 +384,28 @@ if ($article) {
                     'N',
                     SITE_ID
                 );
+                $discountIds = [];
+                if (is_array($arDiscounts)) {
+                    foreach ($arDiscounts as $discountData) {
+                        if (!empty($discountData['ID'])) {
+                            $discountIds[] = (int)$discountData['ID'];
+                        }
+                    }
+                }
                 $discountPrice = CCatalogProduct::CountPriceWithDiscount(
                     $price['PRICE'],
                     $price['CURRENCY'],
                     $arDiscounts
                 );
+                $productId = (int)$price['PRODUCT_ID'];
                 $priceCode = $priceTypeHelper[$price['CATALOG_GROUP_ID']] ?? $price['CATALOG_GROUP_ID'];
                 $rangeKey = ($price['QUANTITY_FROM'] ?: 'ZERO') . '-' . ($price['QUANTITY_TO'] ?: 'INF');
-                $secondPrices[$priceCode][$rangeKey] = [
+                $secondPrices[$productId][$priceCode][$rangeKey] = [
                     'ID' => $price['ID'],
                     'PRICE' => $price['PRICE'],
                     'DISCOUNT_PRICE' => $discountPrice ?: $price['PRICE'],
                     'CURRENCY' => $price['CURRENCY'],
+                    'DISCOUNT_IDS' => $discountIds,
                     'PRINT' => CCurrencyLang::CurrencyFormat(($discountPrice ?: $price['PRICE']), $price['CURRENCY']),
                     'PRINT_OLD' => (round($discountPrice, 2) !== round($price['PRICE'], 2))
                         ? CCurrencyLang::CurrencyFormat($price['PRICE'], $price['CURRENCY'])
@@ -391,38 +413,340 @@ if ($article) {
                 ];
             }
 
-            // Fetch catalog product data
-            $secondProduct = \Bitrix\Catalog\ProductTable::getList([
-                'select' => ['QUANTITY', 'QUANTITY_TRACE', 'CAN_BUY_ZERO'],
-                'filter' => ['=ID' => $secondId],
-            ])->fetch();
-
-            // Fetch measure ratio
-            $secondMeasureRatio = 1;
-            $resMeasure = \Bitrix\Catalog\MeasureRatioTable::getList([
-                'select' => ['RATIO'],
-                'filter' => ['=PRODUCT_ID' => $secondId, '=IS_DEFAULT' => 'Y'],
-            ])->fetch();
-            if ($resMeasure) {
-                $secondMeasureRatio = $resMeasure['RATIO'];
+            $secondProductsData = [];
+            $resProductsData = \Bitrix\Catalog\ProductTable::getList([
+                'select' => ['ID', 'QUANTITY_TRACE', 'CAN_BUY_ZERO'],
+                'filter' => ['=ID' => $secondProductIds],
+            ]);
+            while ($productData = $resProductsData->fetch()) {
+                $secondProductsData[(int)$productData['ID']] = $productData;
             }
 
-            // Basket quantity
-            $secondActualQuantity = !empty($arBasketItems[$secondId]) ? $arBasketItems[$secondId] : 0;
+            $secondMeasureRatios = [];
+            $resMeasure = \Bitrix\Catalog\MeasureRatioTable::getList([
+                'select' => ['PRODUCT_ID', 'RATIO'],
+                'filter' => ['=PRODUCT_ID' => $secondProductIds, '=IS_DEFAULT' => 'Y'],
+            ]);
+            while ($measure = $resMeasure->fetch()) {
+                $secondMeasureRatios[(int)$measure['PRODUCT_ID']] = (float)$measure['RATIO'];
+            }
 
-            $arResult['HAS_SECOND'] = true;
-            $arResult['SECOND_PRODUCT'] = [
-                'ID' => $secondId,
-                'NAME' => $row['NAME'],
-                'CML2_ARTICLE' => $row['PROPERTY_CML2_ARTICLE_VALUE'],
-                'PRICES' => $secondPrices,
-                'MEASURE_RATIO' => $secondMeasureRatio,
-                'QUANTITY_TRACE' => $secondProduct['QUANTITY_TRACE'] ?? 'N',
-                'CAN_BUY_ZERO' => $secondProduct['CAN_BUY_ZERO'] ?? 'N',
-                'TOTAL_QUANTITY' => $totalMarkdownQuantity,
-                'ACTUAL_QUANTITY' => $secondActualQuantity,
-            ];
-            $arResult['SECOND_STORES'] = $secondStores;
+            $getSelectedPriceByCategory = static function (array $prices, string $category): array {
+                if (empty($prices)) {
+                    return [];
+                }
+
+                preg_match('/(\d+)/u', $category, $categoryMatch);
+                $categoryNumber = $categoryMatch[1] ?? '';
+
+                if ($categoryNumber !== '') {
+                    foreach ($prices as $priceCode => $ranges) {
+                        if ($priceCode === 'PRIVATE_PRICE') {
+                            continue;
+                        }
+
+                        $normalizedCode = mb_strtolower((string)$priceCode);
+                        $normalizedCode = preg_replace('/[^a-z0-9]/i', '', $normalizedCode);
+                        preg_match('/(\d+)/', (string)$priceCode, $priceCodeNumberMatch);
+                        $priceCodeNumber = $priceCodeNumberMatch[1] ?? '';
+
+                        if (
+                            $priceCodeNumber === $categoryNumber
+                            || mb_strpos($normalizedCode, 'k' . $categoryNumber) !== false
+                            || mb_strpos($normalizedCode, 'kat' . $categoryNumber) !== false
+                            || mb_strpos($normalizedCode, 'cat' . $categoryNumber) !== false
+                        ) {
+                            return reset($ranges) ?: [];
+                        }
+                    }
+                }
+
+                foreach ($prices as $priceCode => $ranges) {
+                    if ($priceCode === 'PRIVATE_PRICE') {
+                        continue;
+                    }
+
+                    return reset($ranges) ?: [];
+                }
+
+                return [];
+            };
+
+            $hasStoreCondition = static function ($conditionNode, int $storeId) use (&$hasStoreCondition): bool {
+                if (!is_array($conditionNode)) {
+                    return false;
+                }
+
+                if (
+                    isset($conditionNode['CLASS_ID'])
+                    && (string)$conditionNode['CLASS_ID'] === 'CondCtrlProductOnWarehouse'
+                ) {
+                    $nodeStoreId = 0;
+                    if (isset($conditionNode['STORE_ID'])) {
+                        $nodeStoreId = (int)$conditionNode['STORE_ID'];
+                    } elseif (isset($conditionNode['DATA']['value'])) {
+                        $nodeStoreId = (int)$conditionNode['DATA']['value'];
+                    }
+
+                    return $nodeStoreId === $storeId;
+                }
+
+                if (!empty($conditionNode['CHILDREN']) && is_array($conditionNode['CHILDREN'])) {
+                    foreach ($conditionNode['CHILDREN'] as $childNode) {
+                        if ($hasStoreCondition($childNode, $storeId)) {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            };
+
+            $hasAnyStoreCondition = static function ($conditionNode) use (&$hasAnyStoreCondition): bool {
+                if (!is_array($conditionNode)) {
+                    return false;
+                }
+
+                if (
+                    isset($conditionNode['CLASS_ID'])
+                    && (string)$conditionNode['CLASS_ID'] === 'CondCtrlProductOnWarehouse'
+                ) {
+                    return true;
+                }
+
+                if (!empty($conditionNode['CHILDREN']) && is_array($conditionNode['CHILDREN'])) {
+                    foreach ($conditionNode['CHILDREN'] as $childNode) {
+                        if ($hasAnyStoreCondition($childNode)) {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            };
+
+            $extractPercentFromActions = static function (
+                $actionNode,
+                int $storeId,
+                bool $allowWithoutStoreCondition,
+                callable $hasStoreCondition,
+                callable $hasAnyStoreCondition
+            ) use (&$extractPercentFromActions): ?float {
+                if (!is_array($actionNode)) {
+                    return null;
+                }
+
+                if (
+                    !empty($actionNode['CLASS_ID'])
+                    && mb_strpos((string)$actionNode['CLASS_ID'], 'ActSaleBsktGrp') === 0
+                ) {
+                    $value = isset($actionNode['VALUE']) ? (float)$actionNode['VALUE'] : 0.0;
+                    $unit = isset($actionNode['UNIT']) ? (string)$actionNode['UNIT'] : '';
+                    $hasStoreInAction = $hasAnyStoreCondition($actionNode);
+                    $isStoreMatchedInAction = $hasStoreCondition($actionNode, $storeId);
+                    if (
+                        $value > 0
+                        && mb_strtolower($unit) === 'perc'
+                        && (
+                            ($hasStoreInAction && $isStoreMatchedInAction)
+                            || (!$hasStoreInAction && $allowWithoutStoreCondition)
+                        )
+                    ) {
+                        return $value;
+                    }
+                }
+
+                if (!empty($actionNode['CHILDREN']) && is_array($actionNode['CHILDREN'])) {
+                    foreach ($actionNode['CHILDREN'] as $childAction) {
+                        $foundPercent = $extractPercentFromActions(
+                            $childAction,
+                            $storeId,
+                            $allowWithoutStoreCondition,
+                            $hasStoreCondition,
+                            $hasAnyStoreCondition
+                        );
+                        if ($foundPercent !== null) {
+                            return $foundPercent;
+                        }
+                    }
+                }
+
+                return null;
+            };
+
+            $getStoreMarketingDiscount = static function (int $storeId) use (
+                $hasStoreCondition,
+                $hasAnyStoreCondition,
+                $extractPercentFromActions
+            ): array {
+                static $discountRows = null;
+
+                if ($discountRows === null) {
+                    $discountRows = [];
+                    $discountRes = CCatalogDiscount::GetList(
+                        ['PRIORITY' => 'DESC', 'SORT' => 'ASC', 'ID' => 'ASC'],
+                        ['ACTIVE' => 'Y', 'SITE_ID' => SITE_ID, 'RENEWAL' => 'N'],
+                        false,
+                        false,
+                        ['ID', 'CONDITIONS_LIST', 'ACTIONS_LIST', 'PRIORITY', 'SORT', 'ACTIVE_FROM', 'ACTIVE_TO']
+                    );
+
+                    while ($discountRow = $discountRes->Fetch()) {
+                        $discountRows[] = $discountRow;
+                    }
+                }
+
+                $now = new \Bitrix\Main\Type\DateTime();
+
+                foreach ($discountRows as $discountRow) {
+                    if (!empty($discountRow['ACTIVE_FROM']) && $discountRow['ACTIVE_FROM'] instanceof \Bitrix\Main\Type\DateTime) {
+                        if ($discountRow['ACTIVE_FROM']->getTimestamp() > $now->getTimestamp()) {
+                            continue;
+                        }
+                    }
+                    if (!empty($discountRow['ACTIVE_TO']) && $discountRow['ACTIVE_TO'] instanceof \Bitrix\Main\Type\DateTime) {
+                        if ($discountRow['ACTIVE_TO']->getTimestamp() < $now->getTimestamp()) {
+                            continue;
+                        }
+                    }
+
+                    $conditions = $discountRow['CONDITIONS_LIST'];
+                    if (is_string($conditions)) {
+                        $conditions = @unserialize($conditions, ['allowed_classes' => false]);
+                    }
+                    if (!is_array($conditions)) {
+                        $conditions = [];
+                    }
+
+                    $actions = $discountRow['ACTIONS_LIST'];
+                    if (is_string($actions)) {
+                        $actions = @unserialize($actions, ['allowed_classes' => false]);
+                    }
+                    if (!is_array($actions)) {
+                        $actions = [];
+                    }
+
+                    $hasStoreInConditions = $hasAnyStoreCondition($conditions);
+                    $hasStoreInActions = $hasAnyStoreCondition($actions);
+                    $isStoreMatchedInConditions = $hasStoreCondition($conditions, $storeId);
+                    $isStoreMatchedInActions = $hasStoreCondition($actions, $storeId);
+
+                    if ($hasStoreInConditions && !$isStoreMatchedInConditions) {
+                        continue;
+                    }
+                    if ($hasStoreInActions && !$isStoreMatchedInActions && !$isStoreMatchedInConditions) {
+                        continue;
+                    }
+
+                    $allowWithoutStoreCondition = $isStoreMatchedInConditions
+                        || (!$hasStoreInConditions && !$hasStoreInActions);
+                    $percent = $extractPercentFromActions(
+                        $actions,
+                        $storeId,
+                        $allowWithoutStoreCondition,
+                        $hasStoreCondition,
+                        $hasAnyStoreCondition
+                    );
+                    if ($percent !== null && $percent > 0) {
+                        return [
+                            'ID' => (int)$discountRow['ID'],
+                            'PERCENT' => (float)$percent,
+                        ];
+                    }
+                }
+
+                return [];
+            };
+
+            $basketQuantitiesByMarkdownRow = [];
+            if (\Bitrix\Main\Loader::includeModule('sale')) {
+                $basket = \Bitrix\Sale\Basket::loadItemsForFUser(\Bitrix\Sale\Fuser::getId(), SITE_ID);
+                $secondProductIdLookup = array_fill_keys($secondProductIds, true);
+                foreach ($basket as $basketItem) {
+                    $basketProductId = (int)$basketItem->getProductId();
+                    if (empty($secondProductIdLookup[$basketProductId])) {
+                        continue;
+                    }
+
+                    $basketStoreId = 0;
+                    $basketRowKey = '';
+                    $propertyCollection = $basketItem->getPropertyCollection();
+                    if ($propertyCollection) {
+                        $propertyValues = $propertyCollection->getPropertyValues();
+                        if (is_array($propertyValues)) {
+                            foreach ($propertyValues as $propertyValue) {
+                                if (!is_array($propertyValue)) {
+                                    continue;
+                                }
+                                $propertyCode = (string)($propertyValue['CODE'] ?? '');
+                                $propertyDataValue = (string)($propertyValue['VALUE'] ?? '');
+                                if ($propertyCode === 'MARKDOWN_ROW_KEY' && $propertyDataValue !== '') {
+                                    $basketRowKey = $propertyDataValue;
+                                } elseif ($propertyCode === 'MARKDOWN_STORE_ID' && (int)$propertyDataValue > 0) {
+                                    $basketStoreId = (int)$propertyDataValue;
+                                }
+                            }
+                        }
+                    }
+
+                    if ($basketRowKey === '' && $basketStoreId > 0) {
+                        $basketRowKey = $basketProductId . '_' . $basketStoreId;
+                    }
+                    if ($basketRowKey !== '') {
+                        $basketQuantitiesByMarkdownRow[$basketRowKey] = (float)$basketItem->getQuantity();
+                    }
+                }
+            }
+
+            foreach ($storeAmountsByProduct as $productId => $storeAmounts) {
+                foreach ($storeAmounts as $storeId => $amount) {
+                    if (empty($secondProducts[$productId])) {
+                        continue;
+                    }
+
+                    $category = $storeCategories[$storeId] ?? '';
+                    $pricesByProduct = $secondPrices[$productId] ?? [];
+                    $measureRatio = (float)($secondMeasureRatios[$productId] ?? 1);
+                    $selectedPrice = $getSelectedPriceByCategory($pricesByProduct, $category);
+                    $storeDiscount = $getStoreMarketingDiscount((int)$storeId);
+                    if (!empty($selectedPrice) && !empty($storeDiscount)) {
+                        $basePrice = (float)$selectedPrice['PRICE'];
+                        $discountPrice = round($basePrice - ($basePrice * ((float)$storeDiscount['PERCENT'] / 100)), 2);
+                        $currency = (string)$selectedPrice['CURRENCY'];
+                        $selectedPrice['DISCOUNT_PRICE'] = $discountPrice;
+                        $selectedPrice['PRINT'] = CCurrencyLang::CurrencyFormat($discountPrice, $currency);
+                        $selectedPrice['PRINT_OLD'] = (round($basePrice, 2) !== round($discountPrice, 2))
+                            ? CCurrencyLang::CurrencyFormat($basePrice, $currency)
+                            : '';
+                        $selectedPrice['DISCOUNT_IDS'] = [(int)$storeDiscount['ID']];
+                    }
+                    $rowKey = $productId . '_' . $storeId;
+                    $actualQuantity = isset($basketQuantitiesByMarkdownRow[$rowKey])
+                        ? (float)$basketQuantitiesByMarkdownRow[$rowKey]
+                        : 0;
+
+                    $arResult['SECOND_ITEMS'][] = [
+                        'ROW_KEY' => $rowKey,
+                        'ID' => $productId,
+                        'STORE_ID' => $storeId,
+                        'CATEGORY' => $category,
+                        'AMOUNT' => $amount,
+                        'NAME' => $secondProducts[$productId]['NAME'],
+                        'CML2_ARTICLE' => $secondProducts[$productId]['CML2_ARTICLE'],
+                        'PRICES' => $pricesByProduct,
+                        'SELECTED_PRICE' => $selectedPrice,
+                        'MEASURE_RATIO' => $measureRatio,
+                        'QUANTITY_TRACE' => $secondProductsData[$productId]['QUANTITY_TRACE'] ?? 'N',
+                        'CAN_BUY_ZERO' => $secondProductsData[$productId]['CAN_BUY_ZERO'] ?? 'N',
+                        'TOTAL_QUANTITY' => $amount,
+                        'ACTUAL_QUANTITY' => $actualQuantity,
+                    ];
+                }
+            }
+
+            if (!empty($arResult['SECOND_ITEMS'])) {
+                $arResult['HAS_SECOND'] = true;
+            }
         }
     }
 }

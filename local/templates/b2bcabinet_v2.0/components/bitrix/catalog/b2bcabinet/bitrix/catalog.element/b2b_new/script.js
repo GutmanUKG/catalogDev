@@ -113,11 +113,17 @@
             if (item.nodes.wrapper === null) {return}
 			const nodes = item.nodes;
 			window.addEventListener("message", function(event) {
+				if (item.disableMessageSync) {
+					return;
+				}
 				const data = JSON.parse(event.data)
 				if (data.itemId && data.quantity && data.itemId === item.itemId) {
 					item.currentQuantity = parseFloat(data.quantity);
 					item.tmpQuantity = item.currentQuantity;
 					nodes.value.value = item.currentQuantity;
+									if (typeof item.onQuantityChanged === 'function') {
+										item.onQuantityChanged(item.currentQuantity);
+									}
 				}
 			})
 
@@ -136,7 +142,7 @@
 						function(){
 							nodes.increment.setAttribute("disabled", "disabled");
 							nodes.increment.firstElementChild.classList.add('spinner-grow');
-							this.addToBasket(item.itemId, item.tmpQuantity, item.measureRatio)
+							this.addToBasket(item.basketProductId || item.itemId, item.tmpQuantity, item.measureRatio, item.propsAddedToBasket, item.extraBasketFields)
 								.then(function(response) {
 									if (BX.SidePanel) {
 										BX.SidePanel.Instance.postMessageTop(window, "addProductToBasketFromDetail", {
@@ -150,6 +156,9 @@
 									nodes.increment.removeAttribute("disabled");
 									nodes.increment.firstElementChild.classList.remove('spinner-grow');
 									nodes.value.value = item.currentQuantity;
+									if (typeof item.onQuantityChanged === 'function') {
+										item.onQuantityChanged(item.currentQuantity);
+									}
 									const frames = Array.prototype.slice.call(window.frames);
 									frames.forEach(function(frame) {
 										frame.postMessage(JSON.stringify({
@@ -183,6 +192,9 @@
 										'alert'
 									]);
 									nodes.value.value = item.currentQuantity;
+									if (typeof item.onQuantityChanged === 'function') {
+										item.onQuantityChanged(item.currentQuantity);
+									}
 									nodes.increment.removeAttribute("disabled");
 									nodes.increment.firstElementChild.classList.remove('spinner-grow');
 									console.error(error)
@@ -211,7 +223,7 @@
 						function(){
 							nodes.decrement.setAttribute("disabled", "disabled");
 							nodes.decrement.firstElementChild.classList.add('spinner-grow');
-							this.addToBasket(item.itemId, item.tmpQuantity, item.measureRatio)
+							this.addToBasket(item.basketProductId || item.itemId, item.tmpQuantity, item.measureRatio, item.propsAddedToBasket, item.extraBasketFields)
 								.then(function(response) {
 									if (BX.SidePanel) {
 										BX.SidePanel.Instance.postMessageTop(window, "addProductToBasketFromDetail", {
@@ -225,6 +237,9 @@
 									nodes.decrement.removeAttribute("disabled");
 									nodes.decrement.firstElementChild.classList.remove('spinner-grow');
 									nodes.value.value = item.currentQuantity;
+									if (typeof item.onQuantityChanged === 'function') {
+										item.onQuantityChanged(item.currentQuantity);
+									}
 									const frames = Array.prototype.slice.call(window.frames);
 									frames.forEach(function(frame) {
 										frame.postMessage(JSON.stringify({
@@ -254,6 +269,9 @@
 										'alert'
 									]);
 									nodes.value.value = item.currentQuantity;
+									if (typeof item.onQuantityChanged === 'function') {
+										item.onQuantityChanged(item.currentQuantity);
+									}
 									nodes.decrement.removeAttribute("disabled");
 									nodes.decrement.firstElementChild.classList.remove('spinner-grow');
 									console.error(error)
@@ -281,7 +299,7 @@
 					clearTimeout(item.delayAddToBasket);
 					item.delayAddToBasket = setTimeout(
 						function(){
-							this.addToBasket(item.itemId, item.tmpQuantity, item.measureRatio)
+							this.addToBasket(item.basketProductId || item.itemId, item.tmpQuantity, item.measureRatio, item.propsAddedToBasket, item.extraBasketFields)
 								.then(function(response) {
 									if (BX.SidePanel) {
 										BX.SidePanel.Instance.postMessageTop(window, "addProductToBasketFromDetail", {
@@ -293,6 +311,9 @@
 									item.currentQuantity = parseFloat(response.data);
 									item.tmpQuantity = item.currentQuantity;
 									nodes.value.value = item.currentQuantity;
+									if (typeof item.onQuantityChanged === 'function') {
+										item.onQuantityChanged(item.currentQuantity);
+									}
 									if (window.self !== window.top) {
 										window.top.postMessage(JSON.stringify({
 											itemId: item.itemId,
@@ -325,20 +346,30 @@
 				}
 			}.bind(this))
         },
-        addToBasket: function(id, quantity, measureRatio, porpsAddedToBasket) {
+        addToBasket: function(id, quantity, measureRatio, porpsAddedToBasket, extraBasketFields) {
 
 			const quantity1 = Math.round(quantity * 1000000);
 			const measureRatio1 = Math.round(measureRatio * 1000000);
 			const remainder = quantity1 % measureRatio1;
 			quantity = (quantity1 - remainder) / 1000000;
 
+            var arFields = {
+                'PRODUCT_ID': id,
+                'QUANTITY': quantity,
+                'PROPS': porpsAddedToBasket,
+                'RENEW': 'N',
+            };
+            if (extraBasketFields && typeof extraBasketFields === 'object') {
+                for (var fieldName in extraBasketFields) {
+                    if (Object.prototype.hasOwnProperty.call(extraBasketFields, fieldName)) {
+                        arFields[fieldName] = extraBasketFields[fieldName];
+                    }
+                }
+            }
+
             return BX.ajax.runAction('sotbit:b2bcabinet.basket.addProductToBasket', {
                 data: {
-                    arFields: {
-                        'PRODUCT_ID': id,
-                        'QUANTITY': quantity,
-                        'PROPS': porpsAddedToBasket,
-                    }
+                    arFields: arFields
                 },
             })
         },
@@ -455,66 +486,111 @@
 			}
 		},
 		initMarkdownItems: function() {
-			if (!this.arResult.HAS_SECOND || !this.arResult.SECOND_PRODUCT || !this.itemIds.SECOND_PRODUCT) {
+			if (!this.arResult.HAS_SECOND || !Array.isArray(this.arResult.SECOND_ITEMS) || !this.itemIds.SECOND_PRODUCTS) {
 				return;
 			}
 
-			var secondProduct = this.arResult.SECOND_PRODUCT;
-			var secondIds = this.itemIds.SECOND_PRODUCT;
-			var quantityTrace = secondProduct.QUANTITY_TRACE === 'Y';
-			var canBuyZero = secondProduct.CAN_BUY_ZERO === 'Y';
-			var maxQty = quantityTrace && !canBuyZero ? parseFloat(secondProduct.TOTAL_QUANTITY) : Number.POSITIVE_INFINITY;
-			var measureRatio = parseFloat(secondProduct.MEASURE_RATIO) || 1;
+			var secondItems = this.arResult.SECOND_ITEMS;
+			var secondItemIds = this.itemIds.SECOND_PRODUCTS;
+			var measureName = this.arResult.CATALOG_MEASURE_NAME || BX.message('BZD_MARKDOWN_MEASURE') || '\u0448\u0442';
 
-			var nodes = {
-				wrapper: document.getElementById(secondIds.QUANTITY),
-				increment: document.getElementById(secondIds.QUANTITY_INCREMENT),
-				value: document.getElementById(secondIds.QUANTITY_VALUE),
-				decrement: document.getElementById(secondIds.QUANTITY_DECREMENT),
-			};
-
-			if (!nodes.wrapper) { return; }
-
-			var item = {
-				itemId: secondProduct.ID,
-				name: secondProduct.NAME,
-				nodes: nodes,
-				currentQuantity: parseFloat(secondProduct.ACTUAL_QUANTITY) || 0,
-				tmpQuantity: parseFloat(secondProduct.ACTUAL_QUANTITY) || 0,
-				maxQuantity: maxQty,
-				minQuantity: 0,
-				measureRatio: measureRatio,
-				measureName: this.arResult.CATALOG_MEASURE_NAME || 'шт'
-			};
-
-			this.initQuantity(item);
-
-			// Bind "В Корзину" buttons
-			var addButtons = document.querySelectorAll('.bzd-markdown-add-basket');
-			var touchspinWrapper = nodes.wrapper.closest('.bzd-markdown-touchspin');
-
-			for (var i = 0; i < addButtons.length; i++) {
-				addButtons[i].addEventListener('click', function() {
-					// Hide all "В Корзину" buttons
-					for (var j = 0; j < addButtons.length; j++) {
-						addButtons[j].style.display = 'none';
-					}
-					// Show touchspin
-					if (touchspinWrapper) {
-						touchspinWrapper.style.display = '';
-					}
-					// Trigger first increment
-					nodes.increment.click();
-				});
-			}
-
-			// If already in basket, hide buttons and show touchspin
-			if (item.currentQuantity > 0) {
-				for (var k = 0; k < addButtons.length; k++) {
-					addButtons[k].style.display = 'none';
+			for (let i = 0; i < secondItems.length; i++) {
+				let secondItem = secondItems[i];
+				let rowKey = secondItem.ROW_KEY;
+				if (!secondItemIds[rowKey]) {
+					continue;
 				}
-				if (touchspinWrapper) {
-					touchspinWrapper.style.display = '';
+
+				let secondIds = secondItemIds[rowKey];
+				let nodes = {
+					wrapper: document.getElementById(secondIds.QUANTITY),
+					increment: document.getElementById(secondIds.QUANTITY_INCREMENT),
+					value: document.getElementById(secondIds.QUANTITY_VALUE),
+					decrement: document.getElementById(secondIds.QUANTITY_DECREMENT),
+				};
+
+				if (!nodes.wrapper || !nodes.increment || !nodes.decrement || !nodes.value) {
+					continue;
+				}
+
+				let rowNode = document.querySelector('.bzd-markdown-item[data-row-key="' + rowKey + '"]');
+				let addButton = rowNode ? rowNode.querySelector('.bzd-markdown-add-basket') : null;
+				let touchspinWrapper = nodes.wrapper.closest('.bzd-markdown-touchspin');
+				let quantityTrace = secondItem.QUANTITY_TRACE === 'Y';
+				let canBuyZero = secondItem.CAN_BUY_ZERO === 'Y';
+				let maxQty = quantityTrace && !canBuyZero ? parseFloat(secondItem.TOTAL_QUANTITY) : Number.POSITIVE_INFINITY;
+				let actualQuantity = parseFloat(secondItem.ACTUAL_QUANTITY) || 0;
+
+				const toggleRowControls = function(quantity, button, counter) {
+					if (!button || !counter) {
+						return;
+					}
+					if (quantity > 0) {
+						button.style.display = 'none';
+						counter.style.display = '';
+					} else {
+						button.style.display = '';
+						counter.style.display = 'none';
+					}
+				};
+
+				let item = {
+					itemId: String(secondItem.ROW_KEY),
+					basketProductId: secondItem.ID,
+					name: secondItem.NAME,
+					nodes: nodes,
+					currentQuantity: actualQuantity,
+					tmpQuantity: actualQuantity,
+					maxQuantity: maxQty,
+					minQuantity: 0,
+					measureRatio: parseFloat(secondItem.MEASURE_RATIO) || 1,
+					measureName: measureName,
+					propsAddedToBasket: [
+						{
+							NAME: BX.message('BZD_MARKDOWN_PROP_STORE') || 'Markdown Store',
+							CODE: 'MARKDOWN_STORE_ID',
+							VALUE: String(secondItem.STORE_ID),
+							SORT: 100
+						},
+						{
+							NAME: BX.message('BZD_MARKDOWN_PROP_CATEGORY') || 'Markdown Category',
+							CODE: 'MARKDOWN_CATEGORY',
+							VALUE: String(secondItem.CATEGORY || ''),
+							SORT: 200
+						},
+						{
+							NAME: BX.message('BZD_MARKDOWN_PROP_ROW_KEY') || 'Markdown Row Key',
+							CODE: 'MARKDOWN_ROW_KEY',
+							VALUE: String(secondItem.ROW_KEY || ''),
+							SORT: 300
+						}
+					],
+					extraBasketFields: {
+						STORE_ID: String(secondItem.STORE_ID),
+						CATALOG_STORE_ID: String(secondItem.STORE_ID),
+						MARKDOWN_STORE_ID: String(secondItem.STORE_ID),
+						MARKDOWN_ROW_KEY: String(secondItem.ROW_KEY || ''),
+						MARKDOWN_CATEGORY: String(secondItem.CATEGORY || ''),
+						PRODUCT_XML_ID: 'markdown_' + String(secondItem.ROW_KEY || ''),
+						CATALOG_XML_ID: 'markdown_catalog_' + String(secondItem.ID || '')
+					},
+					disableMessageSync: true,
+					onQuantityChanged: function(quantity) {
+						toggleRowControls(quantity, addButton, touchspinWrapper);
+					}
+				};
+
+				this.initQuantity(item);
+				toggleRowControls(item.currentQuantity, addButton, touchspinWrapper);
+
+				if (addButton) {
+					(function(incNode, itemRef, buttonRef){
+						buttonRef.addEventListener('click', function() {
+							if (itemRef.currentQuantity <= 0) {
+								incNode.click();
+							}
+						});
+					})(nodes.increment, item, addButton);
 				}
 			}
 

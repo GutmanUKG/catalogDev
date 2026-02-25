@@ -20,4 +20,24 @@ $MESS['CT_BZD_PRODUCT_REMOVE_FORM_BASKET'] = 'Удален из корзины';
 $MESS['PRODUCT_LABEL_AVAILABLE_NAME'] ="Наличие (#CATALOG_MEASURE_RATIO##CATALOG_MEASURE_NAME#): ";
 $MESS['PRODUCT_LABEL_RATIO_MEASURE_NAME'] ="Единица измерения: #CATALOG_MEASURE_RATIO# #CATALOG_MEASURE_NAME#";
 $MESS['PRODUCT_LABEL_MEASURE'] =" #CATALOG_MEASURE_RATIO# #CATALOG_MEASURE_NAME#";
+
+$MESS['CT_BZD_MARKDOWN_BUTTON'] = 'Уценка';
+$MESS['CT_BZD_MARKDOWN_TITLE'] = 'Уценка';
+$MESS['CT_BZD_MARKDOWN_ARTICLE'] = 'Артикул';
+$MESS['CT_BZD_MARKDOWN_AVAILABLE'] = 'В наличии';
+$MESS['CT_BZD_MARKDOWN_ADD_TO_BASKET'] = 'В Корзину';
+$MESS['CT_BZD_MARKDOWN_DESC_TITLE'] = 'Описание категорий уценки';
+$MESS['CT_BZD_MARKDOWN_MEASURE'] = 'шт';
+$MESS['CT_BZD_MARKDOWN_CAT_1'] = 'КАТ-1';
+$MESS['CT_BZD_MARKDOWN_CAT_2'] = 'КАТ-2';
+$MESS['CT_BZD_MARKDOWN_CAT_3'] = 'КАТ-3';
+$MESS['CT_BZD_MARKDOWN_CAT_4'] = 'КАТ-4';
+$MESS['CT_BZD_MARKDOWN_DESC_CAT_1'] = 'Любые повреждения упаковки (помятости, срыв стикера и т.д.), при этом товар не имеет внешних повреждений, исправен, укомплектован на 100%';
+$MESS['CT_BZD_MARKDOWN_DESC_CAT_2'] = 'Имеются видимые следы повреждения товара (царапины, потертости, незначительные сколы и вмятины и т.д.), при этом товар исправен, укомплектован на 100%';
+$MESS['CT_BZD_MARKDOWN_DESC_CAT_3'] = 'Бывший в употреблении товар, имеются следы использования, некомплект, при этом товар исправен';
+$MESS['CT_BZD_MARKDOWN_DESC_CAT_4'] = 'Товар после сервиса, производилось внутреннее, программное или иное вмешательство';
+$MESS['CT_BZD_MARKDOWN_PROP_STORE'] = 'Склад уценки';
+$MESS['CT_BZD_MARKDOWN_PROP_CATEGORY'] = 'Категория уценки';
+$MESS['CT_BZD_MARKDOWN_PROP_ROW_KEY'] = 'Ключ строки уценки';
+$MESS['CT_BZD_MARKDOWN_PROMO_ID'] = 'ID акции';
 ?>

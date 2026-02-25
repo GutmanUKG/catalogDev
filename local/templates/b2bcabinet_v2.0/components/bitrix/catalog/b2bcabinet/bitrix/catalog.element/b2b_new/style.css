@@ -817,10 +817,11 @@
 
 .bzd-markdown-item__actions {
   flex-shrink: 0;
+  min-width: 120px;
 }
 
 .bzd-markdown-touchspin {
-  margin-top: 1rem;
+  margin-top: 0;
   max-width: 200px;
 }
 

@@ -1,0 +1,2529 @@
+Array
+(
+    [ID] => 909
+    [NAME] => Test Name Company
+    [USER_ID] => 915
+    [PERSON_TYPE_ID] => 1
+    [DATE_UPDATE] => Bitrix\Main\Type\DateTime Object
+        (
+            [value:protected] => DateTime Object
+                (
+                    [date] => 2025-10-06 12:35:30.000000
+                    [timezone_type] => 3
+                    [timezone] => Asia/Almaty
+                )
+
+            [userTimeEnabled:protected] => 1
+        )
+
+    [XML_ID] => 
+    [VERSION_1C] => 
+    [TITLE] => Профиль № 909
+    [PERSON_TYPE] => Array
+        (
+            [ID] => 1
+            [LID] => s1
+            [NAME] => Индивидуальный предприниматель
+            [CODE] => 
+            [SORT] => 100
+            [ACTIVE] => Y
+            [XML_ID] => 
+            [ENTITY_REGISTRY_TYPE] => ORDER
+        )
+
+    [ORDER_PROPS] => Array
+        (
+            [1] => Array
+                (
+                    [ID] => 1
+                    [~ID] => 1
+                    [PERSON_TYPE_ID] => 1
+                    [~PERSON_TYPE_ID] => 1
+                    [NAME] => Данные предпринимателя
+                    [~NAME] => Данные предпринимателя
+                    [SORT] => 100
+                    [~SORT] => 100
+                    [PROPS] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [ID] => 2
+                                    [~ID] => 2
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Название компании
+                                    [~NAME] => Название компании
+                                    [TYPE] => TEXT
+                                    [~TYPE] => TEXT
+                                    [REQUIED] => Y
+                                    [~REQUIED] => Y
+                                    [SORT] => 200
+                                    [~SORT] => 200
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 1
+                                    [~PROPS_GROUP_ID] => 1
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => Y
+                                    [~IS_PROFILE_NAME] => Y
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => SECOND_NAME
+                                    [~CODE] => SECOND_NAME
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 40
+                                    [~SIZE1] => 40
+                                )
+
+                            [1] => Array
+                                (
+                                    [ID] => 1
+                                    [~ID] => 1
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Ф.И.О.
+                                    [~NAME] => Ф.И.О.
+                                    [TYPE] => TEXT
+                                    [~TYPE] => TEXT
+                                    [REQUIED] => Y
+                                    [~REQUIED] => Y
+                                    [SORT] => 200
+                                    [~SORT] => 200
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 1
+                                    [~PROPS_GROUP_ID] => 1
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => Y
+                                    [~IS_PROFILE_NAME] => Y
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => NAME
+                                    [~CODE] => NAME
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 40
+                                    [~SIZE1] => 40
+                                )
+
+                            [2] => Array
+                                (
+                                    [ID] => 3
+                                    [~ID] => 3
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Юридический адрес
+                                    [~NAME] => Юридический адрес
+                                    [TYPE] => TEXTAREA
+                                    [~TYPE] => TEXTAREA
+                                    [REQUIED] => N
+                                    [~REQUIED] => N
+                                    [SORT] => 210
+                                    [~SORT] => 210
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 1
+                                    [~PROPS_GROUP_ID] => 1
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => ADDRESS
+                                    [~CODE] => ADDRESS
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 40
+                                    [~SIZE1] => 40
+                                    [SIZE2] => 3
+                                    [~SIZE2] => 3
+                                )
+
+                            [3] => Array
+                                (
+                                    [ID] => 4
+                                    [~ID] => 4
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => ИИН
+                                    [~NAME] => ИИН
+                                    [TYPE] => TEXT
+                                    [~TYPE] => TEXT
+                                    [REQUIED] => N
+                                    [~REQUIED] => N
+                                    [SORT] => 220
+                                    [~SORT] => 220
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 1
+                                    [~PROPS_GROUP_ID] => 1
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => INN
+                                    [~CODE] => INN
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 
+                                    [~SIZE1] => 
+                                )
+
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [ID] => 2
+                    [~ID] => 2
+                    [PERSON_TYPE_ID] => 1
+                    [~PERSON_TYPE_ID] => 1
+                    [NAME] => Контактная информация
+                    [~NAME] => Контактная информация
+                    [SORT] => 200
+                    [~SORT] => 200
+                    [PROPS] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [ID] => 6
+                                    [~ID] => 6
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Контактное лицо
+                                    [~NAME] => Контактное лицо
+                                    [TYPE] => TEXT
+                                    [~TYPE] => TEXT
+                                    [REQUIED] => Y
+                                    [~REQUIED] => Y
+                                    [SORT] => 240
+                                    [~SORT] => 240
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 2
+                                    [~PROPS_GROUP_ID] => 2
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => Y
+                                    [~IS_PAYER] => Y
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => CONTACT_NAME
+                                    [~CODE] => CONTACT_NAME
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 
+                                    [~SIZE1] => 
+                                )
+
+                            [1] => Array
+                                (
+                                    [ID] => 7
+                                    [~ID] => 7
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => E-Mail
+                                    [~NAME] => E-Mail
+                                    [TYPE] => TEXT
+                                    [~TYPE] => TEXT
+                                    [REQUIED] => Y
+                                    [~REQUIED] => Y
+                                    [SORT] => 250
+                                    [~SORT] => 250
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 2
+                                    [~PROPS_GROUP_ID] => 2
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => Y
+                                    [~IS_EMAIL] => Y
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => EMAIL
+                                    [~CODE] => EMAIL
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 40
+                                    [~SIZE1] => 40
+                                )
+
+                            [2] => Array
+                                (
+                                    [ID] => 8
+                                    [~ID] => 8
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Телефон
+                                    [~NAME] => Телефон
+                                    [TYPE] => TEXT
+                                    [~TYPE] => TEXT
+                                    [REQUIED] => N
+                                    [~REQUIED] => N
+                                    [SORT] => 260
+                                    [~SORT] => 260
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 2
+                                    [~PROPS_GROUP_ID] => 2
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => PHONE
+                                    [~CODE] => PHONE
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 
+                                    [~SIZE1] => 
+                                )
+
+                            [3] => Array
+                                (
+                                    [ID] => 9
+                                    [~ID] => 9
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Факс
+                                    [~NAME] => Факс
+                                    [TYPE] => TEXT
+                                    [~TYPE] => TEXT
+                                    [REQUIED] => N
+                                    [~REQUIED] => N
+                                    [SORT] => 270
+                                    [~SORT] => 270
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 2
+                                    [~PROPS_GROUP_ID] => 2
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => FAX
+                                    [~CODE] => FAX
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 
+                                    [~SIZE1] => 
+                                )
+
+                            [4] => Array
+                                (
+                                    [ID] => 10
+                                    [~ID] => 10
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Индекс
+                                    [~NAME] => Индекс
+                                    [TYPE] => TEXT
+                                    [~TYPE] => TEXT
+                                    [REQUIED] => Y
+                                    [~REQUIED] => Y
+                                    [SORT] => 280
+                                    [~SORT] => 280
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 2
+                                    [~PROPS_GROUP_ID] => 2
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => ZIP
+                                    [~CODE] => ZIP
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 101000
+                                    [~DEFAULT_VALUE] => 101000
+                                    [SIZE1] => 8
+                                    [~SIZE1] => 8
+                                )
+
+                            [5] => Array
+                                (
+                                    [ID] => 11
+                                    [~ID] => 11
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Город
+                                    [~NAME] => Город
+                                    [TYPE] => TEXT
+                                    [~TYPE] => TEXT
+                                    [REQUIED] => N
+                                    [~REQUIED] => N
+                                    [SORT] => 285
+                                    [~SORT] => 285
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 2
+                                    [~PROPS_GROUP_ID] => 2
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => CITY
+                                    [~CODE] => CITY
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 40
+                                    [~SIZE1] => 40
+                                )
+
+                            [6] => Array
+                                (
+                                    [ID] => 12
+                                    [~ID] => 12
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Местоположение
+                                    [~NAME] => Местоположение
+                                    [TYPE] => LOCATION
+                                    [~TYPE] => LOCATION
+                                    [REQUIED] => Y
+                                    [~REQUIED] => Y
+                                    [SORT] => 290
+                                    [~SORT] => 290
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => Y
+                                    [~IS_LOCATION] => Y
+                                    [PROPS_GROUP_ID] => 2
+                                    [~PROPS_GROUP_ID] => 2
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => Y
+                                    [~IS_LOCATION4TAX] => Y
+                                    [CODE] => LOCATION
+                                    [~CODE] => LOCATION
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 
+                                    [~SIZE1] => 
+                                    [VALUES] => Array
+                                        (
+                                            [0] => Array
+                                                (
+                                                    [ID] => 89
+                                                    [COUNTRY_ID] => 89
+                                                    [REGION_ID] => 
+                                                    [CITY_ID] => 
+                                                    [SORT] => 0
+                                                    [COUNTRY_NAME_ORIG] => Кыргызстан
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Кыргызстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => 
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => 
+                                                    [COUNTRY_NAME] => Кыргызстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => 
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [1] => Array
+                                                (
+                                                    [ID] => 2
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [2] => Array
+                                                (
+                                                    [ID] => 16
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 16
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Astana
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Астана
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Астана
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [3] => Array
+                                                (
+                                                    [ID] => 15
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 15
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => North Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Северо-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Северо-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [4] => Array
+                                                (
+                                                    [ID] => 14
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 14
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Aktobe region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Актюбинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Актюбинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [5] => Array
+                                                (
+                                                    [ID] => 13
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 13
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Akmola region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Акмолинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Акмолинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [6] => Array
+                                                (
+                                                    [ID] => 12
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 12
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => South Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Южно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Южно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [7] => Array
+                                                (
+                                                    [ID] => 11
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 11
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Pavlodar region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Павлодарская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Павлодарская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [8] => Array
+                                                (
+                                                    [ID] => 10
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 10
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Mangystau region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Мангистауская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Мангистауская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [9] => Array
+                                                (
+                                                    [ID] => 8
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 8
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Kostanay region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Костанайская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Костанайская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [10] => Array
+                                                (
+                                                    [ID] => 1
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => 
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => 
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => 
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [11] => Array
+                                                (
+                                                    [ID] => 3
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 3
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Atyrau region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Атырау
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Атырау
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [12] => Array
+                                                (
+                                                    [ID] => 4
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [13] => Array
+                                                (
+                                                    [ID] => 6
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 6
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => West Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Западно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Западно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [14] => Array
+                                                (
+                                                    [ID] => 9
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 9
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Kyzylorda region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Кызылординская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Кызылординская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [15] => Array
+                                                (
+                                                    [ID] => 7
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 7
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Karagandy region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Карагандинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Карагандинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [16] => Array
+                                                (
+                                                    [ID] => 5
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 5
+                                                    [CITY_ID] => 
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => 
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => 
+                                                    [REGION_NAME_ORIG] => Jambyl region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Жамбыльская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => 
+                                                    [REGION_NAME] => Жамбыльская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [17] => Array
+                                                (
+                                                    [ID] => 82
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 13
+                                                    [CITY_ID] => 82
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Akkol
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Акколь
+                                                    [REGION_NAME_ORIG] => Akmola region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Акмолинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Акколь
+                                                    [REGION_NAME] => Акмолинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [18] => Array
+                                                (
+                                                    [ID] => 42
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 6
+                                                    [CITY_ID] => 42
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Aksay
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Аксай
+                                                    [REGION_NAME_ORIG] => West Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Западно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Аксай
+                                                    [REGION_NAME] => Западно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [19] => Array
+                                                (
+                                                    [ID] => 64
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 11
+                                                    [CITY_ID] => 64
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Aksu
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Аксу
+                                                    [REGION_NAME_ORIG] => Pavlodar region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Павлодарская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Аксу
+                                                    [REGION_NAME] => Павлодарская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [20] => Array
+                                                (
+                                                    [ID] => 63
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 10
+                                                    [CITY_ID] => 63
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Aqtau
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Актау
+                                                    [REGION_NAME_ORIG] => Mangystau region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Мангистауская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Актау
+                                                    [REGION_NAME] => Мангистауская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [21] => Array
+                                                (
+                                                    [ID] => 85
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 14
+                                                    [CITY_ID] => 85
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Alga
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Алга
+                                                    [REGION_NAME_ORIG] => Aktobe region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Актюбинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Алга
+                                                    [REGION_NAME] => Актюбинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [22] => Array
+                                                (
+                                                    [ID] => 17
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 17
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Almaty
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Алматы
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Алматы
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [23] => Array
+                                                (
+                                                    [ID] => 61
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 9
+                                                    [CITY_ID] => 61
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Aralsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Аральск
+                                                    [REGION_NAME_ORIG] => Kyzylorda region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Кызылординская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Аральск
+                                                    [REGION_NAME] => Кызылординская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [24] => Array
+                                                (
+                                                    [ID] => 56
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 8
+                                                    [CITY_ID] => 56
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Arkalyk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Аркалык
+                                                    [REGION_NAME_ORIG] => Kostanay region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Костанайская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Аркалык
+                                                    [REGION_NAME] => Костанайская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [25] => Array
+                                                (
+                                                    [ID] => 88
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 16
+                                                    [CITY_ID] => 88
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Astana
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Астана
+                                                    [REGION_NAME_ORIG] => Astana
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Астана
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Астана
+                                                    [REGION_NAME] => Астана
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [26] => Array
+                                                (
+                                                    [ID] => 81
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 13
+                                                    [CITY_ID] => 81
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Atbasar
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Атбасар
+                                                    [REGION_NAME_ORIG] => Akmola region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Акмолинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Атбасар
+                                                    [REGION_NAME] => Акмолинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [27] => Array
+                                                (
+                                                    [ID] => 27
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 3
+                                                    [CITY_ID] => 27
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Atyrau
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Атырау
+                                                    [REGION_NAME_ORIG] => Atyrau region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Атырау
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Атырау
+                                                    [REGION_NAME] => Атырау
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [28] => Array
+                                                (
+                                                    [ID] => 29
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 29
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Ayago
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Аягоз
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Аягоз
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [29] => Array
+                                                (
+                                                    [ID] => 60
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 9
+                                                    [CITY_ID] => 60
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Baikonur
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Байконур
+                                                    [REGION_NAME_ORIG] => Kyzylorda region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Кызылординская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Байконур
+                                                    [REGION_NAME] => Кызылординская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [30] => Array
+                                                (
+                                                    [ID] => 49
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 7
+                                                    [CITY_ID] => 49
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Balkas
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Балхаш
+                                                    [REGION_NAME_ORIG] => Karagandy region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Карагандинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Балхаш
+                                                    [REGION_NAME] => Карагандинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [31] => Array
+                                                (
+                                                    [ID] => 80
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 13
+                                                    [CITY_ID] => 80
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Derzavinsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Державинск
+                                                    [REGION_NAME_ORIG] => Akmola region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Акмолинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Державинск
+                                                    [REGION_NAME] => Акмолинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [32] => Array
+                                                (
+                                                    [ID] => 79
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 13
+                                                    [CITY_ID] => 79
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Ermentau
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Ерментау
+                                                    [REGION_NAME_ORIG] => Akmola region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Акмолинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Ерментау
+                                                    [REGION_NAME] => Акмолинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [33] => Array
+                                                (
+                                                    [ID] => 24
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 24
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Esik
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Есик
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Есик
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [34] => Array
+                                                (
+                                                    [ID] => 62
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 10
+                                                    [CITY_ID] => 62
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Zhanaoze
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Жанаозен
+                                                    [REGION_NAME_ORIG] => Mangystau region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Мангистауская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Жанаозен
+                                                    [REGION_NAME] => Мангистауская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [35] => Array
+                                                (
+                                                    [ID] => 39
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 5
+                                                    [CITY_ID] => 39
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Zhanata
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Жанатас
+                                                    [REGION_NAME_ORIG] => Jambyl region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Жамбыльская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Жанатас
+                                                    [REGION_NAME] => Жамбыльская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [36] => Array
+                                                (
+                                                    [ID] => 25
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 25
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Zharken
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Жаркент
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Жаркент
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [37] => Array
+                                                (
+                                                    [ID] => 50
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 7
+                                                    [CITY_ID] => 50
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Dzhezkazg
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Жезказган
+                                                    [REGION_NAME_ORIG] => Karagandy region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Карагандинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Жезказган
+                                                    [REGION_NAME] => Карагандинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [38] => Array
+                                                (
+                                                    [ID] => 73
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 12
+                                                    [CITY_ID] => 73
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Dzhetis
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Жетысай
+                                                    [REGION_NAME_ORIG] => South Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Южно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Жетысай
+                                                    [REGION_NAME] => Южно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [39] => Array
+                                                (
+                                                    [ID] => 55
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 8
+                                                    [CITY_ID] => 55
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Zhitikar
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Житикара
+                                                    [REGION_NAME_ORIG] => Kostanay region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Костанайская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Житикара
+                                                    [REGION_NAME] => Костанайская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [40] => Array
+                                                (
+                                                    [ID] => 31
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 31
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Zyrayanov
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Зыряновск
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Зыряновск
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [41] => Array
+                                                (
+                                                    [ID] => 66
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 11
+                                                    [CITY_ID] => 66
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Irtyshs
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Иртышск
+                                                    [REGION_NAME_ORIG] => Pavlodar region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Павлодарская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Иртышск
+                                                    [REGION_NAME] => Павлодарская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [42] => Array
+                                                (
+                                                    [ID] => 86
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 14
+                                                    [CITY_ID] => 86
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Kandyagas
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Кандыагаш
+                                                    [REGION_NAME_ORIG] => Aktobe region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Актюбинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Кандыагаш
+                                                    [REGION_NAME] => Актюбинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [43] => Array
+                                                (
+                                                    [ID] => 48
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 7
+                                                    [CITY_ID] => 48
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Karaganda
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Караганда
+                                                    [REGION_NAME_ORIG] => Karagandy region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Карагандинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Караганда
+                                                    [REGION_NAME] => Карагандинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [44] => Array
+                                                (
+                                                    [ID] => 47
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 7
+                                                    [CITY_ID] => 47
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Karazal
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Каражал
+                                                    [REGION_NAME_ORIG] => Karagandy region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Карагандинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Каражал
+                                                    [REGION_NAME] => Карагандинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [45] => Array
+                                                (
+                                                    [ID] => 22
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 22
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Kaskelen
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Каскелен
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Каскелен
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [46] => Array
+                                                (
+                                                    [ID] => 72
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 12
+                                                    [CITY_ID] => 72
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Kentau
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Кентау
+                                                    [REGION_NAME_ORIG] => South Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Южно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Кентау
+                                                    [REGION_NAME] => Южно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [47] => Array
+                                                (
+                                                    [ID] => 78
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 13
+                                                    [CITY_ID] => 78
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Koksheta
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Кокшетау
+                                                    [REGION_NAME_ORIG] => Akmola region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Акмолинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Кокшетау
+                                                    [REGION_NAME] => Акмолинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [48] => Array
+                                                (
+                                                    [ID] => 23
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 23
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Konaev
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Конаев
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Конаев
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [49] => Array
+                                                (
+                                                    [ID] => 38
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 5
+                                                    [CITY_ID] => 38
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Korday
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Кордай
+                                                    [REGION_NAME_ORIG] => Jambyl region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Жамбыльская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Кордай
+                                                    [REGION_NAME] => Жамбыльская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [50] => Array
+                                                (
+                                                    [ID] => 57
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 8
+                                                    [CITY_ID] => 57
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Kostanai
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Костанай
+                                                    [REGION_NAME_ORIG] => Kostanay region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Костанайская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Костанай
+                                                    [REGION_NAME] => Костанайская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [51] => Array
+                                                (
+                                                    [ID] => 37
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 5
+                                                    [CITY_ID] => 37
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Kulan
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Кулан
+                                                    [REGION_NAME_ORIG] => Jambyl region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Жамбыльская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Кулан
+                                                    [REGION_NAME] => Жамбыльская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [52] => Array
+                                                (
+                                                    [ID] => 32
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 32
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Kurchato
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Курчатов
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Курчатов
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [53] => Array
+                                                (
+                                                    [ID] => 59
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 9
+                                                    [CITY_ID] => 59
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Kizilorda
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Кызылорда
+                                                    [REGION_NAME_ORIG] => Kyzylorda region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Кызылординская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Кызылорда
+                                                    [REGION_NAME] => Кызылординская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [54] => Array
+                                                (
+                                                    [ID] => 71
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 12
+                                                    [CITY_ID] => 71
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Lenger
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Ленгер
+                                                    [REGION_NAME_ORIG] => South Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Южно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Ленгер
+                                                    [REGION_NAME] => Южно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [55] => Array
+                                                (
+                                                    [ID] => 58
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 8
+                                                    [CITY_ID] => 58
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Lisakovsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Лисаковск
+                                                    [REGION_NAME_ORIG] => Kostanay region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Костанайская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Лисаковск
+                                                    [REGION_NAME] => Костанайская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [56] => Array
+                                                (
+                                                    [ID] => 77
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 13
+                                                    [CITY_ID] => 77
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Makinsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Макинск
+                                                    [REGION_NAME_ORIG] => Akmola region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Акмолинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Макинск
+                                                    [REGION_NAME] => Акмолинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [57] => Array
+                                                (
+                                                    [ID] => 65
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 11
+                                                    [CITY_ID] => 65
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Pavlodar
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Павлодар
+                                                    [REGION_NAME_ORIG] => Pavlodar region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Павлодарская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Павлодар
+                                                    [REGION_NAME] => Павлодарская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [58] => Array
+                                                (
+                                                    [ID] => 87
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 15
+                                                    [CITY_ID] => 87
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Petropavlovsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Петропавловск
+                                                    [REGION_NAME_ORIG] => North Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Северо-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Петропавловск
+                                                    [REGION_NAME] => Северо-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [59] => Array
+                                                (
+                                                    [ID] => 33
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 33
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Ridder
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Риддер
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Риддер
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [60] => Array
+                                                (
+                                                    [ID] => 54
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 8
+                                                    [CITY_ID] => 54
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Rudnyi
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Рудный
+                                                    [REGION_NAME_ORIG] => Kostanay region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Костанайская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Рудный
+                                                    [REGION_NAME] => Костанайская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [61] => Array
+                                                (
+                                                    [ID] => 46
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 7
+                                                    [CITY_ID] => 46
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Sarany
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Сарань
+                                                    [REGION_NAME_ORIG] => Karagandy region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Карагандинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Сарань
+                                                    [REGION_NAME] => Карагандинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [62] => Array
+                                                (
+                                                    [ID] => 70
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 12
+                                                    [CITY_ID] => 70
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Saryagas
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Сарыагаш
+                                                    [REGION_NAME_ORIG] => South Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Южно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Сарыагаш
+                                                    [REGION_NAME] => Южно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [63] => Array
+                                                (
+                                                    [ID] => 53
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 8
+                                                    [CITY_ID] => 53
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Sarykoly
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Сарыколь
+                                                    [REGION_NAME_ORIG] => Kostanay region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Костанайская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Сарыколь
+                                                    [REGION_NAME] => Костанайская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [64] => Array
+                                                (
+                                                    [ID] => 45
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 7
+                                                    [CITY_ID] => 45
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Satpaev
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Сатпаев
+                                                    [REGION_NAME_ORIG] => Karagandy region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Карагандинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Сатпаев
+                                                    [REGION_NAME] => Карагандинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [65] => Array
+                                                (
+                                                    [ID] => 34
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 34
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Semipalatinsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Семипалатинск
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Семипалатинск
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [66] => Array
+                                                (
+                                                    [ID] => 35
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 35
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Serebryans
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Серебрянск
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Серебрянск
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [67] => Array
+                                                (
+                                                    [ID] => 76
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 13
+                                                    [CITY_ID] => 76
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Stepnogorsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Степногорск
+                                                    [REGION_NAME_ORIG] => Akmola region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Акмолинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Степногорск
+                                                    [REGION_NAME] => Акмолинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [68] => Array
+                                                (
+                                                    [ID] => 21
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 21
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Talgar
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Талгар
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Талгар
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [69] => Array
+                                                (
+                                                    [ID] => 26
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 26
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Taldykorgan
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Талдыкорган
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Талдыкорган
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [70] => Array
+                                                (
+                                                    [ID] => 40
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 5
+                                                    [CITY_ID] => 40
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Taraz
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Тараз
+                                                    [REGION_NAME_ORIG] => Jambyl region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Жамбыльская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Тараз
+                                                    [REGION_NAME] => Жамбыльская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [71] => Array
+                                                (
+                                                    [ID] => 20
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 20
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Tekeli
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Текели
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Текели
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [72] => Array
+                                                (
+                                                    [ID] => 51
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 7
+                                                    [CITY_ID] => 51
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Temirtau
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Темиртау
+                                                    [REGION_NAME_ORIG] => Karagandy region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Карагандинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Темиртау
+                                                    [REGION_NAME] => Карагандинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [73] => Array
+                                                (
+                                                    [ID] => 69
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 12
+                                                    [CITY_ID] => 69
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Turkestan
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Туркестан
+                                                    [REGION_NAME_ORIG] => South Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Южно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Туркестан
+                                                    [REGION_NAME] => Южно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [74] => Array
+                                                (
+                                                    [ID] => 43
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 6
+                                                    [CITY_ID] => 43
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Uralsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Уральск
+                                                    [REGION_NAME_ORIG] => West Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Западно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Уральск
+                                                    [REGION_NAME] => Западно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [75] => Array
+                                                (
+                                                    [ID] => 30
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 30
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Ust-Kamenogorsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Усть-Каменогорск
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Усть-Каменогорск
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [76] => Array
+                                                (
+                                                    [ID] => 19
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 19
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Ushara
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Ушарал
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Ушарал
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [77] => Array
+                                                (
+                                                    [ID] => 18
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 2
+                                                    [CITY_ID] => 18
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Ushtob
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Уштобе
+                                                    [REGION_NAME_ORIG] => Almaty region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Алматинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Уштобе
+                                                    [REGION_NAME] => Алматинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [78] => Array
+                                                (
+                                                    [ID] => 84
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 14
+                                                    [CITY_ID] => 84
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Xromtau
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Хромтау
+                                                    [REGION_NAME_ORIG] => Aktobe region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Актюбинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Хромтау
+                                                    [REGION_NAME] => Актюбинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [79] => Array
+                                                (
+                                                    [ID] => 44
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 6
+                                                    [CITY_ID] => 44
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Chapaev
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Чапаев
+                                                    [REGION_NAME_ORIG] => West Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Западно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Чапаев
+                                                    [REGION_NAME] => Западно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [80] => Array
+                                                (
+                                                    [ID] => 68
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 12
+                                                    [CITY_ID] => 68
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Shardar
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Шардара
+                                                    [REGION_NAME_ORIG] => South Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Южно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Шардара
+                                                    [REGION_NAME] => Южно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [81] => Array
+                                                (
+                                                    [ID] => 52
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 7
+                                                    [CITY_ID] => 52
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Shakhtin
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Шахтинск
+                                                    [REGION_NAME_ORIG] => Karagandy region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Карагандинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Шахтинск
+                                                    [REGION_NAME] => Карагандинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [82] => Array
+                                                (
+                                                    [ID] => 28
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 28
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Shemonaix
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Шемонаиха
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Шемонаиха
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [83] => Array
+                                                (
+                                                    [ID] => 41
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 5
+                                                    [CITY_ID] => 41
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Ch
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Шу
+                                                    [REGION_NAME_ORIG] => Jambyl region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Жамбыльская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Шу
+                                                    [REGION_NAME] => Жамбыльская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [84] => Array
+                                                (
+                                                    [ID] => 36
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 4
+                                                    [CITY_ID] => 36
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Shulbinsk
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Шульбинск
+                                                    [REGION_NAME_ORIG] => East Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Восточно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Шульбинск
+                                                    [REGION_NAME] => Восточно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [85] => Array
+                                                (
+                                                    [ID] => 74
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 12
+                                                    [CITY_ID] => 74
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Shymken
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Шымкент
+                                                    [REGION_NAME_ORIG] => South Kazakhstan region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Южно-Казахстанская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Шымкент
+                                                    [REGION_NAME] => Южно-Казахстанская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [86] => Array
+                                                (
+                                                    [ID] => 75
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 13
+                                                    [CITY_ID] => 75
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Schuchi
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Щучинск
+                                                    [REGION_NAME_ORIG] => Akmola region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Акмолинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Щучинск
+                                                    [REGION_NAME] => Акмолинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [87] => Array
+                                                (
+                                                    [ID] => 67
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 11
+                                                    [CITY_ID] => 67
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Ekibastuz
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Экибастуз
+                                                    [REGION_NAME_ORIG] => Pavlodar region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Павлодарская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Экибастуз
+                                                    [REGION_NAME] => Павлодарская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                            [88] => Array
+                                                (
+                                                    [ID] => 83
+                                                    [COUNTRY_ID] => 1
+                                                    [REGION_ID] => 14
+                                                    [CITY_ID] => 83
+                                                    [SORT] => 100
+                                                    [COUNTRY_NAME_ORIG] => Kazakhstan
+                                                    [COUNTRY_SHORT_NAME] => 
+                                                    [COUNTRY_NAME_LANG] => Казахстан
+                                                    [CITY_NAME_ORIG] => Emba
+                                                    [CITY_SHORT_NAME] => 
+                                                    [CITY_NAME_LANG] => Эмба
+                                                    [REGION_NAME_ORIG] => Aktobe region
+                                                    [REGION_SHORT_NAME] => 
+                                                    [REGION_NAME_LANG] => Актюбинская область
+                                                    [COUNTRY_NAME] => Казахстан
+                                                    [CITY_NAME] => Эмба
+                                                    [REGION_NAME] => Актюбинская область
+                                                    [LOC_DEFAULT] => N
+                                                )
+
+                                        )
+
+                                )
+
+                            [7] => Array
+                                (
+                                    [ID] => 13
+                                    [~ID] => 13
+                                    [PERSON_TYPE_ID] => 1
+                                    [~PERSON_TYPE_ID] => 1
+                                    [NAME] => Адрес доставки
+                                    [~NAME] => Адрес доставки
+                                    [TYPE] => TEXTAREA
+                                    [~TYPE] => TEXTAREA
+                                    [REQUIED] => Y
+                                    [~REQUIED] => Y
+                                    [SORT] => 300
+                                    [~SORT] => 300
+                                    [USER_PROPS] => Y
+                                    [~USER_PROPS] => Y
+                                    [IS_LOCATION] => N
+                                    [~IS_LOCATION] => N
+                                    [PROPS_GROUP_ID] => 2
+                                    [~PROPS_GROUP_ID] => 2
+                                    [DESCRIPTION] => 
+                                    [~DESCRIPTION] => 
+                                    [IS_EMAIL] => N
+                                    [~IS_EMAIL] => N
+                                    [IS_PROFILE_NAME] => N
+                                    [~IS_PROFILE_NAME] => N
+                                    [IS_PAYER] => N
+                                    [~IS_PAYER] => N
+                                    [IS_LOCATION4TAX] => N
+                                    [~IS_LOCATION4TAX] => N
+                                    [CODE] => OPERATION_ADDRESS
+                                    [~CODE] => OPERATION_ADDRESS
+                                    [MULTIPLE] => N
+                                    [~MULTIPLE] => N
+                                    [DEFAULT_VALUE] => 
+                                    [~DEFAULT_VALUE] => 
+                                    [SIZE1] => 30
+                                    [~SIZE1] => 30
+                                    [SIZE2] => 3
+                                    [~SIZE2] => 3
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [ORDER_PROPS_VALUES] => Array
+        (
+            [ORDER_PROP_2] => Test Name Company
+            [ORDER_PROP_3] => Test adress company
+            [ORDER_PROP_4] => 950315352012
+            [ORDER_PROP_7] => test@omeit.com
+            [ORDER_PROP_8] => +77775555555
+            [ORDER_PROP_10] => 070016
+            [ORDER_PROP_12] => 30
+            [ORDER_PROP_13] => delivery adress
+        )
+
+    [ERROR_MESSAGE] => 
+)

@@ -1,0 +1,13 @@
+.company-auth-vidget .company-auth-vidget-item {
+	width: 100%;
+}
+
+.company-auth-vidget .company-auth-vidget-item-link {
+	display: flex;
+	justify-content: space-between;
+}
+
+.company-auth-vidget .company-auth-vidget-link {
+	margin-top: 15px;
+	display: inline-block;
+}

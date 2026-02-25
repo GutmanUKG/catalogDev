@@ -1,0 +1,85 @@
+.sotbit-cabinet-gadget-profile .gdparent {
+	border: 1px solid #dadada;
+	position: relative;
+	background-color: #ffffff;
+}
+.sotbit-cabinet-gadget-profile .gdcontent {
+	color: var(--grey-800);
+}
+.sotbit-cabinet-gadget-profile .gdoptions {
+	padding: 4px;
+	background-color: transparent;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile {
+	display: flex;
+	flex-direction: row;
+}
+.sotbit-cabinet-gadget-profile .img_block_avatar {
+	border-radius: 50px;
+	overflow: hidden;
+	margin: 7px;
+	width:85px;
+	height:85px;
+	background-image: url(img/empty_avatar.png);
+	background-repeat: no-repeat;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile__prop {
+	display: flex;
+	flex-direction: row;
+	padding: 8px 0 0 0;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile__title {
+	font-weight: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile__propName {
+	color: var(--grey-800);
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile__propValue {
+	color: var(--body-color);
+	word-break: break-all;
+	word-wrap: break-word;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile__data {
+	padding: 0 0 0 25px;
+}
+
+.sotbit_cabinet .sotbit-cabinet-gadget-profile a.gdsettings {
+	display: none;
+}
+
+.sotbit-cabinet-gadget-profile a.gdsettings {
+	display: none!important;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile__prop {
+	display: flex!important;
+	flex-direction: row!important;
+	flex-wrap: wrap!important;
+	padding: 8px 0 0 0!important;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile__propName {
+	color: #6c727d!important;
+	font-size: 14px!important;
+	font-family: ProximaNova, Calibri!important;
+	padding: 0 3px 0 0!important;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile__propValue {
+	color: #000000!important;
+	font-size: 14px!important;
+	font-family: ProximaNova, Calibri!important;
+	padding: 0!important;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile__data {
+	padding: 0 0 0 15px!important;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.sotbit-cabinet-gadget-profile .b2b-gadget-profile {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}

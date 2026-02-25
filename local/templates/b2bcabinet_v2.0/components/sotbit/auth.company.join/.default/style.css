@@ -1,0 +1,46 @@
+.join__search-company {
+    margin-bottom: 1rem;
+}
+
+.company-join-wrap {
+    max-width: 472px;
+}
+
+.select__company-item {
+    position: relative;
+    padding: 1rem;
+    line-height: 1.4;
+    cursor: pointer;
+    user-select: none;
+    transition: all ease-in-out var(--transition-base-timer);
+}
+
+.select__company-icon[class^="ph"],
+.select__company-icon[class*=" ph"] {
+    display: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--white-100);
+}
+
+.select__company-item.checked .select__company-icon[class^="ph"],
+.select__company-item.checked .select__company-icon[class*=" ph"] {
+    display: block;
+}
+
+.select__company-item.checked,
+.select__company-item.checked:hover {
+    background-color: var(--primary);
+    color: var(--white-100);
+}
+
+.select__company-item:hover {
+    background-color: #F6F8F9;
+}
+
+.company-join__select-block {
+    height: 13.55rem;
+    overflow: auto;
+}

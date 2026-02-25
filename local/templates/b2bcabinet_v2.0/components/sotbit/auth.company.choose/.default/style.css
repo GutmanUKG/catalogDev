@@ -1,0 +1,62 @@
+.auth-company-change {
+    border-radius: var(--border-radius-lg);
+    /* overflow: hidden; */
+}
+
+.auth-company-change .btn-link {
+    padding: 1.5rem .5rem;
+}
+
+.auth-company-change .ph-user {
+    padding: .5rem;
+    color: var(--black-200);
+    background-color: var(--white-100);
+    border-radius: .5rem;
+}
+
+.auth-company-change .ph-caret-down {
+    color: var(--black-200);
+}
+
+.auth-company-change__title {
+    font-size: .75rem;
+    color: var(--primary);
+}
+
+.auth-company-change__name {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    min-width: 9rem;
+    overflow: hidden;
+    font-size: 1rem;
+    line-height: 1.4;
+    word-break: break-all;
+    text-transform: uppercase;
+    color: var(--black-200);
+}
+
+.auth-company-change .btn-link:hover {
+    background-color: var(--secondary);
+}
+
+.auth-company-change .btn-link:hover .auth-company-change__name {
+    color: var(--black-300);
+}
+
+@media (min-width: 1200px) {
+    .sidebar-expand-xl.sidebar-main-resized:not(.sidebar-collapsed):not(.sidebar-main-unfold) .auth-company-change :is(.hstack, .ph-dots-three) {
+        justify-content: start;
+        text-align: start;
+    }
+
+    .sidebar-expand-xl.sidebar-main-resized:not(.sidebar-collapsed):not(.sidebar-main-unfold) .auth-company-change .ph-dots-three {
+        margin-top: -.675rem;
+        margin-bottom: -.675rem;
+        padding-inline: 1rem;
+    }
+
+    .sidebar-expand-xl.sidebar-main-resized:not(.sidebar-collapsed):not(.sidebar-main-unfold) .auth-company-change :is(.me-auto, .ph-caret-down) {
+        display: none!important;
+    }
+}

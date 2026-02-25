@@ -1,0 +1,78 @@
+#calendar {
+    padding: 15px;
+}
+
+.fullcalendar__spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.fullcalendar__spinner .spinner {
+    font-size: 35px;
+    color: #3e495f;
+}
+
+.b2bcabinet-mainpage__calendar {
+    width: 100%;
+    height: 600px;
+}
+
+/*.fc-event.fc-event-start.event__order-create {*/
+/*    background-color: #F0B718;*/
+/*    border-color: #F0B718;*/
+/*}*/
+
+/*.fc-event.fc-event-start.event__order-canceled {*/
+/*    background-color: #F04918;*/
+/*    border-color: #F04918;*/
+/*}*/
+
+/*.fc-event.fc-event-start.event__order-payment {*/
+/*    background-color: #26a69a;*/
+/*    border-color: #26a69a;*/
+/*}*/
+
+/*.fc-event.fc-event-start.event__order-shipment {*/
+/*    background-color: #D662A2;*/
+/*    border-color: #D662A2;*/
+/*}*/
+
+#calendar .fc-event-title {
+    white-space: normal;
+}
+
+
+@media (max-width: 768.98px) {
+
+    .fc .fc-toolbar {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fc .fc-toolbar .fc-toolbar-title {
+        margin-top: .625rem;
+        margin-bottom: .625rem
+    }
+
+    .fc .fc-view-harness {
+        overflow: auto;
+        min-height: 600px;
+        box-shadow: 0 0 0 1px rgba(0,0,0,.125) inset
+    }
+
+    .fc .fc-view-harness .fc-view {
+        min-width: 900px
+    }
+
+    #calendar .card {
+        overflow: auto;
+    }
+
+    #calendar .card::-webkit-scrollbar {
+        width: 0;
+    }
+}

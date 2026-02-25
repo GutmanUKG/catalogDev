@@ -1,0 +1,25 @@
+.excel-import__block-result .alert-dismissible {
+    cursor: pointer;
+}
+
+.excel-import__block-result .alert-dismissible:hover {
+    background-color: var(--grey-800) !important;
+}
+
+.ecxel-import__error-file .ecxel-import__error-text,
+.product__error-added {
+    color: var(--danger);
+}
+
+.rounded-pill {
+    background-color: var(--primary);
+}
+
+.table-border-double .result__count-products {
+    width: 100px;
+}
+
+#excel_import__result {
+    max-height: 450px;
+    overflow: auto;
+}

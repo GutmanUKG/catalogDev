@@ -1,0 +1,6 @@
+<?
+$MESS['GD_SOTBIT_CABINET_BASKET_PRODUCTS_1'] = 'позиция на сумму';
+$MESS['GD_SOTBIT_CABINET_BASKET_PRODUCTS_2'] = 'позиции на сумму';
+$MESS['GD_SOTBIT_CABINET_BASKET_PRODUCTS_3'] = 'позиций на сумму';
+$MESS['GD_SOTBIT_CABINET_BASKET_MORE'] = 'Подробнее';
+?>

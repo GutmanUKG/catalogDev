@@ -1,0 +1,25 @@
+.b2b-personal-manager .btn-call {
+    color: #ff7043;
+}
+
+.b2b-personal-manager .btn-request {
+    color: #3e495f;
+}
+
+.b2b-personal-manager .btn-call:hover {
+    color: #fff;
+    background-color: #ff7043;
+    border-color: #ff7043;
+}
+
+.b2b-personal-manager .btn-request:hover {
+    color: #fff;
+    background-color: #3e495f;
+    border-color: #3e495f;
+}
+
+.b2b-personal-manager .btn-mail:hover {
+    color: #fff;
+    background-color: #0a6ebd;;
+    border-color: #0a6ebd;
+}

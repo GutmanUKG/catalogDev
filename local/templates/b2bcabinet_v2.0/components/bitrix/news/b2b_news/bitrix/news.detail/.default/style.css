@@ -1,0 +1,13 @@
+.news-detail__image-container {
+    max-height: 358px;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+}
+
+.news-detail__content table {
+    width: 100%;
+}
+
+.news-detail__content table td {
+    word-break: break-all;
+}

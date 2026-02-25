@@ -1,0 +1,8 @@
+.b2b-bavbar-choose .dropdown-menu {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.navbar-nav-link.b2b_company__single {
+    cursor: default;
+}

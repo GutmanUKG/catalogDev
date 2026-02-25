@@ -1,0 +1,12 @@
+.page-item-arrow .page-link {
+    --icon-font-size: .875rem;
+    height: 100%;
+}
+
+.page-item-arrow .page-link::before {
+    vertical-align: -.257rem;
+}
+
+.page-item-arrow:not(.disabled) .page-link {
+    color: var(--primary);
+}

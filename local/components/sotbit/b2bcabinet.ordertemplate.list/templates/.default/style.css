@@ -1,0 +1,161 @@
+.popup-content{
+    padding: 30px 30px 20px 30px;
+    background-color: #f7f7f7;
+    width: 532px;
+}
+
+.popup-order-list,
+.popup-order-add-basket,
+.popup-order-remove,
+.popup-order-remove-success {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap-popup-window .modal-popup-bg {
+    background-color: #000000;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+
+.wrap-popup-window .popup-window {
+    position: relative;
+    z-index: 11000;
+    max-height: 97%;
+    max-width: 95%;
+}
+.popup-window {
+    padding: 0 !important;
+    margin: 0;
+}
+
+div.popup-close {
+    top: 20px;
+    right: 20px;
+    height: 16px;
+    width: 16px;
+    background-image: url(img/icon_cross.png);
+}
+.popup-close {
+    height: 14px;
+    width: 14px;
+    display: block;
+    position: absolute;
+    top: 23px;
+    right: 30px;
+    cursor: pointer;
+    background-image: url("/local/templates/b2bcabinet/assets/img/icon_close.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.2s ease-in-out;
+    z-index: 150;
+}
+
+div.popup-close:hover {
+    background-image: url(img/icon_cross_hover.png);
+}
+.popup-close:hover {
+    background-image: url("/local/templates/b2bcabinet/assets/img/icon_close_hover.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.form-title,
+.draft-remove-title-success,
+.draft-create-order-title {
+    font-size: 19px;
+    line-height: 18px;
+    color: #333333;
+    margin-bottom: 0px;
+}
+.form-description,
+.draft-remove-description-success,
+.draft-create-order-description {
+    font-size: 13px;
+    line-height: 20px;
+    color: #333333;
+    margin-top: 20px;
+}
+.popup-order-list button {
+    width: 226px;
+    height: 36px;
+}
+.btn_remove {
+    margin-left: 16px;
+}
+.confirm__row {
+    margin-top: 30px;
+}
+
+#draft-remove-block,
+#remove-success-block,
+#draft-create-order-block {
+    display: none;
+}
+
+.btn_create-order {
+    margin-left: 15px;
+}
+
+.popup-order-list .webform-field-upload {
+    width: 100%;
+    height: 100%;
+}
+.popup-order-list .index_blank-excel_upload-file {
+    padding: 0 20px;
+    background-color: #3e495f;
+    color: #fff;
+    cursor: pointer;
+}
+.popup-order-list .index_blank-excel_upload-file:hover {
+    background-color: #2a3140;
+    color: #fff;
+    font-weight: normal;
+}
+
+.popup-order-list .ladda-label{
+    font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: none;
+    background: inherit;
+    box-shadow: none;
+    color: #fff;
+    display: inline !important;
+}
+
+.popup-order-list .index_blank-excel_upload-file input {
+    cursor: pointer;
+}
+
+.popup-order-add-basket button,
+.popup-order-remove button {
+    width: 226px;
+    height: 36px;
+}
+
+.ordertemplates-list-wrap {
+    background: #fff;
+    border: 1px solid #e3e3e3;
+}
+.ordertemplates-filter-wrap {
+    padding-top: 8px;
+}
+
+.popup-order-remove-success button {
+    min-width: 226px;
+}
+.template-not-save {
+    color: #f44336;
+}

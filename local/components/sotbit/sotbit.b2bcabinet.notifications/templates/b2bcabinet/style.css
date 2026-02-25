@@ -1,0 +1,112 @@
+.b2b-notifications {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    z-index: 9900;
+}
+
+.b2b-notifications__wrapper {
+    
+}
+
+.b2b-notifications__list {
+    padding: 12px;
+}
+.b2b-notifications__list:empty {
+    padding: 0;
+}
+
+.b2b-notifications__item {
+    margin-bottom: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.b2b-notification {
+    display: flex;
+    height: auto;
+    background-color: #2cbacc;
+    width: 100%;
+    min-width: 200px;
+    justify-content: flex-start;
+}
+.b2b-notification--success { 
+    background-color: #25b372;
+}
+
+.b2b-notification--warning { 
+    background-color: #f58646;
+}
+
+.b2b-notification--alert { 
+    background-color:#ef5350;
+}
+
+.b2b-notification--hint { 
+    background-color: #2cbacc;
+}
+
+
+.b2b-notification__icon {
+    background-color: rgba(0,0,0,.2);
+    width: 60px;
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.b2b-notification__icon i.icon-checkmark {
+    font-size: 24px;
+    opacity: .85;
+}
+.b2b-notification__icon i.icon-warning2 {
+    font-size: 24px;
+    opacity: .85;
+}
+.b2b-notification__icon i.icon-blocked {
+    font-size: 24px;
+    opacity: .85;
+}
+.b2b-notification__icon i.icon-notification2 {
+    font-size: 24px;
+    opacity: .85;
+}
+
+.b2b-notification__content {
+    width: 100%;
+    display: flex;
+    color: #fff;
+    padding: 16px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.b2b-notification__close {
+    justify-self: flex-end;
+}
+
+.b2b-notification__close-button {
+    display: flex;
+    width: 40px;
+    height: auto;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b2b-notification__close-button:active { 
+    outline: 0;
+}
+
+.b2b-notification__close-button i.icon-cross {
+    font-size: 16px;
+    opacity: .85;
+    color: #fff;
+}

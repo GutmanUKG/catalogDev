@@ -1,0 +1,76 @@
+.blank_detail_table .main-ui-filter-search {
+  margin-bottom: 1rem;
+}
+
+.blank_detail .blank_detail_products {
+  margin-top: .5rem;
+}
+
+.blank_detail .blank_detail-total {
+  margin-top: 4.25rem
+}
+
+.blank_detail .blank_detail-table_documents-nothing_to_show {
+  text-align: center;
+}
+
+.blank_detail .index_appeals .card .card .card-body {
+  padding-top: 0;
+}
+
+.blank_detail .card .card.card-collapsed .card-header.header-elements-inline.blank_detail-card_headers {
+  border-bottom: none;
+}
+
+.blank_detail_table .bitrix-error {
+  margin: 0.625rem 0.625rem 0 0.625rem;
+}
+
+.payment-title .badge {
+  float: right;
+}
+
+.sale-order-detail-payment-options-methods-info-change-link {
+  margin-top: 1rem;
+}
+
+.payment-wrapper {
+  display: grid;
+  gap: .5rem;
+}
+
+/* support */
+.tab-pane .index_appeals .index_appeal_form {
+  height: auto;
+  max-height: 38.125rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .blank_detail .flex-column {
+    -webkit-box-flex: 0;
+       -moz-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .blank_detail .blank_detail-menu {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+@media screen and (max-width: 992px) {
+  .blank_detail .index_blank-search, .main-ui-filter-search.main-ui-filter-theme-default {
+    width: 80%;
+    min-width: auto;
+  }
+}
+@media (max-width: 768px) {
+  .blank_detail .blank_detail-total {
+    margin-top: .5rem;
+  }
+}

@@ -1,0 +1,5 @@
+<?
+$MESS ["SOTBIT_B2BCABINET_ORDERTEMPLATES_LIST_NAME"] = "Список шаблонов заказа";
+$MESS ["SOTBIT_B2BCABINET_ORDERTEMPLATES_LIST_DESCRIPTION"] = "Список шаблонов заказа компании";
+$MESS['SOTBIT_COMPONENTS_TITLE'] = "Сотбит";
+?>

@@ -1,0 +1,158 @@
+.main-user-consent-request a {
+    cursor: pointer;
+}
+
+.main-user-consent-request-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    z-index: 9000;
+}
+
+.main-user-consent-request-popup-cont {
+    min-height: 290px; /* loader magic */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    min-width: 320px;
+    background: #fff;
+    text-align: center;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.main-user-consent-request-popup-header {
+    margin: 0 0 30px 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.main-user-consent-request-popup-textarea-block {
+    margin: 0 0 20px 0;
+}
+
+.main-user-consent-request-popup-text.confidencial-text {
+    max-width: 600px;
+    position: relative;
+    max-height: 300px;
+    text-align: justify;
+    border: 0;
+    overflow-y: auto;
+}
+
+/** LOADER **/
+.main-user-consent-request-loader {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    -webkit-transform: translate(0, 50%);
+    transform: translate(0, 50%);
+}
+
+.main-user-consent-request-path {
+    stroke: #80868e;
+    stroke-dasharray: 100, 200;
+}
+
+.main-user-consent-request-loader:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.main-user-consent-request-circular {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: inherit;
+    width: inherit;
+    -webkit-animation: rotate 1s linear infinite;
+    animation: rotate 1s linear infinite;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+}
+
+.main-user-consent-request-path {
+    stroke: #ccc;
+    stroke-dasharray: 60, 200;
+    stroke-dashoffset: 0;
+    -webkit-animation: dash 1.5s ease-in-out infinite;
+    animation: dash 1.5s ease-in-out infinite;
+    stroke-linecap: round;
+}
+
+.main-user-consent-request-popup-header.modal-title {
+    padding-bottom: 1.25rem;
+}
+
+.main-user-consent-request-popup-buttons {
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.main-user-consent-request {
+    display: inline-block;
+	margin-bottom: 20px;
+}
+
+.label-confidential {
+	position: relative;
+    margin-bottom: 0;
+}
+
+.main-user-consent-request-announce {
+    display: inline-block;
+    line-height: 20px;
+	margin-left: 10px;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@media (min-width: 1200px) {
+    .main-user-consent-request-popup-header {
+        max-width: 590px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .main-user-consent-request-popup-text.confidencial-text {
+        max-height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-user-consent-request-popup-cont {
+        width: calc(100% - 2rem);
+    }
+
+    .main-user-consent-request-popup-text.confidencial-text {
+        max-width: none;
+    }
+}

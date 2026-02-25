@@ -1,0 +1,13 @@
+.profile-cover-img {
+    height: 100%;
+}
+
+.carousel-b2b {
+    border-top-left-radius: var(--border-radius-lg);
+    border-top-right-radius: var(--border-radius-lg);
+    overflow: hidden;
+}
+
+.carousel-b2b [data-bs-target] {
+    border-radius: var(--border-radius-sm);
+}

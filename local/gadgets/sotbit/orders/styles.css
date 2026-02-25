@@ -1,0 +1,123 @@
+.sotbit-cabinet-gadget-orders .gdparent {
+	border: 1px solid #dadada;
+	position: relative;
+	background-color: #ffffff;
+}
+
+.sotbit-cabinet-gadget-orders .gdhtmlareachlink {
+	color: #6f727c;
+	text-decoration: none;
+	padding-bottom: 1px;
+	border-bottom: 1px dotted #6f727c;
+	line-height: 30px;
+}
+.sotbit-cabinet-gadget-orders .gdoptions {
+	background-color: transparent;
+}
+.sotbit-cabinet-gadget-orders .options {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 12px;
+	color: #b6b8be;
+	line-height: 28px;
+}
+.sotbit-cabinet-gadget-orders .b2b-gadget-profile__link a {
+	margin: 7px 0px 7px 0px;
+	padding: 0 0 1px 0;
+}
+.sotbit-cabinet-gadget-orders .order-status {
+	margin: 0 16px 7px 16px;
+	border: 1px solid #dadada;
+	padding: 0;
+}
+.sotbit-cabinet-gadget-orders a .order-status-title {
+	background: #fff url(img/ic_key-r-b.png) no-repeat;
+	background-size: 15px;
+	background-position: right 20px center;
+	-webkit-appearance: none;
+	padding: 12px 20px;
+	color: #052640;
+	background-color: #f8f8f8;
+	text-decoration: none;
+}
+.sotbit-cabinet-gadget-orders .order-status-title-link {
+	text-decoration: none;
+}
+.sotbit-cabinet-gadget-orders .order-status-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	color: #6c727d;
+	padding: 12px 20px;
+}
+.sotbit-cabinet-gadget-orders .order-status-now {
+	text-align: center;
+	color: #000000;
+	font-weight: normal;
+	padding: 6px 0;
+	margin: 0 20px 20px 20px;
+}
+.sotbit-cabinet-gadget-orders .order-status-n {
+	background-color: var(--warning);
+}
+.sotbit-cabinet-gadget-orders .order-status-f {
+	background-color: var(--success);
+}
+.sotbit-cabinet-gadget-orders .order-status-c {
+	background-color: var(--danger);
+}
+.sotbit-cabinet-gadget-orders .order-status-p {
+	 background-color: var(--grey-500);
+}
+.sotbit_cabinet .sotbit-cabinet-gadget-orders .order-status {
+	margin: 0 0 5px 0;
+}
+.sotbit_cabinet .sotbit-cabinet-gadget-orders .gdsettrow.TITLE_STD {
+	display: none;
+}
+.sotbit_cabinet .sotbit-cabinet-gadget-orders .gdsettrow.STATUS,
+.sotbit_cabinet .sotbit-cabinet-gadget-orders .gdsettrow.LIMIT {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: .5rem 0;
+	color: var(--grey-800);
+	line-height: 14px;
+}
+.sotbit_cabinet .sotbit-cabinet-gadget-orders .gdsettrow.STATUS span,
+.sotbit_cabinet .sotbit-cabinet-gadget-orders .gdsettrow.LIMIT span {
+	padding: 5px 0 0 0;
+}
+.sotbit_cabinet .sotbit-cabinet-gadget-orders .gdsettrow.STATUS select,
+.sotbit_cabinet .sotbit-cabinet-gadget-orders .gdsettrow.LIMIT select {
+	width: 145px;
+}
+@media screen and (max-width: 610px) {
+	.sotbit_cabinet .sotbit-cabinet-gadget-orders .gdsettrow.STATUS select,
+	.sotbit_cabinet .sotbit-cabinet-gadget-orders .gdsettrow.LIMIT select {
+		width: 100px;
+	}
+}
+
+.sotbit-cabinet-gadget-orders .order-status {
+	margin: 0 0 5px 0!important;
+}
+.sotbit-cabinet-gadget-orders .b2b-gadget-profile__link {
+	padding-top: .5rem;
+}
+.sotbit-cabinet-gadget-orders .gdsettrow.TITLE_STD {
+	display: none!important;
+}
+.sotbit-cabinet-gadget-orders .gdsettrow.STATUS span,
+.sotbit-cabinet-gadget-orders .gdsettrow.LIMIT span {
+	padding: 5px 0 5px 0!important;
+}
+
+.sotbit-cabinet-gadget-orders .widget_links:not(:last-child) {
+	margin-bottom: 1rem;
+}
+.widget_content .widget_button.order_status_button {
+	width: auto;
+	padding: 9px;
+}

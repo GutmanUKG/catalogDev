@@ -1,0 +1,2 @@
+<?php if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<button class="btn btn-primary btn-onelab-pre-order-open" data-product_id="<?=intval($arParams['PRODUCT_ID'])?>">Заказать</button>

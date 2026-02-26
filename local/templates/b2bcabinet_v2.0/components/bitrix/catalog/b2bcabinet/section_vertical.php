@@ -20,6 +20,83 @@ if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMO
 
 $viewOffers = \Bitrix\Main\Config\Option::get('sotbit.b2bcabinet', 'CATALOG_VIEW_OFFERS_VALUE', 'BLOCK', SITE_ID);
 $showSearchCatalog = $APPLICATION->GetDirProperty('SHOW_CATALOG_SEARCH');
+
+$isMarkdownOnly = (isset($_REQUEST['MARKDOWN_ONLY']) && $_REQUEST['MARKDOWN_ONLY'] === 'Y');
+if ($isMarkdownOnly) {
+    $filterName = (string)$arParams["FILTER_NAME"];
+    if ($filterName !== '') {
+        if (!isset($GLOBALS[$filterName]) || !is_array($GLOBALS[$filterName])) {
+            $GLOBALS[$filterName] = [];
+        }
+
+        $getMarkdownLinkedProductIds = static function (int $catalogIblockId): array {
+            static $cache = [];
+            if (isset($cache[$catalogIblockId])) {
+                return $cache[$catalogIblockId];
+            }
+
+            $resultIds = [];
+            if (!\Bitrix\Main\Loader::includeModule('iblock') || $catalogIblockId <= 0) {
+                $cache[$catalogIblockId] = [];
+                return [];
+            }
+
+            $markdownArticles = [];
+            $markdownRes = CIBlockElement::GetList(
+                [],
+                [
+                    'IBLOCK_ID' => 37,
+                    'ACTIVE' => 'Y',
+                    '!PROPERTY_CML2_ARTICLE' => false
+                ],
+                false,
+                false,
+                ['ID', 'PROPERTY_CML2_ARTICLE']
+            );
+
+            while ($row = $markdownRes->Fetch()) {
+                $article = trim((string)($row['PROPERTY_CML2_ARTICLE_VALUE'] ?? ''));
+                if ($article !== '') {
+                    $markdownArticles[$article] = $article;
+                }
+            }
+
+            if (empty($markdownArticles)) {
+                $cache[$catalogIblockId] = [];
+                return [];
+            }
+
+            $catalogRes = CIBlockElement::GetList(
+                [],
+                [
+                    'IBLOCK_ID' => $catalogIblockId,
+                    'ACTIVE' => 'Y',
+                    'PROPERTY_CML2_ARTICLE' => array_values($markdownArticles),
+                ],
+                false,
+                false,
+                ['ID']
+            );
+
+            while ($row = $catalogRes->Fetch()) {
+                $id = (int)$row['ID'];
+                if ($id > 0) {
+                    $resultIds[$id] = $id;
+                }
+            }
+
+            $cache[$catalogIblockId] = array_values($resultIds);
+            return $cache[$catalogIblockId];
+        };
+
+        $markdownProductIds = $getMarkdownLinkedProductIds((int)$arParams["IBLOCK_ID"]);
+        if (!empty($markdownProductIds)) {
+            $GLOBALS[$filterName][] = ['ID' => $markdownProductIds];
+        } else {
+            $GLOBALS[$filterName][] = ['ID' => [0]];
+        }
+    }
+}
 ?>
 <?if ($isFilter):?>
     <!-- Right sidebar component 5-->
@@ -612,4 +689,3 @@ $showSearchCatalog = $APPLICATION->GetDirProperty('SHOW_CATALOG_SEARCH');
         $('.blank-zakaza__pagination--top').appendTo('.sticky-panel');
     });
 </script>
-

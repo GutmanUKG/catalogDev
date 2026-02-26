@@ -1,61 +1,59 @@
 ;(function (window){
 
-    'use strict';
+	'use strict';
 
 	if (window.JCBlankZakazaDetail)
 		return;
 
 	window.JCBlankZakazaDetail = function (arResult, arParams, itemIds) {
-        this.DEBOUNCE_TIME = 500;
+		this.DEBOUNCE_TIME = 500;
 
-        this.itemIds = itemIds;
-        this.arResult = arResult;
-        this.arParams = arParams;
+		this.itemIds = itemIds;
+		this.arResult = arResult;
+		this.arParams = arParams;
 
-        this.itemId = arResult.ID;
+		this.itemId = arResult.ID;
 		this.node = document.getElementById(this.itemId);
-        this.productType = arResult['CATALOG_TYPE'];
-        this.nodesQuantity = {
+		this.productType = arResult['CATALOG_TYPE'];
+		this.nodesQuantity = {
 			wrapper: document.getElementById(itemIds['QUANTITY']),
 			increment: document.getElementById(itemIds['QUANTITY_INCREMENT']),
 			value: document.getElementById(itemIds['QUANTITY_VALUE']),
 			decrement: document.getElementById(itemIds['QUANTITY_DECREMENT']),
-        };
+		};
 		this.quantityTrace = arResult.CATALOG_QUANTITY_TRACE === "Y" ? true : false;
 		this.canBuyZero = arResult.CATALOG_CAN_BUY_ZERO === "Y" ? true : false;
-        this.currentQuantity = parseFloat(arResult['ACTUAL_QUANTITY']) || 0;
-        this.tmpQuantity = this.currentQuantity;
-        this.maxQuantity = this.quantityTrace && !this.canBuyZero? parseFloat(arResult['CATALOG_QUANTITY']) : Number.POSITIVE_INFINITY;
-        this.minQuantity = 0;
+		this.currentQuantity = parseFloat(arResult['ACTUAL_QUANTITY']) || 0;
+		this.tmpQuantity = this.currentQuantity;
+		this.maxQuantity = this.quantityTrace && !this.canBuyZero? parseFloat(arResult['CATALOG_QUANTITY']) : Number.POSITIVE_INFINITY;
+		this.minQuantity = 0;
 		this.measureRatio = parseFloat(
-			arResult['CATALOG_MEASURE_RATIO'] 
-				? arResult['CATALOG_MEASURE_RATIO'] 
+			arResult['CATALOG_MEASURE_RATIO']
+				? arResult['CATALOG_MEASURE_RATIO']
 				: arResult['ITEM_MEASURE_RATIOS'].length > 0
 					? arResult['ITEM_MEASURE_RATIOS'][arResult['ITEM_MEASURE_RATIO_SELECTED']]['RATIO']
 					: 0
 		);
 		this.measureName = arResult['CATALOG_MEASURE_NAME'] ? arResult['CATALOG_MEASURE_NAME'] : arResult['ITEM_MEASURE']['TITLE'];
-		
-        this.ranges = [];
-        this.prices = arResult['PRINT_PRICES'];
-        this.delayAddToBasket = 0;
+
+		this.ranges = [];
+		this.prices = arResult['PRINT_PRICES'];
+		this.delayAddToBasket = 0;
 		this.isOffersHidden = true;
 
-        BX.ready(BX.delegate(this.init,this));
-    }
+		BX.ready(BX.delegate(this.init,this));
+	}
 
-    window.JCBlankZakazaDetail.prototype = {
-        init: function() {
-            this.initRanges();
-            this.initOffers();
-            if (this.arParams.CATALOG_NOT_AVAILABLE !== 'Y') {
-				if (parseInt(this.productType) === 3) {
-					for (let offer in this.offers) {
-						this.initQuantity(this.getOfferQuantityPropsById(offer))
-					}
-				} else {
-					this.initQuantity(this.getItemQuantityProps());
+	window.JCBlankZakazaDetail.prototype = {
+		init: function() {
+			this.initRanges();
+			this.initOffers();
+			if (parseInt(this.productType) === 3) {
+				for (let offer in this.offers) {
+					this.initQuantity(this.getOfferQuantityPropsById(offer))
 				}
+			} else {
+				this.initQuantity(this.getItemQuantityProps());
 			}
 
 			this.initMarkdownItems();
@@ -67,14 +65,14 @@
 						quantity: event.data.quantity
 					});
 				}
-			})			
-        },
-        initRanges: function() {
-            for (let price in this.prices) {
-                this.ranges = Object.keys(this.prices[price])
-                return
-            }
-        },
+			})
+		},
+		initRanges: function() {
+			for (let price in this.prices) {
+				this.ranges = Object.keys(this.prices[price])
+				return
+			}
+		},
 		initOffers: function() {
 			if (!Array.isArray(this.arResult['OFFERS']) && parseInt(this.productType) !== 3) {return}
 			this.offers = {};
@@ -96,8 +94,8 @@
 					maxQuantity: (offer.CATALOG_QUANTITY_TRACE === "Y" ? true : false) && !(offer.CATALOG_CAN_BUY_ZERO === "Y" ? true : false) ? parseFloat(offer['CATALOG_QUANTITY']) : Number.POSITIVE_INFINITY,
 					minQuantity: 0,
 					measureRatio: parseFloat(
-						offer.CATALOG_MEASURE_RATIO 
-							? offer.CATALOG_MEASURE_RATIO 
+						offer.CATALOG_MEASURE_RATIO
+							? offer.CATALOG_MEASURE_RATIO
 							: offer.ITEM_MEASURE_RATIOS
 								? offer.ITEM_MEASURE_RATIOS[offer.ITEM_MEASURE_RATIO_SELECTED].RATIO
 								: 0
@@ -107,23 +105,32 @@
 					canBuyZero: offer.CATALOG_CAN_BUY_ZERO === "Y" ? true : false
 				}
 			}.bind(this))
-			
+
 		},
-        initQuantity: function(item) {
-            if (item.nodes.wrapper === null) {return}
+		initQuantity: function(item) {
+			if (item.nodes.wrapper === null) {return}
 			const nodes = item.nodes;
+			if (!nodes.increment || !nodes.decrement || !nodes.value) {return}
 			window.addEventListener("message", function(event) {
 				if (item.disableMessageSync) {
 					return;
 				}
-				const data = JSON.parse(event.data)
+				if (typeof event.data !== 'string') {
+					return;
+				}
+				let data = null;
+				try {
+					data = JSON.parse(event.data);
+				} catch (e) {
+					return;
+				}
 				if (data.itemId && data.quantity && data.itemId === item.itemId) {
 					item.currentQuantity = parseFloat(data.quantity);
 					item.tmpQuantity = item.currentQuantity;
 					nodes.value.value = item.currentQuantity;
-									if (typeof item.onQuantityChanged === 'function') {
-										item.onQuantityChanged(item.currentQuantity);
-									}
+					if (typeof item.onQuantityChanged === 'function') {
+						item.onQuantityChanged(item.currentQuantity);
+					}
 				}
 			})
 
@@ -144,69 +151,69 @@
 							nodes.increment.firstElementChild.classList.add('spinner-grow');
 							this.addToBasket(item.basketProductId || item.itemId, item.tmpQuantity, item.measureRatio, item.propsAddedToBasket, item.extraBasketFields)
 								.then(function(response) {
-									if (BX.SidePanel) {
-										BX.SidePanel.Instance.postMessageTop(window, "addProductToBasketFromDetail", {
-											id: item.itemId, quantity: item.tmpQuantity,
-										});
-									} else {
-										BX.onCustomEvent('OnBasketChange');
-									}
-									item.currentQuantity = parseFloat(response.data);
-									item.tmpQuantity = item.currentQuantity;
-									nodes.increment.removeAttribute("disabled");
-									nodes.increment.firstElementChild.classList.remove('spinner-grow');
-									nodes.value.value = item.currentQuantity;
-									if (typeof item.onQuantityChanged === 'function') {
-										item.onQuantityChanged(item.currentQuantity);
-									}
-									const frames = Array.prototype.slice.call(window.frames);
-									frames.forEach(function(frame) {
-										frame.postMessage(JSON.stringify({
-											itemId: item.itemId,
-											quantity: item.currentQuantity
-										}),"*")
-									})
-									if (item.currentQuantity === 0) {
-										BX.onCustomEvent('B2BNotification',[
-											BX.message('BZI_PRODUCT_NAME') + ': ' + item.name + "<br>" +
-											BX.message('BZD_PRODUCT_REMOVE_FORM_BASKET'),
-											'success'
-										]);
-									} else {
-										BX.onCustomEvent('B2BNotification',[
-											BX.message('BZI_PRODUCT_NAME') + ': ' + item.name + "<br>" +
-											BX.message('BZI_PRODUCT_ADD_TO_BASKET') + " " + item.currentQuantity + " " + item.measureName,
-											'success'
-										]);
-									}
-									this.deleteRepaetNotification();
-								}.bind(this),
-								function(error){
-									let errors = [];
-									for (var i = 0; i<error.errors.length; i++) {
-										errors.push(error.errors[i].message);
-									}
+										if (BX.SidePanel) {
+											BX.SidePanel.Instance.postMessageTop(window, "addProductToBasketFromDetail", {
+												id: item.itemId, quantity: item.tmpQuantity,
+											});
+										} else {
+											BX.onCustomEvent('OnBasketChange');
+										}
+										item.currentQuantity = parseFloat(response.data);
+										item.tmpQuantity = item.currentQuantity;
+										nodes.increment.removeAttribute("disabled");
+										nodes.increment.firstElementChild.classList.remove('spinner-grow');
+										nodes.value.value = item.currentQuantity;
+										if (typeof item.onQuantityChanged === 'function') {
+											item.onQuantityChanged(item.currentQuantity);
+										}
+										const frames = Array.prototype.slice.call(window.frames);
+										frames.forEach(function(frame) {
+											frame.postMessage(JSON.stringify({
+												itemId: item.itemId,
+												quantity: item.currentQuantity
+											}),"*")
+										})
+										if (item.currentQuantity === 0) {
+											BX.onCustomEvent('B2BNotification',[
+												BX.message('BZI_PRODUCT_NAME') + ': ' + item.name + "<br>" +
+												BX.message('BZD_PRODUCT_REMOVE_FORM_BASKET'),
+												'success'
+											]);
+										} else {
+											BX.onCustomEvent('B2BNotification',[
+												BX.message('BZI_PRODUCT_NAME') + ': ' + item.name + "<br>" +
+												BX.message('BZI_PRODUCT_ADD_TO_BASKET') + " " + item.currentQuantity + " " + item.measureName,
+												'success'
+											]);
+										}
+										this.deleteRepaetNotification();
+									}.bind(this),
+									function(error){
+										let errors = [];
+										for (var i = 0; i<error.errors.length; i++) {
+											errors.push(error.errors[i].message);
+										}
 
-									BX.onCustomEvent('B2BNotification',[
-										errors.join('<br>'),
-										'alert'
-									]);
-									nodes.value.value = item.currentQuantity;
-									if (typeof item.onQuantityChanged === 'function') {
-										item.onQuantityChanged(item.currentQuantity);
-									}
-									nodes.increment.removeAttribute("disabled");
-									nodes.increment.firstElementChild.classList.remove('spinner-grow');
-									console.error(error)
-								})
+										BX.onCustomEvent('B2BNotification',[
+											errors.join('<br>'),
+											'alert'
+										]);
+										nodes.value.value = item.currentQuantity;
+										if (typeof item.onQuantityChanged === 'function') {
+											item.onQuantityChanged(item.currentQuantity);
+										}
+										nodes.increment.removeAttribute("disabled");
+										nodes.increment.firstElementChild.classList.remove('spinner-grow');
+										console.error(error)
+									})
 						}.bind(this)
-					,this.DEBOUNCE_TIME)
+						,this.DEBOUNCE_TIME)
 				} else {
 					event.target.value = item.currentQuantity;
 					item.tmpQuantity = item.currentQuantity
 				}
 			}.bind(this))
-			
+
 			nodes.decrement.addEventListener('click', function(event) {
 
 				item.currentQuantity = item.tmpQuantity;
@@ -217,7 +224,7 @@
 
 					nodes.value.value = item.tmpQuantity;
 					this.redrawPrices({id: item.itemId, count: item.tmpQuantity});
-					
+
 					clearTimeout(item.delayAddToBasket);
 					item.delayAddToBasket = setTimeout(
 						function(){
@@ -225,59 +232,59 @@
 							nodes.decrement.firstElementChild.classList.add('spinner-grow');
 							this.addToBasket(item.basketProductId || item.itemId, item.tmpQuantity, item.measureRatio, item.propsAddedToBasket, item.extraBasketFields)
 								.then(function(response) {
-									if (BX.SidePanel) {
-										BX.SidePanel.Instance.postMessageTop(window, "addProductToBasketFromDetail", {
-											id: item.itemId, quantity: item.tmpQuantity,
-										});
-									} else {
-										BX.onCustomEvent('OnBasketChange');
-									}
-									item.currentQuantity = parseFloat(response.data);
-									item.tmpQuantity = item.currentQuantity;
-									nodes.decrement.removeAttribute("disabled");
-									nodes.decrement.firstElementChild.classList.remove('spinner-grow');
-									nodes.value.value = item.currentQuantity;
-									if (typeof item.onQuantityChanged === 'function') {
-										item.onQuantityChanged(item.currentQuantity);
-									}
-									const frames = Array.prototype.slice.call(window.frames);
-									frames.forEach(function(frame) {
-										frame.postMessage(JSON.stringify({
-											itemId: item.itemId,
-											quantity: item.currentQuantity
-										}),"*")
-									})
+										if (BX.SidePanel) {
+											BX.SidePanel.Instance.postMessageTop(window, "addProductToBasketFromDetail", {
+												id: item.itemId, quantity: item.tmpQuantity,
+											});
+										} else {
+											BX.onCustomEvent('OnBasketChange');
+										}
+										item.currentQuantity = parseFloat(response.data);
+										item.tmpQuantity = item.currentQuantity;
+										nodes.decrement.removeAttribute("disabled");
+										nodes.decrement.firstElementChild.classList.remove('spinner-grow');
+										nodes.value.value = item.currentQuantity;
+										if (typeof item.onQuantityChanged === 'function') {
+											item.onQuantityChanged(item.currentQuantity);
+										}
+										const frames = Array.prototype.slice.call(window.frames);
+										frames.forEach(function(frame) {
+											frame.postMessage(JSON.stringify({
+												itemId: item.itemId,
+												quantity: item.currentQuantity
+											}),"*")
+										})
 
-									if (item.currentQuantity === 0) {
+										if (item.currentQuantity === 0) {
+											BX.onCustomEvent('B2BNotification',[
+												BX.message('BZI_PRODUCT_NAME') + ': ' + item.name + "<br>" +
+												BX.message('BZD_PRODUCT_REMOVE_FORM_BASKET'),
+												'success'
+											]);
+										} else {
+											BX.onCustomEvent('B2BNotification',[
+												BX.message('BZI_PRODUCT_NAME') + ': ' + item.name + "<br>" +
+												BX.message('BZI_PRODUCT_ADD_TO_BASKET') + " " + item.currentQuantity + " " + item.measureName,
+												'success'
+											]);
+										}
+										this.deleteRepaetNotification();
+									}.bind(this),
+									function(error){
 										BX.onCustomEvent('B2BNotification',[
-											BX.message('BZI_PRODUCT_NAME') + ': ' + item.name + "<br>" +
-											BX.message('BZD_PRODUCT_REMOVE_FORM_BASKET'),
-											'success'
+											error.error.map(function (error) {return error.message}).join('<br>'),
+											'alert'
 										]);
-									} else {
-										BX.onCustomEvent('B2BNotification',[
-											BX.message('BZI_PRODUCT_NAME') + ': ' + item.name + "<br>" +
-											BX.message('BZI_PRODUCT_ADD_TO_BASKET') + " " + item.currentQuantity + " " + item.measureName,
-											'success'
-										]);
-									}
-									this.deleteRepaetNotification();
-								}.bind(this),
-								function(error){
-									BX.onCustomEvent('B2BNotification',[
-										error.error.map(function (error) {return error.message}).join('<br>'),
-										'alert'
-									]);
-									nodes.value.value = item.currentQuantity;
-									if (typeof item.onQuantityChanged === 'function') {
-										item.onQuantityChanged(item.currentQuantity);
-									}
-									nodes.decrement.removeAttribute("disabled");
-									nodes.decrement.firstElementChild.classList.remove('spinner-grow');
-									console.error(error)
-								})
+										nodes.value.value = item.currentQuantity;
+										if (typeof item.onQuantityChanged === 'function') {
+											item.onQuantityChanged(item.currentQuantity);
+										}
+										nodes.decrement.removeAttribute("disabled");
+										nodes.decrement.firstElementChild.classList.remove('spinner-grow');
+										console.error(error)
+									})
 						}.bind(this)
-					,this.DEBOUNCE_TIME)
+						,this.DEBOUNCE_TIME)
 				} else {
 					event.target.value = item.currentQuantity;
 					item.tmpQuantity = item.currentQuantity
@@ -292,7 +299,7 @@
 				}
 
 				if (item.tmpQuantity <= item.maxQuantity && item.tmpQuantity >= item.minQuantity && !isNaN(parseFloat(item.tmpQuantity))) {
-					
+
 					nodes.value.value = item.tmpQuantity;
 					this.redrawPrices({id: item.itemId, count: item.tmpQuantity});
 
@@ -301,78 +308,78 @@
 						function(){
 							this.addToBasket(item.basketProductId || item.itemId, item.tmpQuantity, item.measureRatio, item.propsAddedToBasket, item.extraBasketFields)
 								.then(function(response) {
-									if (BX.SidePanel) {
-										BX.SidePanel.Instance.postMessageTop(window, "addProductToBasketFromDetail", {
-											id: item.itemId, quantity: item.tmpQuantity,
-										});
-									} else {
-										BX.onCustomEvent('OnBasketChange');
-									}
-									item.currentQuantity = parseFloat(response.data);
-									item.tmpQuantity = item.currentQuantity;
-									nodes.value.value = item.currentQuantity;
-									if (typeof item.onQuantityChanged === 'function') {
-										item.onQuantityChanged(item.currentQuantity);
-									}
-									if (window.self !== window.top) {
-										window.top.postMessage(JSON.stringify({
-											itemId: item.itemId,
-											quantity: item.currentQuantity
-										}),"*")
-									}
-									if (item.currentQuantity === 0) {
-										BX.onCustomEvent('B2BNotification',[
-											BX.message('BZD_PRODUCT_NAME') + ': ' + item.name + "<br>" +
-											BX.message('BZD_PRODUCT_REMOVE_FORM_BASKET'),
-											'success'
-										]);
-									} else {
-										BX.onCustomEvent('B2BNotification',[
-											BX.message('BZD_PRODUCT_NAME') + ': ' + item.name + "<br>" +
-											BX.message('BZD_PRODUCT_ADD_TO_BASKET') + " " + item.currentQuantity + " " + item.measureName,
-											'success'
-										]);
-									}
-									this.deleteRepaetNotification();
-								}.bind(this),
-								function(error){
-									console.error(error)
-								})
+										if (BX.SidePanel) {
+											BX.SidePanel.Instance.postMessageTop(window, "addProductToBasketFromDetail", {
+												id: item.itemId, quantity: item.tmpQuantity,
+											});
+										} else {
+											BX.onCustomEvent('OnBasketChange');
+										}
+										item.currentQuantity = parseFloat(response.data);
+										item.tmpQuantity = item.currentQuantity;
+										nodes.value.value = item.currentQuantity;
+										if (typeof item.onQuantityChanged === 'function') {
+											item.onQuantityChanged(item.currentQuantity);
+										}
+										if (window.self !== window.top) {
+											window.top.postMessage(JSON.stringify({
+												itemId: item.itemId,
+												quantity: item.currentQuantity
+											}),"*")
+										}
+										if (item.currentQuantity === 0) {
+											BX.onCustomEvent('B2BNotification',[
+												BX.message('BZD_PRODUCT_NAME') + ': ' + item.name + "<br>" +
+												BX.message('BZD_PRODUCT_REMOVE_FORM_BASKET'),
+												'success'
+											]);
+										} else {
+											BX.onCustomEvent('B2BNotification',[
+												BX.message('BZD_PRODUCT_NAME') + ': ' + item.name + "<br>" +
+												BX.message('BZD_PRODUCT_ADD_TO_BASKET') + " " + item.currentQuantity + " " + item.measureName,
+												'success'
+											]);
+										}
+										this.deleteRepaetNotification();
+									}.bind(this),
+									function(error){
+										console.error(error)
+									})
 						}.bind(this)
-					,this.DEBOUNCE_TIME)
+						,this.DEBOUNCE_TIME)
 				} else {
 					event.target.value = item.currentQuantity;
 					item.tmpQuantity = item.currentQuantity
 				}
 			}.bind(this))
-        },
-        addToBasket: function(id, quantity, measureRatio, porpsAddedToBasket, extraBasketFields) {
+		},
+		addToBasket: function(id, quantity, measureRatio, porpsAddedToBasket, extraBasketFields) {
 
 			const quantity1 = Math.round(quantity * 1000000);
 			const measureRatio1 = Math.round(measureRatio * 1000000);
 			const remainder = quantity1 % measureRatio1;
 			quantity = (quantity1 - remainder) / 1000000;
 
-            var arFields = {
-                'PRODUCT_ID': id,
-                'QUANTITY': quantity,
-                'PROPS': porpsAddedToBasket,
-                'RENEW': 'N',
-            };
-            if (extraBasketFields && typeof extraBasketFields === 'object') {
-                for (var fieldName in extraBasketFields) {
-                    if (Object.prototype.hasOwnProperty.call(extraBasketFields, fieldName)) {
-                        arFields[fieldName] = extraBasketFields[fieldName];
-                    }
-                }
-            }
+			var arFields = {
+				'PRODUCT_ID': id,
+				'QUANTITY': quantity,
+				'PROPS': porpsAddedToBasket,
+				'RENEW': 'N',
+			};
+			if (extraBasketFields && typeof extraBasketFields === 'object') {
+				for (var fieldName in extraBasketFields) {
+					if (Object.prototype.hasOwnProperty.call(extraBasketFields, fieldName)) {
+						arFields[fieldName] = extraBasketFields[fieldName];
+					}
+				}
+			}
 
-            return BX.ajax.runAction('sotbit:b2bcabinet.basket.addProductToBasket', {
-                data: {
-                    arFields: arFields
-                },
-            })
-        },
+			return BX.ajax.runAction('sotbit:b2bcabinet.basket.addProductToBasket', {
+				data: {
+					arFields: arFields
+				},
+			})
+		},
 		getItemQuantityProps: function () {
 			return {
 				itemId: this.itemId,
@@ -402,7 +409,7 @@
 			const offer = this.offers[id];
 
 			const offerIds = this.itemIds['OFFERS'][id];
-				
+
 			const nodes = {
 				wrapper: document.getElementById(offerIds.QUANTITY),
 				increment: document.getElementById(offerIds.QUANTITY_INCREMENT),
@@ -422,9 +429,9 @@
 			};
 		},
 		redrawPrices: function (item) {
-            //TODO: init price data once, not in every call of function
+			//TODO: init price data once, not in every call of function
 			if (!item.id || !item.count) {return}
-			
+
 			if (item.id === this.itemId) {
 				if (this.arResult['ITEM_QUANTITY_RANGES'].hasOwnProperty('ZERO-INF')) {return}
 
@@ -442,7 +449,7 @@
 					if (node && price !== 'PRIVATE_PRICE') {
 						let currentPrice = this.arResult['PRINT_PRICES'][price];
 						if (currentPrice.hasOwnProperty(currentRange)) {
-							node.innerHTML = currentPrice[currentRange]['PRINT'];	
+							node.innerHTML = currentPrice[currentRange]['PRINT'];
 						} else {
 							node.innerHTML = '';
 						}
@@ -472,7 +479,7 @@
 					if (node && price !== 'PRIVATE_PRICE') {
 						let currentPrice = this.arResult['OFFERS'][tmpOfferId]['PRINT_PRICES'][price];
 						if (currentPrice.hasOwnProperty(currentRange)) {
-							node.innerHTML = currentPrice[currentRange]['PRINT'];	
+							node.innerHTML = currentPrice[currentRange]['PRINT'];
 						} else {
 							node.innerHTML = '';
 						}
@@ -602,5 +609,5 @@
 				new bootstrap.Tooltip(tooltipElements[i]);
 			}
 		}
-    }
+	}
 })(window);

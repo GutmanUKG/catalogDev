@@ -1,0 +1,27 @@
+Изменения по фильтру "Уценка"
+Дата: 2026-02-26
+
+1) Добавлен текст для фильтра "Уценка"
+Файл:
+e:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog\b2bcabinet\bitrix\catalog.smart.filter\b2b_smart_filter\lang\ru\template.php
+Изменение:
+- Добавлен ключ локализации CT_BCSF_MARKDOWN_ONLY = "Уценка".
+
+2) Добавлен чекбокс "Уценка" в smart filter
+Файл:
+e:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog\b2bcabinet\bitrix\catalog.smart.filter\b2b_smart_filter\template.php
+Изменение:
+- Добавлен чекбокс с name="MARKDOWN_ONLY", value="Y".
+- Чекбокс работает через smartFilter.click(this).
+- Позиция блока установлена под блоком ценового диапазона (РРЦ), перед остальными свойствами.
+
+3) Добавлена серверная логика применения фильтра "Уценка"
+Файл:
+e:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog\b2bcabinet\section_vertical.php
+Изменение:
+- При MARKDOWN_ONLY=Y в $GLOBALS[$arParams["FILTER_NAME"]] добавляется фильтр по ID товаров.
+- ID рассчитываются по совпадению CML2_ARTICLE:
+  а) берутся активные уцененные позиции из ИБ 37;
+  б) выбираются активные товары текущего каталога с такими же артикулами.
+- Если совпадений нет, ставится ID=0 для пустой выборки.
+

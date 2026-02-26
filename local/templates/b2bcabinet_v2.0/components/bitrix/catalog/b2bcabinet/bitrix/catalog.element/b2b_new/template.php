@@ -418,7 +418,7 @@ $this->EndViewTarget();
                         $itemIds['QUANTITY_INCREMENT'] = $mainId . '_quantity-increment';
                         ?>
                         <?if($arResult['ACTUAL_QUANTITY'] < 1):?>
-                        <button class="add-basket-detail btn btn-primary btn-small" data-id="<?=$itemIds['QUANTITY']?>"><i class="ph-shopping-cart-simple me-2"></i>В корзину</button>
+                        <button type="button" class="add-basket-detail btn btn-primary btn-small" data-id="<?=$itemIds['QUANTITY']?>"><i class="ph-shopping-cart-simple me-2"></i>В корзину</button>
                         <?endif;?>
 
 
@@ -949,7 +949,9 @@ $this->EndViewTarget();
             idleTime: 0
         });
 
-        $('.add-basket-detail').on('click', function () {
+        $('.add-basket-detail').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
             const $this = $(this);
             const id = $this.data('id');
 

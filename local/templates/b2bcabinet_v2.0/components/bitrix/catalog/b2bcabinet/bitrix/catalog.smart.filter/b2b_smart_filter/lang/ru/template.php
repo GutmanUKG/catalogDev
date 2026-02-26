@@ -11,4 +11,5 @@ $MESS ['CT_BCSF_SET_FILTER_ALL_LIST'] = "Весь список";
 $MESS ['CT_BCSF_SET_FILTER_ALL_ROLL_UP'] = "Свернуть";
 $MESS ['CT_BCSF_FILTER'] = "Фильтр";
 $MESS ['CT_BCSF_FILTER_SELECT'] = "Поиск по названию";
+$MESS ['CT_BCSF_MARKDOWN_ONLY'] = "Уценка";
 ?>

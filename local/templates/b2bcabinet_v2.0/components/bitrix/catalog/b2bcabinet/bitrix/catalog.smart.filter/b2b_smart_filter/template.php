@@ -55,6 +55,7 @@ function renderRecursiveMenu($section, $isOpen = false) {
         <input type="hidden" name="<? echo $arItem["CONTROL_NAME"] ?>" id="<? echo $arItem["CONTROL_ID"] ?>"
                value="<? echo $arItem["HTML_VALUE"] ?>"/>
     <? endforeach; ?>
+    <? $isMarkdownOnlyChecked = (isset($_REQUEST['MARKDOWN_ONLY']) && $_REQUEST['MARKDOWN_ONLY'] === 'Y'); ?>
     <? if (!empty($arResult['ITEMS']['SECTION_ID']['NAME']) && !empty($arResult['ITEMS']['SECTION_ID']['FILTRED_FIELDS'])): ?>
 
         <input type="hidden" name="refresh_values">
@@ -133,7 +134,6 @@ function renderRecursiveMenu($section, $isOpen = false) {
             </div>
             <div class="anchor_header_filter"></div>
             <div class="card-body">
-
                 <?
                 //prices
                 foreach ($arResult["ITEMS"] as $key => $arItem) {
@@ -235,6 +235,34 @@ function renderRecursiveMenu($section, $isOpen = false) {
                         </script>
                     <?endif;
                 }
+                ?>
+                <div class="bx_filter_parameters_box active form-group" data-propid="MARKDOWN_ONLY">
+                    <div class="bx_filter_parameters_box_title text-uppercase text-muted fw-medium">
+                        <span>
+                            <span class="item_name"><?= Loc::getMessage('CT_BCSF_MARKDOWN_ONLY') ?></span>
+                        </span>
+                    </div>
+                    <div class="bx_filter_block bx_filter_block_wrapper" data-role="bx_filter_block">
+                        <div class="blank_ul_wrapper type-checkbox">
+                            <div class="bx_filter_parameters_box_checkbox form-check">
+                                <input
+                                    type="checkbox"
+                                    class="form-check-input checkbox_custom_filter"
+                                    id="markdown_only"
+                                    name="MARKDOWN_ONLY"
+                                    value="Y"
+                                    onclick="smartFilter.click(this)"
+                                    data-type="section"
+                                    <?= $isMarkdownOnlyChecked ? 'checked="checked"' : '' ?>
+                                >
+                                <label class="form-check-label checkbox__label fonts__middle_comment" for="markdown_only">
+                                    <?= Loc::getMessage('CT_BCSF_MARKDOWN_ONLY') ?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?
                 //not prices
                 foreach ($arResult["ITEMS"] as $key => $arItem) {
                     if (

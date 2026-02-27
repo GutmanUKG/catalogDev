@@ -453,8 +453,8 @@ $this->EndViewTarget();
                     if($USER->isAdmin()):
                         */?>
                         <?if($arResult['HAS_SECOND']):?>
-                        <button type="button" class="btn btn-danger btn-small mt-2" data-bs-toggle="modal" data-bs-target="#markdownModal-<?=$mainId?>"><?=Loc::getMessage('CT_BZD_MARKDOWN_BUTTON')?> %</button>
-                    <?endif;?>
+                            <button type="button" class="btn btn-danger btn-small mt-2" data-bs-toggle="modal" data-bs-target="#markdownModal-<?=$mainId?>"><?=Loc::getMessage('CT_BZD_MARKDOWN_BUTTON')?> %</button>
+                        <?endif;?>
                      <?//endif;?>
 
                     <?if(!empty($arResult['PROPERTIES']['PDF_FILES']['VALUE'])):?>

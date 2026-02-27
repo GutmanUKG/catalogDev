@@ -318,6 +318,9 @@ $storeCategories = [
     57 => Loc::getMessage('CT_BZD_MARKDOWN_CAT_4')
 ];
 
+// Detect if this item is an orphan markdown (loaded from IB 37)
+$arResult['IS_ORPHAN_MARKDOWN'] = ((int)($arResult['IBLOCK_ID'] ?? $arParams['IBLOCK_ID']) === $SALE_IBLOCK_ID);
+
 $article = $arResult['PROPERTIES']['CML2_ARTICLE']['VALUE'];
 $arResult['HAS_SECOND'] = false;
 $arResult['SECOND_ITEMS'] = [];
@@ -826,6 +829,10 @@ if ($article) {
                 }
             }
 
+            $maxMarkdownPercent = 0.0;
+            $minMarkdownPrice = null;
+            $defaultMarkdownStoreId = 0;
+            $defaultMarkdownPercent = null;
             foreach ($storeAmountsByProduct as $productId => $storeAmounts) {
                 foreach ($storeAmounts as $storeId => $amount) {
                     if (empty($secondProducts[$productId])) {
@@ -845,6 +852,19 @@ if ($article) {
                         $selectedPrice['PRINT_OLD'] = '';
                     }
                     $storeDiscount = $getStoreMarketingDiscount((int)$storeId);
+                    if (!empty($storeDiscount) && !empty($storeDiscount['PERCENT'])) {
+                        $maxMarkdownPercent = max($maxMarkdownPercent, (float)$storeDiscount['PERCENT']);
+                    }
+                    if (
+                        $arResult['IS_ORPHAN_MARKDOWN']
+                        && (int)$productId === (int)$arResult['ID']
+                    ) {
+                        $storePercent = !empty($storeDiscount['PERCENT']) ? (float)$storeDiscount['PERCENT'] : 0.0;
+                        if ($defaultMarkdownPercent === null || $storePercent > $defaultMarkdownPercent) {
+                            $defaultMarkdownPercent = $storePercent;
+                            $defaultMarkdownStoreId = (int)$storeId;
+                        }
+                    }
                     if (!empty($selectedPrice) && !empty($storeDiscount)) {
                         $basePrice = round((float)$selectedPrice['PRICE']);
                         $discountPrice = round($basePrice - ($basePrice * ((float)$storeDiscount['PERCENT'] / 100)));
@@ -855,6 +875,15 @@ if ($article) {
                             ? CCurrencyLang::CurrencyFormat($basePrice, $currency)
                             : '';
                         $selectedPrice['DISCOUNT_IDS'] = [(int)$storeDiscount['ID']];
+                    }
+                    if (!empty($selectedPrice)) {
+                        $candidate = $selectedPrice['DISCOUNT_PRICE'] ?? $selectedPrice['PRICE'] ?? null;
+                        if ($candidate !== null) {
+                            $candidate = round((float)$candidate);
+                            $minMarkdownPrice = $minMarkdownPrice === null
+                                ? $candidate
+                                : min($minMarkdownPrice, $candidate);
+                        }
                     }
                     $rowKey = $productId . '_' . $storeId;
                     $actualQuantity = isset($basketQuantitiesByMarkdownRow[$rowKey])
@@ -880,8 +909,61 @@ if ($article) {
                 }
             }
 
+            if ($arResult['IS_ORPHAN_MARKDOWN']) {
+                if ($defaultMarkdownStoreId <= 0 && !empty($storeAmountsByProduct[$arResult['ID']])) {
+                    $storesForItem = $storeAmountsByProduct[$arResult['ID']];
+                    reset($storesForItem);
+                    $defaultMarkdownStoreId = (int)key($storesForItem);
+                }
+                $arResult['MARKDOWN_DEFAULT_STORE_ID'] = $defaultMarkdownStoreId;
+                $arResult['MARKDOWN_DEFAULT_ROW_KEY'] = $defaultMarkdownStoreId > 0
+                    ? ($arResult['ID'] . '_' . $defaultMarkdownStoreId)
+                    : '';
+            }
+
             if (!empty($arResult['SECOND_ITEMS'])) {
                 $arResult['HAS_SECOND'] = true;
+            }
+
+            if (
+                $arResult['IS_ORPHAN_MARKDOWN']
+                && $minMarkdownPrice !== null
+                && !empty($arResult['PRICE_MATRIX']['MATRIX'])
+            ) {
+                foreach ($arResult['PRICE_MATRIX']['MATRIX'] as $priceId => $ranges) {
+                    foreach ($ranges as $rangeKey => $priceDetails) {
+                        if (!isset($priceDetails['PRICE'])) {
+                            continue;
+                        }
+                        $basePrice = round((float)$priceDetails['PRICE']);
+                        $discountPrice = $minMarkdownPrice;
+                        $arResult['PRICE_MATRIX']['MATRIX'][$priceId][$rangeKey]['DISCOUNT_PRICE'] = $discountPrice;
+                        $arResult['PRICE_MATRIX']['MATRIX'][$priceId][$rangeKey]['BASE_PRICE'] = $basePrice;
+                    }
+                }
+
+                $printPrices = [];
+                $cols = $arResult['PRICE_MATRIX']['COLS'] ?? [];
+                $matrix = $arResult['PRICE_MATRIX']['MATRIX'];
+                foreach ($matrix as $key => $value) {
+                    $colName = $cols[$key]['NAME'] ?? $key;
+                    $printPrices[$colName] = $value;
+                    foreach ($value as $range => $priceDetails) {
+                        $printPrices[$colName][$range]['PRINT'] = CCurrencyLang::CurrencyFormat(
+                            $arResult["CATALOG_MEASURE_RATIO"] ? $priceDetails['DISCOUNT_PRICE'] * $arResult["CATALOG_MEASURE_RATIO"] : $priceDetails['DISCOUNT_PRICE'],
+                            $priceDetails['CURRENCY']
+                        );
+                        if (round($priceDetails['DISCOUNT_PRICE'], 2) !== round($priceDetails['PRICE'], 2)) {
+                            $printPrices[$colName][$range]['PRINT_WHITHOUT_DISCONT'] = CCurrencyLang::CurrencyFormat(
+                                $arResult["CATALOG_MEASURE_RATIO"] ? $priceDetails['PRICE'] * $arResult["CATALOG_MEASURE_RATIO"] : $priceDetails['PRICE'],
+                                $priceDetails['CURRENCY']
+                            );
+                        } else {
+                            $printPrices[$colName][$range]['PRINT_WHITHOUT_DISCONT'] = '';
+                        }
+                    }
+                }
+                $arResult['PRINT_PRICES'] = $printPrices;
             }
         }
     }

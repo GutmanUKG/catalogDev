@@ -40,4 +40,5 @@ $MESS['CT_BZD_MARKDOWN_PROP_STORE'] = 'Склад уценки';
 $MESS['CT_BZD_MARKDOWN_PROP_CATEGORY'] = 'Категория уценки';
 $MESS['CT_BZD_MARKDOWN_PROP_ROW_KEY'] = 'Ключ строки уценки';
 $MESS['CT_BZD_MARKDOWN_PROMO_ID'] = 'ID акции';
+$MESS['CT_BZD_MARKDOWN_AVAIL'] = 'В наличии';
 ?>

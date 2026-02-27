@@ -59,6 +59,47 @@
 				? arResult['ITEM']['CATALOG_MEASURE_NAME']
 				: arResult['ITEM']['ITEM_MEASURE']['TITLE']
 		};
+		if (arResult['ITEM'] && arResult['ITEM']['IS_ORPHAN_MARKDOWN']) {
+			var markdownStoreId = arResult['ITEM']['MARKDOWN_DEFAULT_STORE_ID'] || arResult['ITEM']['MARKDOWN_STORE_ID'];
+			if (markdownStoreId) {
+				var markdownRowKey = arResult['ITEM']['MARKDOWN_DEFAULT_ROW_KEY']
+					|| (String(arResult['ITEM']['ID']) + '_' + String(markdownStoreId));
+				var markdownCategory = arResult['ITEM']['MARKDOWN_DEFAULT_CATEGORY'] || '';
+				this.obQuantity.propsAddedToBasket = [
+					{
+						NAME: BX.message('BZD_MARKDOWN_PROP_STORE') || 'Markdown Store',
+						CODE: 'MARKDOWN_STORE_ID',
+						VALUE: String(markdownStoreId),
+						SORT: 100
+					},
+					{
+						NAME: BX.message('BZD_MARKDOWN_PROP_ROW_KEY') || 'Markdown Row Key',
+						CODE: 'MARKDOWN_ROW_KEY',
+						VALUE: String(markdownRowKey),
+						SORT: 200
+					}
+				];
+				if (markdownCategory) {
+					this.obQuantity.propsAddedToBasket.push({
+						NAME: BX.message('BZD_MARKDOWN_PROP_CATEGORY') || 'Markdown Category',
+						CODE: 'MARKDOWN_CATEGORY',
+						VALUE: String(markdownCategory),
+						SORT: 150
+					});
+				}
+				this.obQuantity.extraBasketFields = {
+					STORE_ID: String(markdownStoreId),
+					CATALOG_STORE_ID: String(markdownStoreId),
+					MARKDOWN_STORE_ID: String(markdownStoreId),
+					MARKDOWN_ROW_KEY: String(markdownRowKey),
+					PRODUCT_XML_ID: 'markdown_' + String(markdownRowKey),
+					CATALOG_XML_ID: 'markdown_catalog_' + String(arResult['ITEM']['ID'])
+				};
+				if (markdownCategory) {
+					this.obQuantity.extraBasketFields.MARKDOWN_CATEGORY = String(markdownCategory);
+				}
+			}
+		}
 		this.blockNodes = {};
 		this.obTree = null;
 		this.obSkuProps = null;
@@ -341,7 +382,7 @@
 						function(){
 							nodes.increment.setAttribute("disabled", "disabled");
 							nodes.increment.firstElementChild.classList.add('spinner-grow');
-							this.addToBasket(item.itemId, item.tmpQuantity, item.measureRatio)
+							this.addToBasket(item.itemId, item.tmpQuantity, item.measureRatio, item.propsAddedToBasket, item.extraBasketFields)
 								.then(function(response) {
 										item.currentQuantity = parseFloat(response.data);
 										item.tmpQuantity = item.currentQuantity;
@@ -394,7 +435,7 @@
 						function(){
 							nodes.decrement.setAttribute("disabled", "disabled");
 							nodes.decrement.firstElementChild.classList.add('spinner-grow');
-							this.addToBasket(item.itemId, item.tmpQuantity, item.measureRatio)
+							this.addToBasket(item.itemId, item.tmpQuantity, item.measureRatio, item.propsAddedToBasket, item.extraBasketFields)
 								.then(function(response) {
 										item.currentQuantity = parseFloat(response.data);
 										item.tmpQuantity = item.currentQuantity;
@@ -446,7 +487,7 @@
 					clearTimeout(item.delayAddToBasket);
 					item.delayAddToBasket = setTimeout(
 						function(){
-							this.addToBasket(item.itemId, item.tmpQuantity, item.measureRatio)
+							this.addToBasket(item.itemId, item.tmpQuantity, item.measureRatio, item.propsAddedToBasket, item.extraBasketFields)
 								.then(function(response) {
 										item.currentQuantity = parseFloat(response.data);
 										item.tmpQuantity = item.currentQuantity;
@@ -489,20 +530,29 @@
 				this.value = this.value || 0;
 			}
 		},
-		addToBasket: function(id, quantity, measureRatio, porpsAddedToBasket) {
+		addToBasket: function(id, quantity, measureRatio, porpsAddedToBasket, extraBasketFields) {
 
 			const quantity1 = Math.round(quantity * 1000000);
 			const measureRatio1 = Math.round(measureRatio * 1000000);
 			const remainder = quantity1 % measureRatio1;
 			quantity = (quantity1 - remainder) / 1000000;
 
+			var arFields = {
+				'PRODUCT_ID': id,
+				'QUANTITY': quantity,
+				'PROPS': porpsAddedToBasket,
+			};
+			if (extraBasketFields && typeof extraBasketFields === 'object') {
+				for (var fieldName in extraBasketFields) {
+					if (Object.prototype.hasOwnProperty.call(extraBasketFields, fieldName)) {
+						arFields[fieldName] = extraBasketFields[fieldName];
+					}
+				}
+			}
+
 			return BX.ajax.runAction('sotbit:b2bcabinet.basket.addProductToBasket', {
 				data: {
-					arFields: {
-						'PRODUCT_ID': id,
-						'QUANTITY': quantity,
-						'PROPS': porpsAddedToBasket,
-					}
+					arFields: arFields
 				},
 			})
 		},

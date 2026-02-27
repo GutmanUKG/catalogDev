@@ -1,0 +1,383 @@
+Array
+(
+    [64284] => Array
+        (
+            [ID] => 51287
+            [~ID] => 51287
+            [NAME] => Геймпад беспроводной Defender Impulse черный
+            [~NAME] => Геймпад беспроводной Defender Impulse черный
+            [CODE] => geympad_besprovodnoy_defender_impulse_chernyy
+            [~CODE] => geympad_besprovodnoy_defender_impulse_chernyy
+            [IBLOCK_SECTION_ID] => 2114
+            [~IBLOCK_SECTION_ID] => 2114
+            [PREVIEW_PICTURE] => 
+            [~PREVIEW_PICTURE] => 
+            [DETAIL_PICTURE] => 
+            [~DETAIL_PICTURE] => 
+            [PROPERTY_CML2_ARTICLE_VALUE] => 64284
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 64284
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13948182
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13948182
+        )
+
+    [JSB-3401V] => Array
+        (
+            [ID] => 50909
+            [~ID] => 50909
+            [NAME] => Игровой джойстик FLASHFIRE Cobra V5 HOTAS Combo JSB-3401V
+            [~NAME] => Игровой джойстик FLASHFIRE Cobra V5 HOTAS Combo JSB-3401V
+            [CODE] => igrovoy_dzhoystik_flashfire_cobra_v5_hotas_combo_jsb_3401v
+            [~CODE] => igrovoy_dzhoystik_flashfire_cobra_v5_hotas_combo_jsb_3401v
+            [IBLOCK_SECTION_ID] => 2115
+            [~IBLOCK_SECTION_ID] => 2115
+            [PREVIEW_PICTURE] => 918548
+            [~PREVIEW_PICTURE] => 918548
+            [DETAIL_PICTURE] => 918549
+            [~DETAIL_PICTURE] => 918549
+            [PROPERTY_CML2_ARTICLE_VALUE] =>  JSB-3401V
+            [~PROPERTY_CML2_ARTICLE_VALUE] =>  JSB-3401V
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13923721
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13923721
+        )
+
+    [DTH-2420] => Array
+        (
+            [ID] => 50898
+            [~ID] => 50898
+            [NAME] => Интерактивный перьевой дисплей Wacom Cintiq Pro 24 touch
+            [~NAME] => Интерактивный перьевой дисплей Wacom Cintiq Pro 24 touch
+            [CODE] => interaktivnyy_perevoy_displey_wacom_cintiq_pro_24_touch
+            [~CODE] => interaktivnyy_perevoy_displey_wacom_cintiq_pro_24_touch
+            [IBLOCK_SECTION_ID] => 2125
+            [~IBLOCK_SECTION_ID] => 2125
+            [PREVIEW_PICTURE] => 918518
+            [~PREVIEW_PICTURE] => 918518
+            [DETAIL_PICTURE] => 918519
+            [~DETAIL_PICTURE] => 918519
+            [PROPERTY_CML2_ARTICLE_VALUE] => DTH-2420
+            [~PROPERTY_CML2_ARTICLE_VALUE] => DTH-2420
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13923362
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13923362
+        )
+
+    [C13T27134022] => Array
+        (
+            [ID] => 50941
+            [~ID] => 50941
+            [NAME] => Картридж Epson C13T27134022 для  WF-7110/7610/7620 пурпурный new 
+            [~NAME] => Картридж Epson C13T27134022 для  WF-7110/7610/7620 пурпурный new 
+            [CODE] => kartridzh_epson_c13t27134022_dlya_wf_7110_7610_7620_purpurnyy_new_
+            [~CODE] => kartridzh_epson_c13t27134022_dlya_wf_7110_7610_7620_purpurnyy_new_
+            [IBLOCK_SECTION_ID] => 2152
+            [~IBLOCK_SECTION_ID] => 2152
+            [PREVIEW_PICTURE] => 918660
+            [~PREVIEW_PICTURE] => 918660
+            [DETAIL_PICTURE] => 918661
+            [~DETAIL_PICTURE] => 918661
+            [PROPERTY_CML2_ARTICLE_VALUE] => C13T27134022
+            [~PROPERTY_CML2_ARTICLE_VALUE] => C13T27134022
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924936
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924936
+        )
+
+    [4P4F5AX#ACB] => Array
+        (
+            [ID] => 50996
+            [~ID] => 50996
+            [NAME] => Клавиатура игровая HyperX Alloy Core RGB HX-KB5ME2-RU (4P4F5AX#ACB)
+            [~NAME] => Клавиатура игровая HyperX Alloy Core RGB HX-KB5ME2-RU (4P4F5AX#ACB)
+            [CODE] => klaviatura_igrovaya_hyperx_alloy_core_rgb_hx_kb5me2_ru_4p4f5ax_acb
+            [~CODE] => klaviatura_igrovaya_hyperx_alloy_core_rgb_hx_kb5me2_ru_4p4f5ax_acb
+            [IBLOCK_SECTION_ID] => 2127
+            [~IBLOCK_SECTION_ID] => 2127
+            [PREVIEW_PICTURE] => 918818
+            [~PREVIEW_PICTURE] => 918818
+            [DETAIL_PICTURE] => 918819
+            [~DETAIL_PICTURE] => 918819
+            [PROPERTY_CML2_ARTICLE_VALUE] => 4P4F5AX#ACB
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 4P4F5AX#ACB
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13926946
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13926946
+        )
+
+    [23698] => Array
+        (
+            [ID] => 50903
+            [~ID] => 50903
+            [NAME] => Клавиатура игровая Trust RU GXT 833 THADO 23698 черный
+            [~NAME] => Клавиатура игровая Trust RU GXT 833 THADO 23698 черный
+            [CODE] => klaviatura_igrovaya_trust_ru_gxt_833_thado_23698_chernyy
+            [~CODE] => klaviatura_igrovaya_trust_ru_gxt_833_thado_23698_chernyy
+            [IBLOCK_SECTION_ID] => 2127
+            [~IBLOCK_SECTION_ID] => 2127
+            [PREVIEW_PICTURE] => 918530
+            [~PREVIEW_PICTURE] => 918530
+            [DETAIL_PICTURE] => 918531
+            [~DETAIL_PICTURE] => 918531
+            [PROPERTY_CML2_ARTICLE_VALUE] => 23698
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 23698
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13923522
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13923522
+        )
+
+    [67500] => Array
+        (
+            [ID] => 50974
+            [~ID] => 50974
+            [NAME] => Коврик для мышки Steelseries QcK Heavy XXL 67500 черный
+            [~NAME] => Коврик для мышки Steelseries QcK Heavy XXL 67500 черный
+            [CODE] => kovrik_dlya_myshki_steelseries_qck_heavy_xxl_67500_chernyy
+            [~CODE] => kovrik_dlya_myshki_steelseries_qck_heavy_xxl_67500_chernyy
+            [IBLOCK_SECTION_ID] => 2130
+            [~IBLOCK_SECTION_ID] => 2130
+            [PREVIEW_PICTURE] => 918764
+            [~PREVIEW_PICTURE] => 918764
+            [DETAIL_PICTURE] => 918765
+            [~DETAIL_PICTURE] => 918765
+            [PROPERTY_CML2_ARTICLE_VALUE] => 67500
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 67500
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13926095
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13926095
+        )
+
+    [63826] => Array
+        (
+            [ID] => 50930
+            [~ID] => 50930
+            [NAME] => Коврик для мышки Steelseries QcK Prism Cloth XL 63826 черный
+            [~NAME] => Коврик для мышки Steelseries QcK Prism Cloth XL 63826 черный
+            [CODE] => kovrik_dlya_myshki_steelseries_qck_prism_cloth_xl_63826_chernyy
+            [~CODE] => kovrik_dlya_myshki_steelseries_qck_prism_cloth_xl_63826_chernyy
+            [IBLOCK_SECTION_ID] => 2130
+            [~IBLOCK_SECTION_ID] => 2130
+            [PREVIEW_PICTURE] => 918617
+            [~PREVIEW_PICTURE] => 918617
+            [DETAIL_PICTURE] => 918618
+            [~DETAIL_PICTURE] => 918618
+            [PROPERTY_CML2_ARTICLE_VALUE] => 63826
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 63826
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924397
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924397
+        )
+
+    [45915] => Array
+        (
+            [ID] => 51047
+            [~ID] => 51047
+            [NAME] => Комплект беспроводной клавиатура+мышь Defender Berkeley C-915 RU,черный
+            [~NAME] => Комплект беспроводной клавиатура+мышь Defender Berkeley C-915 RU,черный
+            [CODE] => komplekt_besprovodnoy_klaviatura_mysh_defender_berkeley_c_915_ru_chernyy
+            [~CODE] => komplekt_besprovodnoy_klaviatura_mysh_defender_berkeley_c_915_ru_chernyy
+            [IBLOCK_SECTION_ID] => 2132
+            [~IBLOCK_SECTION_ID] => 2132
+            [PREVIEW_PICTURE] => 918669
+            [~PREVIEW_PICTURE] => 918669
+            [DETAIL_PICTURE] => 918670
+            [~DETAIL_PICTURE] => 918670
+            [PROPERTY_CML2_ARTICLE_VALUE] => 45915
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 45915
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13925067
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13925067
+        )
+
+    [45992] => Array
+        (
+            [ID] => 50953
+            [~ID] => 50953
+            [NAME] => Комплект беспроводной клавиатура+мышь Defender Milan C-992 RU черный
+            [~NAME] => Комплект беспроводной клавиатура+мышь Defender Milan C-992 RU черный
+            [CODE] => komplekt_besprovodnoy_klaviatura_mysh_defender_milan_c_992_ru_chernyy
+            [~CODE] => komplekt_besprovodnoy_klaviatura_mysh_defender_milan_c_992_ru_chernyy
+            [IBLOCK_SECTION_ID] => 2132
+            [~IBLOCK_SECTION_ID] => 2132
+            [PREVIEW_PICTURE] => 918698
+            [~PREVIEW_PICTURE] => 918698
+            [DETAIL_PICTURE] => 918699
+            [~DETAIL_PICTURE] => 918699
+            [PROPERTY_CML2_ARTICLE_VALUE] => 45992
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 45992
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13925357
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13925357
+        )
+
+    [C11CH96404] => Array
+        (
+            [ID] => 50924
+            [~ID] => 50924
+            [NAME] => МФУ Epson L14150 фабрика печати
+            [~NAME] => МФУ Epson L14150 фабрика печати
+            [CODE] => mfu_epson_l14150_fabrika_pechati
+            [~CODE] => mfu_epson_l14150_fabrika_pechati
+            [IBLOCK_SECTION_ID] => 2141
+            [~IBLOCK_SECTION_ID] => 2141
+            [PREVIEW_PICTURE] => 918605
+            [~PREVIEW_PICTURE] => 918605
+            [DETAIL_PICTURE] => 918606
+            [~DETAIL_PICTURE] => 918606
+            [PROPERTY_CML2_ARTICLE_VALUE] => C11CH96404
+            [~PROPERTY_CML2_ARTICLE_VALUE] => C11CH96404
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924246
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924246
+        )
+
+    [C11CJ67413] => Array
+        (
+            [ID] => 50965
+            [~ID] => 50965
+            [NAME] => МФУ Epson L3251 фабрика печати
+            [~NAME] => МФУ Epson L3251 фабрика печати
+            [CODE] => mfu_epson_l3251_fabrika_pechati
+            [~CODE] => mfu_epson_l3251_fabrika_pechati
+            [IBLOCK_SECTION_ID] => 2140
+            [~IBLOCK_SECTION_ID] => 2140
+            [PREVIEW_PICTURE] => 918729
+            [~PREVIEW_PICTURE] => 918729
+            [DETAIL_PICTURE] => 918730
+            [~DETAIL_PICTURE] => 918730
+            [PROPERTY_CML2_ARTICLE_VALUE] => C11CJ67413
+            [~PROPERTY_CML2_ARTICLE_VALUE] => C11CJ67413
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13925724
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13925724
+        )
+
+    [C11CG21404] => Array
+        (
+            [ID] => 50917
+            [~ID] => 50917
+            [NAME] => МФУ Epson L6160 фабрика печати, Wi-Fi
+            [~NAME] => МФУ Epson L6160 фабрика печати, Wi-Fi
+            [CODE] => mfu_epson_l6160_fabrika_pechati_wi_fi
+            [~CODE] => mfu_epson_l6160_fabrika_pechati_wi_fi
+            [IBLOCK_SECTION_ID] => 2141
+            [~IBLOCK_SECTION_ID] => 2141
+            [PREVIEW_PICTURE] => 918577
+            [~PREVIEW_PICTURE] => 918577
+            [DETAIL_PICTURE] => 918578
+            [~DETAIL_PICTURE] => 918578
+            [PROPERTY_CML2_ARTICLE_VALUE] => C11CG21404
+            [~PROPERTY_CML2_ARTICLE_VALUE] => C11CG21404
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924007
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924007
+        )
+
+    [62611] => Array
+        (
+            [ID] => 50923
+            [~ID] => 50923
+            [NAME] => Мышь игровая SteelSeries Aerox 3 (2022) Onyx 62611 черный
+            [~NAME] => Мышь игровая SteelSeries Aerox 3 (2022) Onyx 62611 черный
+            [CODE] => mysh_igrovaya_steelseries_aerox_3_2022_onyx_62611_chernyy
+            [~CODE] => mysh_igrovaya_steelseries_aerox_3_2022_onyx_62611_chernyy
+            [IBLOCK_SECTION_ID] => 2134
+            [~IBLOCK_SECTION_ID] => 2134
+            [PREVIEW_PICTURE] => 918603
+            [~PREVIEW_PICTURE] => 918603
+            [DETAIL_PICTURE] => 918604
+            [~DETAIL_PICTURE] => 918604
+            [PROPERTY_CML2_ARTICLE_VALUE] => 62611
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 62611
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924214
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924214
+        )
+
+    [52281] => Array
+        (
+            [ID] => 50876
+            [~ID] => 50876
+            [NAME] => Мышь проводная Defender Ultra Classic MB-280 черный
+            [~NAME] => Мышь проводная Defender Ultra Classic MB-280 черный
+            [CODE] => mysh_provodnaya_defender_ultra_classic_mb_280_chernyy
+            [~CODE] => mysh_provodnaya_defender_ultra_classic_mb_280_chernyy
+            [IBLOCK_SECTION_ID] => 2135
+            [~IBLOCK_SECTION_ID] => 2135
+            [PREVIEW_PICTURE] => 918457
+            [~PREVIEW_PICTURE] => 918457
+            [DETAIL_PICTURE] => 918458
+            [~DETAIL_PICTURE] => 918458
+            [PROPERTY_CML2_ARTICLE_VALUE] => 52281
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 52281
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13922650
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13922650
+        )
+
+    [GI-5R20050G] => Array
+        (
+            [ID] => 50884
+            [~ID] => 50884
+            [NAME] => Фотобумага 13х18 GIANT IMAGE GI-5R20050G 50 Л. 200 Г/М2 глянц.
+            [~NAME] => Фотобумага 13х18 GIANT IMAGE GI-5R20050G 50 Л. 200 Г/М2 глянц.
+            [CODE] => fotobumaga_13kh18_giant_image_gi_5r20050g_50_l_200_g_m2_glyants
+            [~CODE] => fotobumaga_13kh18_giant_image_gi_5r20050g_50_l_200_g_m2_glyants
+            [IBLOCK_SECTION_ID] => 2149
+            [~IBLOCK_SECTION_ID] => 2149
+            [PREVIEW_PICTURE] => 918494
+            [~PREVIEW_PICTURE] => 918494
+            [DETAIL_PICTURE] => 918495
+            [~DETAIL_PICTURE] => 918495
+            [PROPERTY_CML2_ARTICLE_VALUE] => GI-5R20050G
+            [~PROPERTY_CML2_ARTICLE_VALUE] => GI-5R20050G
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13922938
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13922938
+        )
+
+    [C13T00S14A] => Array
+        (
+            [ID] => 51001
+            [~ID] => 51001
+            [NAME] => Чернила Epson C13T00S14A 103 EcoTank для L3100/L3101/L3110/L3150 черный
+            [~NAME] => Чернила Epson C13T00S14A 103 EcoTank для L3100/L3101/L3110/L3150 черный
+            [CODE] => chernila_epson_c13t00s14a_103_ecotank_dlya_l3100_l3101_l3110_l3150_chernyy
+            [~CODE] => chernila_epson_c13t00s14a_103_ecotank_dlya_l3100_l3101_l3110_l3150_chernyy
+            [IBLOCK_SECTION_ID] => 2153
+            [~IBLOCK_SECTION_ID] => 2153
+            [PREVIEW_PICTURE] => 918836
+            [~PREVIEW_PICTURE] => 918836
+            [DETAIL_PICTURE] => 918837
+            [~DETAIL_PICTURE] => 918837
+            [PROPERTY_CML2_ARTICLE_VALUE] => C13T00S14A
+            [~PROPERTY_CML2_ARTICLE_VALUE] => C13T00S14A
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13927132
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13927132
+        )
+
+    [5050301] => Array
+        (
+            [ID] => 50943
+            [~ID] => 50943
+            [NAME] => Шредер Fellowes® Powershred® LX211 WHITE   SHREDDER EU/UK
+            [~NAME] => Шредер Fellowes® Powershred® LX211 WHITE   SHREDDER EU/UK
+            [CODE] => shreder_fellowes_powershred_lx211_white_shredder_eu_uk
+            [~CODE] => shreder_fellowes_powershred_lx211_white_shredder_eu_uk
+            [IBLOCK_SECTION_ID] => 2120
+            [~IBLOCK_SECTION_ID] => 2120
+            [PREVIEW_PICTURE] => 918665
+            [~PREVIEW_PICTURE] => 918665
+            [DETAIL_PICTURE] => 918666
+            [~DETAIL_PICTURE] => 918666
+            [PROPERTY_CML2_ARTICLE_VALUE] => 5050301
+            [~PROPERTY_CML2_ARTICLE_VALUE] => 5050301
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924995
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13924995
+        )
+
+    [ONYX NOTE AIR 3C] => Array
+        (
+            [ID] => 51000
+            [~ID] => 51000
+            [NAME] => Электронная книга ONYX BOOX NOTE AIR 3C черный
+            [~NAME] => Электронная книга ONYX BOOX NOTE AIR 3C черный
+            [CODE] => elektronnaya_kniga_onyx_boox_note_air_3c_chernyy
+            [~CODE] => elektronnaya_kniga_onyx_boox_note_air_3c_chernyy
+            [IBLOCK_SECTION_ID] => 2146
+            [~IBLOCK_SECTION_ID] => 2146
+            [PREVIEW_PICTURE] => 918830
+            [~PREVIEW_PICTURE] => 918830
+            [DETAIL_PICTURE] => 918831
+            [~DETAIL_PICTURE] => 918831
+            [PROPERTY_CML2_ARTICLE_VALUE] => ONYX NOTE AIR 3C
+            [~PROPERTY_CML2_ARTICLE_VALUE] => ONYX NOTE AIR 3C
+            [PROPERTY_CML2_ARTICLE_VALUE_ID] => 13927108
+            [~PROPERTY_CML2_ARTICLE_VALUE_ID] => 13927108
+        )
+
+)

@@ -380,8 +380,56 @@
 				},
 			})
 		},
-		getItemQuantityProps: function () {
+		getMarkdownBasketFields: function() {
+			if (!this.arResult || !this.arResult.IS_ORPHAN_MARKDOWN) {
+				return null;
+			}
+			var storeId = this.arResult.MARKDOWN_DEFAULT_STORE_ID || this.arResult.MARKDOWN_STORE_ID;
+			if (!storeId) {
+				return null;
+			}
+			var rowKey = this.arResult.MARKDOWN_DEFAULT_ROW_KEY || (String(this.itemId) + '_' + String(storeId));
+			var category = this.arResult.MARKDOWN_DEFAULT_CATEGORY || '';
+			var props = [
+				{
+					NAME: BX.message('BZD_MARKDOWN_PROP_STORE') || 'Markdown Store',
+					CODE: 'MARKDOWN_STORE_ID',
+					VALUE: String(storeId),
+					SORT: 100
+				},
+				{
+					NAME: BX.message('BZD_MARKDOWN_PROP_ROW_KEY') || 'Markdown Row Key',
+					CODE: 'MARKDOWN_ROW_KEY',
+					VALUE: String(rowKey),
+					SORT: 200
+				}
+			];
+			if (category) {
+				props.push({
+					NAME: BX.message('BZD_MARKDOWN_PROP_CATEGORY') || 'Markdown Category',
+					CODE: 'MARKDOWN_CATEGORY',
+					VALUE: String(category),
+					SORT: 150
+				});
+			}
+			var extra = {
+				STORE_ID: String(storeId),
+				CATALOG_STORE_ID: String(storeId),
+				MARKDOWN_STORE_ID: String(storeId),
+				MARKDOWN_ROW_KEY: String(rowKey),
+				PRODUCT_XML_ID: 'markdown_' + String(rowKey),
+				CATALOG_XML_ID: 'markdown_catalog_' + String(this.itemId)
+			};
+			if (category) {
+				extra.MARKDOWN_CATEGORY = String(category);
+			}
 			return {
+				props: props,
+				extra: extra
+			};
+		},
+		getItemQuantityProps: function () {
+			var result = {
 				itemId: this.itemId,
 				name: this.arResult['NAME'],
 				nodes: this.nodesQuantity,
@@ -391,7 +439,13 @@
 				minQuantity: this.minQuantity,
 				measureRatio: this.measureRatio,
 				measureName: this.measureName
+			};
+			var markdownFields = this.getMarkdownBasketFields();
+			if (markdownFields) {
+				result.propsAddedToBasket = markdownFields.props;
+				result.extraBasketFields = markdownFields.extra;
 			}
+			return result;
 		},
 		getOfferQuantityPropsById: function(id) {
 			const offers = this.arResult['OFFERS']

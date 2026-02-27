@@ -253,5 +253,34 @@ $componentElementParams = [
         ? $arParams['DETAIL_MAIN_FILES_PROPERTY'] : '',
 
 ];
+// Orphan markdown fallback: if element not found in IB 7, try IB 37
+$_elementCode = $arResult['VARIABLES']['ELEMENT_CODE'] ?? '';
+$_elementId = (int)($arResult['VARIABLES']['ELEMENT_ID'] ?? 0);
+if ($_elementCode || $_elementId > 0) {
+    $_checkFilter = ['IBLOCK_ID' => (int)$arParams['IBLOCK_ID'], 'ACTIVE' => 'Y'];
+    if ($_elementCode !== '') {
+        $_checkFilter['CODE'] = $_elementCode;
+    }
+    if ($_elementId > 0) {
+        $_checkFilter['ID'] = $_elementId;
+    }
+    $_existsInMain = CIBlockElement::GetList([], $_checkFilter, false, ['nTopCount' => 1], ['ID'])->Fetch();
+    if (!$_existsInMain) {
+        $_mdFilter = ['IBLOCK_ID' => 37, 'ACTIVE' => 'Y'];
+        if ($_elementCode !== '') {
+            $_mdFilter['CODE'] = $_elementCode;
+        }
+        if ($_elementId > 0) {
+            $_mdFilter['ID'] = $_elementId;
+        }
+        $_existsInMd = CIBlockElement::GetList([], $_mdFilter, false, ['nTopCount' => 1], ['ID'])->Fetch();
+        if ($_existsInMd) {
+            $componentElementParams['IBLOCK_ID'] = 37;
+            $componentElementParams['IS_ORPHAN_MARKDOWN'] = true;
+        }
+    }
+    unset($_checkFilter, $_elementCode, $_elementId, $_existsInMain, $_mdFilter, $_existsInMd);
+}
+
 include($_SERVER["DOCUMENT_ROOT"]."/".$this->GetFolder()."/element_detail.php");
 ?>

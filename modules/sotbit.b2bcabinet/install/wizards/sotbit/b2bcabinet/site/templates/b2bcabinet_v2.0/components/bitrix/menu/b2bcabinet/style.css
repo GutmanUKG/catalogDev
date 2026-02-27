@@ -1,0 +1,20 @@
+.nav-b2bcabinet > .nav-item > .nav-link {
+	padding-inline: 1rem;
+	border-radius: var(--border-radius-lg);
+}
+
+.nav-b2bcabinet .nav-item-header {
+	color: var(--grey-800);
+}
+
+.nav-b2bcabinet.nav-sidebar .nav-link i {
+	margin-right: calc(var(--nav-link-padding-x) * .54);
+}
+
+.nav-b2bcabinet .nav-item .nav-group-sub .nav-item {
+	padding-top: 0px;
+}
+
+.nav-b2bcabinet.nav-sidebar .nav-item:not(.nav-item-header):last-child {
+	padding-bottom: 0px;
+}

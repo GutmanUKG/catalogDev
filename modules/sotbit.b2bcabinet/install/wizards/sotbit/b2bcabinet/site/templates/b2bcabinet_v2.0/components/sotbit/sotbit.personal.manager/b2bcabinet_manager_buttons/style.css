@@ -1,0 +1,38 @@
+.personal-manager-wrapper {
+  position: fixed;
+  bottom: 3rem;
+  right: 2rem;
+  margin-left: auto;
+  z-index: 90;
+}
+
+.personal-manager-wrapper:has([data-fab-state="open"]) {
+  z-index: 100;
+}
+
+.modal.fade.show.modal_manager .modal-dialog {
+  position: relative;
+  margin-top: 5rem;
+}
+.modal.fade.show.modal_manager hr {
+  margin-top: 0;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .personal-manager-wrapper {
+    right: 1.5rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .personal-manager-wrapper {
+    right: 2.375rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .personal-manager-wrapper {
+    right: 1.125rem;
+  }
+}

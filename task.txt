@@ -1,15 +1,70 @@
-В корне лежит изображение логики показа детальной страницы элемента, сейчас она работает через AJAX
-и получает шаболон catalog.element сразу в список
-Я уже модифицировал массив в catalog.section , catalog.item и catalog.element
-если у элемента есть свойство HAS_SECOND то значит данный товар есть так же в инфоблоке уценки
-на скрине показан первый этап вверху , а второй по нажатию на кнопку уценка
-второй этап должен быть с примерно таким же дизайном как catalog.element но там нет описания и свойств
-вобщем надо сделать по нажатию по кнопке уценка открытие еще одной всплывашки с таким же дизайном как и на скрине
-Важно что бы работали кнопки добавление в корзину и выбор количества, логика та же что и для основного товара
-компоненты лежат в
-E:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog
-E:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog.item
+В catalogDev лежат некоторые файлы из шаблона Битрикс
+В каталоге была реализованна функция слияния двух каталогов (обычный и уценка)
+Был переделны шаблоны компонентов и добавления в корзину
+Так же есть кастомное правило для работы с акциями
 
-скрин в E:\dev\b2b.ak-cent.kz\image_detail.jpeg
 
-ты работаешь в копии папки local , так же будет папка prod в ней лежит бэкап ее не трогай
+
+/**/
+
+Общий список изменений в проекте
+Дата: 2026-02-26
+
+1) Исправления добавления в корзину (детальная карточка товара)
+Файл:
+e:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog\b2bcabinet\bitrix\catalog.element\b2b_new\template.php
+Изменения:
+- Кнопка "В корзину" переведена в type="button".
+- В обработчик клика добавлены event.preventDefault() и event.stopPropagation().
+
+Файл:
+e:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog\b2bcabinet\bitrix\catalog.element\b2b_new\script.js
+Изменения:
+- Добавлена защита от отсутствующих DOM-нод quantity-контролов.
+- Добавлен безопасный разбор window message (проверка типа event.data и try/catch для JSON.parse).
+
+Файл:
+e:\dev\b2b.ak-cent.kz\basket.php
+Изменения:
+- Нормализация входных полей в addProductToBasketAction.
+- Разделение логики для markdown/обычных позиций.
+- Добавлены дополнительные trace-логи.
+- Уточнена логика поиска/обновления позиции корзины.
+
+2) Добавлен фильтр "Уценка" в smart filter
+Файл:
+e:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog\b2bcabinet\bitrix\catalog.smart.filter\b2b_smart_filter\lang\ru\template.php
+Изменения:
+- Добавлен языковой ключ CT_BCSF_MARKDOWN_ONLY = "Уценка".
+
+Файл:
+e:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog\b2bcabinet\bitrix\catalog.smart.filter\b2b_smart_filter\template.php
+Изменения:
+- Добавлен чекбокс MARKDOWN_ONLY в блок фильтра.
+- Чекбокс подключен к smartFilter.click(this).
+- Позиция чекбокса: под диапазоном цен (РРЦ), перед остальными свойствами.
+
+Файл:
+e:\dev\b2b.ak-cent.kz\local\templates\b2bcabinet_v2.0\components\bitrix\catalog\b2bcabinet\section_vertical.php
+Изменения:
+- Добавлена серверная обработка MARKDOWN_ONLY=Y.
+- Формируется фильтр по ID товаров с уценкой через совпадение CML2_ARTICLE:
+  * активные позиции уценки в ИБ 37;
+  * активные товары текущего каталога с тем же артикулом.
+- При отсутствии совпадений применяется ID=0 для пустой выборки.
+
+3) Дополнительный файл фиксации по фильтру
+Файл:
+e:\dev\b2b.ak-cent.kz\filter_markdown_changes.txt
+Назначение:
+- Локальная фиксация только изменений по фильтру "Уценка".
+
+
+Необходмо дополнить вывод товаров товарами из уценки которые без родителя,
+т.е эти товары должны быть в списке с пометкой уценки
+(в списке уже реализованна метка data-sale="true"),
+Думаю детальная карточка должна быть как один товар если товар
+только на одном складе и с дополнительным всплывающим блоком если этот же товар на разных складах.
+Вобщем ознакомся с кодом и задай вопросы
+
+перед началом замени все в https://github.com/GutmanUKG/catalogDev.git на то что лежит сейчас в папке

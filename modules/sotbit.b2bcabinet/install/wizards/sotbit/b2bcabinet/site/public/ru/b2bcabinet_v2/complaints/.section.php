@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Рекламации";
+$arDirProperties = array(
+
+);
+?>

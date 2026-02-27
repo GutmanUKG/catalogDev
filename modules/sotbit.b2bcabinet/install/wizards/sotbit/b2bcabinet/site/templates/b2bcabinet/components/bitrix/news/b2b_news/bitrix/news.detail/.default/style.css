@@ -1,0 +1,4 @@
+.news-detail__image-container {
+    max-height: 300px;
+    overflow: hidden;
+}

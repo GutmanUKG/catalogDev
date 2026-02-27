@@ -1,0 +1,201 @@
+.basket-page {
+    height: calc(105vh - 360px);
+}
+
+.basket-page-admin-panel {
+    height: calc(105vh - 530px);
+}
+
+.basket-page-admin {
+    height: calc(105vh - 375px);
+}
+
+.basket-page .basket-page__content {
+    display: flex;
+    height: 100%;
+    transition: 1s;
+}
+
+
+.basket-page .btn-actions {
+    display: flex;
+    justify-content: row;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    color: #5C5F68;
+}
+
+.basket-page .btn-actions span {
+    margin-left: 5px;
+}
+
+
+.basket-page .basket-upselling__basket {
+    flex: 1 1 61.2%;
+    height: 100%;
+}
+
+.basket-page .basket-upselling__basket:first-child {
+    height: 100%;
+}
+
+.basket-page .basket-upselling__upselling {
+    margin-left: 18px;
+    flex: 1 1 38.8%;
+}
+
+.basket-page .basket-page__footer {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: #f3f3f3;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.13);
+    border-radius: 4px;
+    flex: 0 0 57px;
+}
+
+.basket-page .basket-page__action-btn {
+    margin-right: auto;
+}
+
+.basket-page .basket-page__actions-item button {
+    width: 100%;
+    height: 100%;
+}
+
+.basket-page .basket-page__total-price {
+    margin-right: 21px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    color: #5C5F68;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.basket-page .basket-page__total-price-value {
+    font-weight: 400;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.basket-page .basket-page__promo-coupon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* width: 450px; */
+}
+
+.basket-page .basket-page__actions-container {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+    overflow: hidden;
+    background-color: #fff;
+    z-index: 10;
+    padding: 20px;
+    -webkit-box-shadow: 0px -15px 10px -10px #ccc;
+    box-shadow: 0px -15px 10px -10px #ccc;
+}
+
+.basket-page .basket-page__actions-container__visible {
+    display: block;
+}
+
+.basket-page .basket-page__actions-list {
+    list-style-type: none;
+}
+
+body {
+    overflow-y: hidden;
+}
+
+.basket-page .basket-page__actions-item {
+    /* margin: 8px; */
+    -ms-flex-preferred-size: calc(20% - 16px);
+    flex-basis: calc(20% - 16px);
+    max-width: 190px;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    background: #FAFAFA;
+    text-align: left;
+    cursor: pointer;
+}
+
+.basket-page .basket-page__actions-list {
+    list-style: none;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0px;
+}
+
+@media (max-width: 1200px) {
+    .basket-page .basket-page__content {
+        flex-direction: column;
+    }
+
+    .basket-page {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .basket-page .basket-upselling__upselling {
+        margin-left: 0px;
+    }
+
+    .basket-page .basket-upselling__basket {
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+    .basket-page .basket-page__action-btn {
+        margin-right: 0px;
+    }
+    .basket-page .basket-page__footer {
+        flex-direction: column;
+    }
+
+    .basket-page .basket-page__action-btn {
+        align-self: center;
+    }
+}
+
+@media (max-width: 1200px) {
+    body {
+        overflow-y: scroll;
+    }
+}
+
+.multibakset-color {
+    width: 23px;
+    height: 18px;
+    border-radius: 4px;
+    align-self: center;
+    margin-left: 5px;
+}

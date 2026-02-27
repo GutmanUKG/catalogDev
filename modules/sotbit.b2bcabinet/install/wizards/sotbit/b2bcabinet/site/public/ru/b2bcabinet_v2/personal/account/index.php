@@ -1,0 +1,64 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
+use Bitrix\Main\Config\Option;
+use Bitrix\Main\Loader;
+use Bitrix\Main\Localization\Loc;
+
+if(!Loader::includeModule('sotbit.b2bcabinet'))
+{
+    header('Location: '.SITE_DIR.'b2bcabinet/');
+}
+
+
+    $APPLICATION->SetTitle(Loc::getMessage('PESONAL_TITLE'));
+
+    if(Option::get("sotbit.auth", "EXTENDED_VERSION_COMPANIES", "N", SITE_ID) == "Y" && $_SESSION["AUTH_COMPANY_CURRENT_ID"]){
+        $company = new \Sotbit\Auth\Company\Company(SITE_ID);
+        $personType = $company->getPersonType();
+    }
+
+    if(!$personType){
+        $personType = unserialize(Option::get("sotbit.b2bcabinet", "BUYER_PERSONAL_TYPE", "", SITE_ID), ['allowed_classes' => false]);
+    }
+
+    $APPLICATION->IncludeComponent(
+	"bitrix:sale.account.pay", 
+	".default", 
+	array(
+		"COMPONENT_TEMPLATE" => ".default",
+		"REFRESHED_COMPONENT_MODE" => "Y",
+		"ELIMINATED_PAY_SYSTEMS" => array(
+			0 => "0",
+		),
+		"PATH_TO_BASKET" => SITE_DIR."personal/cart/",
+		"PATH_TO_PAYMENT" => SITE_DIR."b2bcabinet/orders/payment",
+		"PERSON_TYPE" => $personType ?: "1",
+		"REDIRECT_TO_CURRENT_PAGE" => "N",
+		"SELL_AMOUNT" => array(
+			0 => "100",
+			1 => "200",
+			2 => "500",
+			3 => "1000",
+			4 => "5000",
+			5 => "",
+		),
+		"SELL_CURRENCY" => "RUB",
+		"SELL_SHOW_FIXED_VALUES" => "Y",
+		"SELL_SHOW_RESULT_SUM" => "",
+		"SELL_TOTAL" => array(
+			0 => "100",
+			1 => "200",
+			2 => "500",
+			3 => "1000",
+			4 => "5000",
+			5 => "",
+		),
+		"SELL_USER_INPUT" => "Y",
+		"SELL_VALUES_FROM_VAR" => "N",
+		"SELL_VAR_PRICE_VALUE" => "",
+		"SET_TITLE" => "N"
+	),
+	false
+);
+
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

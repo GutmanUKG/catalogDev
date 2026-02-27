@@ -1,0 +1,115 @@
+.b2bcabinet-alert.container {
+    max-width: 100%;
+}
+
+.page-content {
+    overflow: hidden;
+    flex: 1 !important;
+}
+
+.sotbit-notification svg {
+    height: 16px;
+    width: 16px;
+}
+
+.sotbit-notification .sotbit-notification_counter {
+    height: 20px;
+    width: 20px;
+    font-size: 75%;
+    top: -12px;
+}
+
+.sotbit-notification_body_scroll {
+    padding-right: 0;
+}
+
+@media (max-width: 768px) {
+    /*.page-content .content.container.b2bcabinet-navbar-2__content{*/
+    /*    max-width: 100%;*/
+    /*    padding-left: 0!important;*/
+    /*    padding-right: 0!important;*/
+    /*}*/
+    /*.content{*/
+    /*    padding-left: 1.25rem!important;*/
+    /*    padding-right: 1.25rem!important;*/
+    /*}*/
+    /*.page-content.b2bcabinet-navbar-2__page-content{*/
+    /*    padding-left: 1.25rem;*/
+    /*    padding-right: 1.25rem;*/
+    /*}*/
+    .navbar.navbar-b2b-mainpage{
+        display: none;
+    }
+    .page-title{
+        padding-top: 1.2rem;
+    }
+    .header-elements-lg-inline,
+    .breadcrumb-line{
+        padding: 0px 1.25rem;
+    }
+    .breadcrumb-line .header-elements{
+        margin-top: 10px;
+    }
+    .breadcrumb-line .d-flex{
+        display: block!important;
+        /*width: max-content;*/
+        overflow-x: auto;
+        padding-bottom: 6px;
+    }
+    .breadcrumb-line:last-child{
+        margin-bottom: .8rem;
+    }
+    .b2bcabinet-navbar-2__page-content .breadcrumb{
+        width: max-content;
+    }
+    .b2bcabinet-navbar-2__content .profile-cover{
+        position: absolute;
+        left: 0;
+        width: 100vw;
+    }
+    .swiper-b2b-main-page{
+        border-radius: 0px;
+    }
+
+    .b2bcabinet-navbar-2__content .sotbit_cabinet{
+        margin-top: 15vw;
+    }
+
+    .b2b_table__footer-wrapper {
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+}
+
+.product-inner__stickers{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+#bx-soa-order-form {
+    max-width: initial;
+}
+
+@media (max-width: 1424px){
+    .basket-page .basket-page__content {
+        flex-direction: column;
+    }
+
+    .upselling {
+        height: 100vh;
+    }
+
+    .basket-page .basket-upselling__basket {
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+
+    .basket-page {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+

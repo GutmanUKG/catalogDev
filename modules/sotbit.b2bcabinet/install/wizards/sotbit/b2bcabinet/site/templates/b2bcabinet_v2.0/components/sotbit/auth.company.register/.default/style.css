@@ -1,0 +1,103 @@
+.content .js_person_type {
+    max-width: 640px;
+    height: 100%;
+}
+
+.content .js_person_type :where(.card-header, .card-body) {
+    padding-inline: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.content .company-register__success-form {
+    display: none;
+    max-width: 600px;
+    width: 100%;
+}
+
+.content .company-register__success-form h6 {
+    margin-bottom: .5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.content .company-register__success-form p {
+    color: var(--black-100);
+}
+
+.company__user-fields input,
+.company__user-fields .fields {
+    width: 100%;
+}
+
+.multiple-props .form-control[type="number"]::-webkit-outer-spin-button, 
+.multiple-props .form-control[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+#person_group_check {
+    margin-bottom: 12px;
+}
+
+.company__user-fields input.fields {
+    display: block;
+    padding: .4375rem .875rem;
+    padding-right: 0.875rem;
+    font-size: .8125rem;
+    line-height: 1.5385;
+    color: #333;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ddd;
+    border-radius: .1875rem;
+    box-shadow: 0 0 0 0 transparent;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+}
+
+.company__user-fields .field-item input:focus-visible{
+    outline: 0 !important;
+}
+
+.btn.form-control-multiple-ic:hover {
+    background: transparent;
+}
+
+.form-control-multiple-ic:hover i {
+    color: var(--primary);
+}
+
+.feedback_block__captcha_reload{
+    padding: 13px;
+}
+
+.password_recovery-captcha_wrap{
+    display: flex;
+    align-items: center;
+}
+
+img.disabled {
+    opacity: 0.2;
+}
+
+@media (min-width: 750px) {
+    .auth-form .card-body:first-child {
+        width: 700px;
+    }
+}
+
+@media (max-width: 650px) {
+    .auth-form .card-body:first-child {
+        width: 600px;
+    }
+}
+
+@media (max-width: 649px) {
+    .auth-form .card-body:first-child {
+        width: 350px;
+    }
+}
+
+@media (max-width: 350px) {
+    .auth-form .card-body:first-child {
+        width: 300px;
+    }
+}

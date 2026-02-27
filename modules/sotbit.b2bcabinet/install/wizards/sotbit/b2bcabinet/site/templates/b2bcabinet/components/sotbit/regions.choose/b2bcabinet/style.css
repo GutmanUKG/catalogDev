@@ -1,0 +1,144 @@
+.select-city__dropdown__title {
+	color: #414141;
+	font-size: 13px;
+	line-height: 30px;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.select-city__dropdown {
+	background-color: #ffffff;
+	box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.22);
+	width: 211px;
+	text-align: center;
+	padding: 11px 5px 17px 5px;
+}
+
+.select-city__dropdown-wrap {
+	z-index: 99;
+	position: absolute;
+}
+
+.select-city__dropdown__choose {
+	width: 82px;
+}
+
+.select-city__dropdown__choose__yes {
+	margin-right: 15px;
+}
+
+.select-city__dropdown__choose-wrap {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.select-city__modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 3000;
+}
+
+.select-city__modal-wrap {
+	background-color: #ffffff;
+	box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.22);
+	width: 684px;
+	padding: 37px 53px 40px 53px;
+	position: relative;
+	margin: 30vh auto;
+	transition: width .2s;
+}
+
+.select-city__modal__title {
+	color: #000000 !important;
+	line-height: 30px;
+	font-size: 25px !important;
+	margin-bottom: 20px !important;
+}
+
+.select-city__modal__list {
+	margin-top: 16px;
+	list-style: none;
+	columns: 3;
+}
+
+.select-city__modal__list__item {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 30px;
+	color: #000000;
+	cursor: pointer;
+}
+
+.select-city__modal__list__item:hover, .select-city__modal__list__item:focus,
+.select-city__modal__list__item:active {
+	color: #ff7043 !important;
+}
+
+
+.select-city__modal__submit__vars {
+	position: absolute;
+	left: 0;
+	right: 0;
+	display: block;
+	margin: .125rem 1.25rem 0  1.25rem;
+	background: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+	border-radius: 2px;
+	max-height: 200px;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: #999 #eee;
+}
+
+.select-city__modal__submit__vars .regions_vars {
+	padding: 8px 15px;
+	cursor: pointer;
+}
+
+.select-city__modal__submit__vars .regions_vars b{
+	color: #ff7043;
+}
+
+.select-city__modal__submit__vars .regions_vars:hover {
+	background-color: #F8F8F8;
+}
+
+#regions_choose_component {
+	font-size: .875rem !important;
+}
+
+#regions_choose_component i{
+	font-size: 19px;
+}
+
+#regions_choose_component .show{
+	color: #ff7043;
+}
+
+.select-city__modal__submit__block-wrap__input_wrap i {
+	font-size: .8125rem;
+	color: #999 !important;
+}
+
+.select-city__modal__submit__title-wrap {
+	margin-top: .625rem;
+}
+
+.modal.fade.show.select-city__modal .modal-dialog {
+	position: relative;
+	margin-top: 5rem;
+}
+
+@media (max-width: 480px) {
+	.select-city__modal__list {
+		columns: 2;
+	}
+}

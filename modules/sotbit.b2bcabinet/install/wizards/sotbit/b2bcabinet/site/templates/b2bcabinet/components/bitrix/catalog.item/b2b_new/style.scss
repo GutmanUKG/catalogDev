@@ -1,0 +1,193 @@
+.product {
+    &:hover {
+        background-color: #f3f3f3;
+        position: relative;
+    }
+
+    &--offer {
+        background-color: #e6eeff;
+    }
+
+    &__image {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+
+        &-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+        }
+    }
+
+    &__property {
+        white-space: nowrap !important;
+        text-overflow: ellipsis;
+        max-width: 200px;
+        padding: 4px 20px !important;
+        border-bottom: 1px solid #cccccc;
+        text-align: center;
+
+        &--image {
+            position: sticky;
+            left: 0;
+            background-color: #fafafa;
+            z-index: 200;
+        }
+
+        &--price {
+            white-space: nowrap !important;
+        }
+
+        &--name {
+            max-width: 200px;
+            overflow: hidden;
+            position: sticky;
+            left: 85px;
+            background-color: #fafafa;
+            z-index: 200;
+            &::before {
+                content: '';
+                height: 100%;
+                border-right: 1px solid #d3d3d3d3;
+                position: absolute;
+                right: 0;
+                top: 0;
+                box-shadow: -2px 0px 4px 1px #d3d3d3d3;
+            }
+        }
+
+        &--quantity {
+            position: sticky;
+            right: 0;
+            width: 160px;
+            max-width: 160px;
+            min-width: 160px;
+            height: 100%;
+            background-color: #fafafa;
+            padding: 4px !important;
+            z-index: 200;
+
+            &::before {
+                content: '';
+                height: 100%;
+                border-left: 1px solid #d3d3d3d3;
+                position: absolute;
+                left: 0;
+                top: 0;
+                box-shadow: 2px 0px 4px 1px #d3d3d3d3;
+            }
+        }
+
+        &--default {
+            overflow: hidden;
+        }
+    }
+
+    &__link {
+        white-space: nowrap !important;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 200px;
+    }
+
+    &__artnumber {
+        font-size: 11px;
+        color: #909090;
+        font-weight: bold;
+    }
+
+    &__offers {
+        &-info {
+            border-bottom: 1px solid #cccccc;
+        }
+    }
+
+    &.hidden {
+        display: none;
+    }
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__decrement, &__increment {
+        width: 32px;
+        height: 32px;
+        border: 1px solid #ddd;
+        background-color: #3e495f;
+        outline: unset !important;
+        color: #fff;
+        cursor: pointer;
+
+        &:active {
+            background-color: #2a3140;
+        }
+
+        &:disabled {
+            background-image: linear-gradient(0deg, #3e495f, #fff);
+            animation-name: moveAround;
+            animation-duration: .5s;
+            animation-timing-function: linear;
+            animation-delay: 0s;
+            animation-iteration-count: infinite;
+            animation-direction: normal;
+            animation-fill-mode: none;
+            animation-play-state: running;
+
+            @keyframes moveAround {
+                0%   {background-image: linear-gradient(0deg,   #3e495f, #798aaa)}
+                13%  {background-image: linear-gradient(45deg,  #3e495f, #798aaa)}
+                25%  {background-image: linear-gradient(90deg,  #3e495f, #798aaa)}
+                37%  {background-image: linear-gradient(135deg, #3e495f, #798aaa)}
+                50%  {background-image: linear-gradient(180deg, #3e495f, #798aaa)}
+                63%  {background-image: linear-gradient(225deg, #3e495f, #798aaa)}
+                75%  {background-image: linear-gradient(270deg, #3e495f, #798aaa)}
+                87%  {background-image: linear-gradient(315deg, #3e495f, #798aaa)}
+                100% {background-image: linear-gradient(360deg, #3e495f, #798aaa)}
+            }
+        }
+    }
+
+    &__value {
+        width: 60px;
+        height: 32px;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        margin: 0 -2px;
+        text-align: center;
+        outline: unset;
+        box-sizing: border-box;
+        border-radius: 0 !important;
+    }
+}
+
+.offers-info {
+    background-color: #3e495f;
+    display: inline-flex;
+    padding: 8px;
+    border-radius: 4px;
+    flex-grow: 0;
+    width: auto;
+    color: #fff;
+    cursor: pointer;
+
+    &__label {
+        height: 20px;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 18px;
+        margin-right: 8px;
+    }
+
+    &__count {
+        background-color: #FF7043;
+        border-radius: 10px;
+        padding: 0 8px;
+        margin-right: 5px;
+    }
+}
+

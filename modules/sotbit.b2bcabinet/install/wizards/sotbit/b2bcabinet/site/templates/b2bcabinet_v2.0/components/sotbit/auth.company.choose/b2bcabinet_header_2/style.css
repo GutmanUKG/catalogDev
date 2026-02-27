@@ -1,0 +1,17 @@
+.company-choose-dropdown a {
+    color: inherit;
+}
+
+.company-choose-dropdown a.no-dropdown {
+    cursor: default;
+}
+
+.company-choose-dropdown a:hover,
+.company-choose-dropdown.show a {
+    color: #ff7043;
+}
+
+.company-choose-dropdown .dropdown-menu {
+    overflow-y: auto;
+    max-height: 250px;
+}

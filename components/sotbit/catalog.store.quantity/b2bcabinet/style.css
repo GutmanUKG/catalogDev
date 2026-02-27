@@ -1,0 +1,65 @@
+:where(.product__quant, .item-quantity):has(.item-quantity__value),
+.product__quant.show-store {
+	color: var(--primary);
+  	cursor: pointer;
+}
+
+.item-quantity {
+	display: inline-flex;
+	position: relative;
+	justify-content: flex-end;
+}
+
+.item-quantity__general i {
+	vertical-align: sub;
+	font-size: 1.25rem;
+	cursor: pointer;
+}
+
+.item-quantity__store-list {
+	display: block;
+	padding: .5rem;
+	list-style: none;
+	border-radius: var(--border-radius-lg);
+	background: var(--white-100);
+	box-shadow: var(--box-shadow);
+	white-space: nowrap;
+}
+
+.item-quantity__store-item {
+	display: flex;
+	flex-wrap: nowrap;
+	margin-bottom: .25rem;
+	padding: 0;
+}
+
+.item-quantity__store-item:last-child {
+	margin-bottom: 0;
+}
+
+.item-quantity__store-name {
+	white-space: nowrap;
+	margin-right: .25rem;
+	cursor: pointer;
+}
+
+.item-quantity__store-name:hover {
+	color: var(--dark-900);
+}
+
+.item-quantity__store-name:after {
+	content: ':'
+}
+
+.item-quantity__store-list__wrap {
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 1001;
+	transition: visibility var(--transition-base-timer), opacity ease-in-out var(--transition-base-timer);
+}
+
+.item-quantity__store-list__wrap.show {
+	visibility: visible;
+	opacity: 1;
+}

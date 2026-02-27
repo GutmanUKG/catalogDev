@@ -1,0 +1,9 @@
+.btn.news-filter__reset-btn,
+.btn.news-filter__submit-btn {
+    display: block;
+    width: 100%;
+}
+
+.btn.news-filter__submit-btn {
+    margin-top: 0.5rem;
+}

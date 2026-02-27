@@ -1,0 +1,100 @@
+.index_appeals .index_appeal_form {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	height: 1px;
+}
+
+.index_appeals .index_appeals-answer-form {
+	padding: 1rem;
+	flex-grow: 1;
+	overflow-y: auto;
+}
+
+.index_appeals .index_appeals-answer-day-time {
+	margin-block: .75rem 1.25rem;
+	text-align: center;
+	color: var(--grey-text);
+}
+
+.index_appeals .index_appeals-answer-day-time:first-child {
+	margin-top: 0;
+}
+
+.index_appeals .index_appeals-answer-row-messages:not(:last-child) {
+	margin-bottom: 1rem;
+}
+
+.index_appeals .index_appeals-answer-row-messages .card {
+	box-shadow: none;
+}
+
+.index_appeals .index_appeals-answer-row-messages .card:last-child {
+	margin-bottom: 0;
+}
+
+.index_appeals .index_appeals-answer-row-messages .card-header {
+	margin-bottom: .5rem;
+	padding: 0;
+	color: var(--dark-900);
+}
+
+.index_appeals .index_appeals-answer-row-messages .card-body {
+	padding: 0;
+}
+
+.index_appeals .index_appeals-answer-row-messages p:not(:empty),
+.index_appeals .index_appeals-answer-row-messages .quote-text:not(:empty) {
+	margin-bottom: .5rem;
+	padding: 1rem 2rem;
+	color: var(--grey-text);
+	border: 1px solid var(--table-border-color);
+	border-radius: var(--border-radius-lg);
+}
+
+.index_appeals .index_appeals-answer-row-messages p:has(br) {
+	display: none;
+}
+
+.index_appeals .index_appeals-answer-row-messages p:has(span, p) {
+	display: block;
+}
+
+.index_appeals .index_appeals-answer-row-messages p:last-child,
+.index_appeals .index_appeals-answer-row-messages .quote-text p:last-child {
+	margin-bottom: 0;
+}
+
+.index_appeals .index_appeals-answer-row-messages .quote,
+.trumbowyg-editor quote {
+	padding-left: .75rem;
+	border-left: .25rem solid var(--primary);
+}
+
+.index_appeals .form-group-answe {
+	padding-inline: 1rem;
+}
+
+.trumbowyg .trumbowyg-editor, 
+.trumbowyg .trumbowyg-textarea {
+    min-height: 120px;
+    resize: vertical;
+	border: 1px solid var(--border-color);
+	border-top: none;
+}
+
+.index_appeals-answer-footer {
+	display: flex;
+	justify-content: end;
+	padding: .5rem 1rem 1rem;
+}
+
+@media (max-width: 991px) {
+	.index_appeals .index_appeal_form {
+		height: 88vh;
+	}
+
+	.index_appeals .col-lg-7 + .col-lg-5 {
+		margin-top: 1rem;
+	}
+}

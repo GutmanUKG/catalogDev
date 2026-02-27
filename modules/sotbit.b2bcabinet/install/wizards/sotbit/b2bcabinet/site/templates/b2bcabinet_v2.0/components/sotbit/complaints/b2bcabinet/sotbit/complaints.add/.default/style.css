@@ -1,0 +1,23 @@
+.complaint__error-block {
+    display: none;
+}
+
+.complaints-add__success-block {
+    display: none;
+}
+
+.datatable-wrapper .datatable-header {
+    padding: .5rem 0 0;
+}
+
+.datatable-wrapper .datatable-add {
+    flex-grow: 1;
+    margin-left: 1.5rem;
+    margin-bottom: var(--dt-spacer-y);
+}
+
+@media (max-width: 576px) {
+    .datatable-wrapper .datatable-add {
+        margin-left: .5rem;
+    }
+}

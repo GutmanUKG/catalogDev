@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Организации";
+$arDirProperties = Array(
+
+);
+?>

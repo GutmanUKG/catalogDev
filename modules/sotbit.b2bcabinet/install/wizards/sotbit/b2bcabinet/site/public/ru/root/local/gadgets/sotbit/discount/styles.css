@@ -1,0 +1,12 @@
+.widget_discount {
+	margin-bottom: 5px;
+}
+
+.widget_discount .widget_discount-img {
+	background-color: #3e495f;
+	width: 55px;
+	height: 55px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

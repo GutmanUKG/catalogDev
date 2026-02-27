@@ -1,0 +1,5 @@
+<?
+$MESS["SOTBIT_PERSONAL_MANAGER_PHONE"] = "Позвонить";
+$MESS["SOTBIT_PERSONAL_MANAGER_EMAIL"] = "Написать";
+$MESS["SOTBIT_PERSONAL_MANAGER_REQUEST_CALL"] = "Заказать звонок";
+?>

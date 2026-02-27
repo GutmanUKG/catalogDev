@@ -1,0 +1,8 @@
+#modal-offerslist__request_add.modal.fade.show .modal-dialog {
+    margin-top: 5rem;
+}
+
+#offerslist__request_add .col-form-label.required::after {
+    content: '*';
+    color: red;
+}

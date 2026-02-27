@@ -1,0 +1,18 @@
+.page-link,
+.page-link:hover {
+	color: var(--theme-color-primary);
+}
+
+.b2b-news__container .page-item.active .page-link {
+	color: #ffffff;
+	background-color: #3e495f;
+	border-color: #3e495f;
+}
+
+.page-link:focus {
+	box-shadow: 0 0 0 0.2rem var(--theme-b-sd-primary);
+}
+
+.pagination-container.b2b-news__container {
+	margin-bottom: 1.25rem
+}

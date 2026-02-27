@@ -1,0 +1,8 @@
+.sidebar-user .bx-user-info-anchor-cell:first-child {
+    background: #fff;
+    border-radius: 50%;
+}
+
+.sidebar-user .bx-user-info-anchor-cell {
+    align-self: center;
+}

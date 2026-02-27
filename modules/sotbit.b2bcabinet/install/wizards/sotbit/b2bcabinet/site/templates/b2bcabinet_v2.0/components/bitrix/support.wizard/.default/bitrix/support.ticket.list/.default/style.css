@@ -1,0 +1,25 @@
+.support-lamp-red, .support-lamp-green, .support-lamp-green-s, .support-lamp-yellow, .support-lamp-grey
+{
+	position: absolute;
+	top: inherit;
+	left: inherit;
+	width: inherit;
+	height: 100%;
+	border-top: .25rem solid;
+	border-color: var(--grey-800);
+	border-radius: var(--border-radius-lg);
+}
+
+.support-lamp-red {border-color: var(--danger);}
+.support-lamp-green {border-color: var(--success);}
+.support-lamp-green-s {border-color: var(--success);}
+.support-lamp-yellow {border-color: var(--warning);}
+
+@media (min-width: 768px) {
+	.main-grid-list :where(.support-lamp-red, .support-lamp-green, .support-lamp-green-s, .support-lamp-yellow, .support-lamp-grey) {
+		width: 1rem;
+		border-top: none;
+		border-left-width: .25rem;
+		border-left-style: solid;
+	}
+}

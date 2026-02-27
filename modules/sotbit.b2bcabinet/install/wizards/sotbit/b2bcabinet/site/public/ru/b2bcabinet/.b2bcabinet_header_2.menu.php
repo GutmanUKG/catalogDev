@@ -1,0 +1,46 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Главная", 
+		"/b2bcabinet/",
+		Array(), 
+		Array("ICON_CLASS"=>"icon-home4"), 
+		"" 
+	),
+	Array(
+		"Каталог", 
+		"/b2bcabinet/orders/blank_zakaza/",
+		Array(), 
+		Array("IS_CATALOG"=>"Y"), 
+		"" 
+	),
+	Array(
+		"Мои организации",
+		"/b2bcabinet/personal/",
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Заказы", 
+		"/b2bcabinet/orders/",
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Документы", 
+		"/b2bcabinet/documents/",
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"О нас", 
+		"/b2bcabinet/about/",
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

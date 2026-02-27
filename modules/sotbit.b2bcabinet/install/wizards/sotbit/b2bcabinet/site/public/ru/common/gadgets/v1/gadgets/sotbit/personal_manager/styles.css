@@ -1,0 +1,9 @@
+.b2b-personal-manager .btn.btn-outline-white {
+    color: #ffffff;
+}
+
+.b2b-personal-manager .btn-outline-white:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}

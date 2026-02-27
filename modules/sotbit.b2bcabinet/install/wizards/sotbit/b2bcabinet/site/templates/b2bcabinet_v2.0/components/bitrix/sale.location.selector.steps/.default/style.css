@@ -1,0 +1,321 @@
+/* absolute path to images is required to make crm-sale proxy work */
+
+.bx-slst .dropdown-block {
+	border: 1px solid var(--grey-400);
+	border-radius: var(--border-radius-sm);
+	font-size: 1rem;
+	padding: 0 1rem 0 3rem;
+	position: relative;
+	background-color: var(--grey-100);
+	margin-bottom: .5rem;
+    transition: background ease-in-out var(--transition-base-timer);
+
+}
+
+.bx-slst .dropdown-block:hover {
+    background-color: var(--secondary-hover);
+}
+
+.bx-slst .dropdown-block:last-child {
+	margin-bottom: 0;
+}
+
+.bx-slst .dropdown-arrow {
+	background: url(/bitrix/components/bitrix/sale.location.selector.steps/templates/.default/images/dropdown-errow.png) no-repeat center center;
+	height: 100%;
+	top: 0;
+	right: 0;
+	position: absolute;
+	width: 1.375rem;
+}
+
+.bx-slst .bx-ui-combobox-fake,
+.bx-slst .bx-ui-combobox-route {
+	background: transparent !important;
+	border: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+
+	color: #000;
+	font-family: var(--ui-font-family-primary, var(--ui-font-family-helvetica));
+	font-size: 1rem;
+	line-height: 1.4;
+	width: 100%;
+	outline: none;
+	padding-block: 1rem;
+}
+
+.bx-slst .bx-ui-combobox-container {
+	overflow: hidden;
+}
+
+.bx-slst .bx-ui-combobox-dropdown {
+	border: 1px solid var(--grey-400);
+	background: var(--white-100);
+	border-radius: var(--border-radius-sm);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: none;
+	max-height: 300px;
+	overflow-y: auto;
+	left: -1px;
+	top: 100%;
+	padding: .25rem;
+	position: absolute;
+	width: calc(100% + 2px);
+	z-index: 99;
+}
+
+.bx-slst .dropdown-active .bx-ui-combobox-dropdown {
+	display: block;
+}
+
+.bx-slst .bx-ui-combobox-variants {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.bx-slst .dropdown-item {
+	border-radius: 2px;
+	padding: 7px 4px 7px 10px;
+	margin-bottom: 2px;
+}
+
+.bx-slst .dropdown-item:hover {
+	background-color: #f1f3f5;
+	cursor: pointer;
+}
+
+.bx-slst .dropdown-img {
+	border: none;
+	display: inline-block;
+	height: 12px;
+	margin: 3px 12px 0 0;
+	vertical-align: top;
+	width: 16px;
+}
+
+.bx-slst .dropdown-item-text {
+	/*makeup:color: #212121;*/
+	color: #aba8ac;
+	display: inline-block;
+	/*max-width: 220px;*/ /*silly limitation*/
+	vertical-align: top;
+}
+
+.bx-slst .dropdown-item-text span{
+	color: #25282c;
+}
+
+.bx-slst .dropdown-list-title {
+	border-bottom: 1px solid #e5e5e5;
+	height: 37px;
+	line-height: 37px;
+	padding-left: 8px;
+}
+
+.bx-slst .dropdown-icon {
+	height: 1rem;
+    width: 1rem;
+    top: 50%;
+	left: 0;
+    transform: translateY(-50%);
+}
+
+.bx-slst .quick-locations{
+	margin-bottom: 5px;
+}
+.bx-slst .quick-location-tag {
+	background-color: #f2f5f8;
+	border: 1px solid #cad3dc;
+	border-radius: 3px;
+	color: #1e55b9;
+	display: inline-block;
+	font-size: 15px;
+	height: 27px;
+	line-height: 26px;
+	margin: 0 3px;
+	padding: 0 14px;
+	text-decoration: none;
+	margin-bottom: 10px;
+}
+.bx-slst .quick-location-tag:hover{
+	background-color: #fafafa;
+}
+
+.bx-slst .dropdown-fade2white{
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: calc(50% - 16px);
+	right: 0;
+}
+
+.bx-slst .bx-ui-combobox-toggle{
+	cursor: pointer;
+	cursor: hand;
+
+	position: absolute;
+	top: 50%;
+	right: .875rem;
+    transform: translateY(-50%);
+	z-index: 10;
+	opacity: .5;
+	transition: opacity var(--transition-base-timer);
+}
+.bx-slst .bx-ui-combobox-toggle:hover{
+	background-position: 6px -2696px;
+}
+
+.bx-slst .bx-ui-combobox-loader{
+	display: none;
+	position: absolute;
+	width: 1.25rem;
+	height: 1.25rem;
+	top: 1.1rem;
+	right: 1rem;
+	z-index: 999;
+}
+
+.bx-slst .bx-ui-combobox-go-edit{
+	display: none;
+}
+
+.bx-slst .bx-ui-pager-area {
+	height: 40px;
+	text-align: center;
+	color: gray;
+	padding: 10px 0 0 0;
+}
+
+.bx-slst input[type="text"]{
+	position: relative;
+}
+
+.bx-slst input::-ms-clear {
+	display: none;
+}
+
+.bx-slst .bx-ui-combobox-variant{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.bx-slst .bx-ui-combobox-variant,
+.bx-slst .bx-ui-combobox-error{
+	padding: 10px 10px;
+}
+.bx-slst .bx-ui-combobox-error{
+	color: var(--danger);
+	text-align: center;
+	position: relative;
+}
+.bx-slst .bx-ui-combobox-error div{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 25px;
+	height: 25px;
+	background: url(/bitrix/panel/main/images/bx-admin-sprite-small.png) 6px -2895px no-repeat scroll;
+}
+.bx-slst .bx-ui-combobox-variant:hover,
+.bx-slst .bx-ui-combobox-variant-active{
+	background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+.adm-sls-edit-link{
+	margin-top: 10px;
+}
+
+/* admin correction */
+.bx-admin-mode .bx-sls-go-edit{
+	margin-left: 10px;
+	display: none;
+}
+
+.bx-admin-mode .dropdown-block {
+	border-color: #87919c #959ea9 #9ea7b1;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.3), 0 2px 2px -1px rgba(180, 188, 191, 0.7) inset;
+	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.3), 0 2px 2px -1px rgba(180, 188, 191, 0.7) inset;
+	height: 25px;
+}
+
+.bx-slst.bx-admin-mode .bx-ui-combobox-fake,
+.bx-slst.bx-admin-mode .bx-ui-combobox-route {
+	height: 25px;
+}
+
+.bx-slst.bx-admin-mode .dropdown-icon {
+	top: 7px;
+}
+
+.bx-slst.bx-admin-mode .dropdown-fade2white {
+	height: 1.375rem;
+}
+
+.bx-slst.bx-admin-mode .dropdown-fade2white {
+	right: 1px;
+}
+
+.bx-slst.bx-admin-mode .bx-ui-combobox-toggle {
+	background-position: 6px -2623px;
+	height: 1.375rem;
+}
+
+/*
+.bx-slst.bx-admin-mode .bx-ui-combobox-toggle:hover{
+	background-position: 6px -3421px;
+}
+*/
+
+.bx-slst.bx-admin-mode .bx-ui-combobox-loader {
+	background-position: right -4px !important;
+	height: 21px;
+}
+
+.bx-slst.bx-admin-mode .bx-ui-combobox-dropdown {
+	top: 27px;
+}
+
+.bx-slst .bx-ui-state-items-discover-in-progress .bx-ui-combobox-loader{
+	display: block;
+}
+
+.bx-slst .bx-ui-state-items-discover-in-progress .bx-ui-combobox-toggle {
+	display: none;
+}
+
+.bx-ui-slst-pool select {
+	margin: 10px 10px 0 0;
+}
+
+div[data-bx-ui-id="error"]{
+	display: none;
+}
+.bx-ui-state-error div[data-bx-ui-id="error"] {
+	display: block;
+}
+.bx-ui-slst-other-item,
+.bx-ui-combobox-deselect-item {
+	border-bottom: 1px solid gray;
+}
+.bx-ui-sls-tree-trunk{
+	padding: 0 0 9px 30px;
+}
+.disabled-keyboard{
+	cursor: pointer;
+	cursor: hand;
+}
+.disabled-keyboard input{
+	cursor: inherit;
+}
+
+.bx-ui-combobox-container .bx-combobox-fake-as-input{
+	padding-top: 9px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}

@@ -58,6 +58,20 @@
 
 			this.initMarkdownItems();
 
+			// Orphan multi-store: override main "В Корзину" to open markdown modal
+			if (this.arResult.IS_ORPHAN_MARKDOWN && Array.isArray(this.arResult.SECOND_ITEMS) && this.arResult.SECOND_ITEMS.length > 1) {
+				var modalEl = document.getElementById('markdownModal-' + this.itemId);
+				if (modalEl && this.nodesQuantity.increment) {
+					var origIncrement = this.nodesQuantity.increment;
+					origIncrement.onclick = function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+						var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+						modal.show();
+					};
+				}
+			}
+
 			BX.addCustomEvent('SidePanel.Slider:onMessage', function(event) {
 				if (event.eventId === "BZI: ItemQuantityChanged") {
 					BX.onCustomEvent("BZD_ItemQuantityChanged", {

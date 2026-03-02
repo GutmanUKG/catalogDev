@@ -78,51 +78,51 @@ foreach ($arResult['ITEMS'] as &$product) {
 //���������� � ��������� �������� �������� ������
 //global $USER;
 //if($USER->isAdmin()){
-    $SALE_IBLOCK_ID = 37;
+$SALE_IBLOCK_ID = 37;
 
-    $ARTICLES = [];
-    foreach ($arResult['ITEMS'] as $ITEM) {
-        $ARTICLES[] = $ITEM['PROPERTIES']['CML2_ARTICLE']['VALUE'];
+$ARTICLES = [];
+foreach ($arResult['ITEMS'] as $ITEM) {
+    $ARTICLES[] = $ITEM['PROPERTIES']['CML2_ARTICLE']['VALUE'];
+}
+
+$SALE_ITEMS = [];
+$res = CIBlockElement::GetList(
+    [],
+    [
+        'IBLOCK_ID' => $SALE_IBLOCK_ID,
+        'PROPERTY_CML2_ARTICLE' => $ARTICLES,
+        'ACTIVE' => 'Y'
+    ],
+    false,
+    false,
+    [
+        'ID',
+        'IBLOCK_ID',
+        'NAME',
+        'PROPERTY_CML2_ARTICLE'
+    ]
+);
+
+while($row = $res -> Fetch()){
+
+    $SALE_ITEMS[$row['PROPERTY_CML2_ARTICLE_VALUE']] = $row;
+}
+
+foreach ($arResult['ITEMS'] as &$ITEM) {
+    $article = $ITEM['PROPERTIES']['CML2_ARTICLE']['VALUE'];
+
+    if(isset($SALE_ITEMS[$article])){
+
+        $ITEM['HAS_SECOND'] = true;
+        $ITEM['SECOND_ITEM'] = $SALE_ITEMS[$article];
+    }else{
+        $ITEM['HAS_SECOND'] = false;
     }
+    if( $ITEM['HAS_SECOND']) {
 
-    $SALE_ITEMS = [];
-    $res = CIBlockElement::GetList(
-        [],
-        [
-            'IBLOCK_ID' => $SALE_IBLOCK_ID,
-            'PROPERTY_CML2_ARTICLE' => $ARTICLES,
-            'ACTIVE' => 'Y'
-        ],
-        false,
-        false,
-        [
-            'ID',
-            'IBLOCK_ID',
-            'NAME',
-            'PROPERTY_CML2_ARTICLE'
-        ]
-    );
-
-    while($row = $res -> Fetch()){
-
-        $SALE_ITEMS[$row['PROPERTY_CML2_ARTICLE_VALUE']] = $row;
     }
-
-    foreach ($arResult['ITEMS'] as &$ITEM) {
-        $article = $ITEM['PROPERTIES']['CML2_ARTICLE']['VALUE'];
-
-        if(isset($SALE_ITEMS[$article])){
-
-            $ITEM['HAS_SECOND'] = true;
-            $ITEM['SECOND_ITEM'] = $SALE_ITEMS[$article];
-        }else{
-            $ITEM['HAS_SECOND'] = false;
-        }
-        if( $ITEM['HAS_SECOND']) {
-
-        }
-    }
-    unset($ITEM);
+}
+unset($ITEM);
 
 
 // ============================================================
@@ -821,6 +821,55 @@ if ($_currentSectionId > 0 && Loader::includeModule('iblock') && Loader::include
 
                     $_actualQty = $_orphanBasketQty[$_id] ?? 0;
 
+                    // Build SECOND_ITEMS for multi-store orphan markdown items
+                    $_secondItems = [];
+                    $_isMultiStoreMarkdown = false;
+                    if ($_markdownStoreCount > 1) {
+                        $_isMultiStoreMarkdown = true;
+                        $_categoryMap = [56 => 'КАТ-1', 55 => 'КАТ-2', 58 => 'КАТ-3', 57 => 'КАТ-4'];
+                        foreach ($_markdownStores as $_sId => $_sAmount) {
+                            $_sPercent = $_storePercents[(int)$_sId] ?? 0;
+                            $_rowKey = $_id . '_' . $_sId;
+                            // Build per-store price from first available price type
+                            $_selectedPrice = [];
+                            foreach ($_pricesForItem as $_pgId => $_priceRows) {
+                                if (!isset($_priceCols[$_pgId])) continue;
+                                foreach ($_priceRows as $_pRow) {
+                                    $_sBasePrice = round((float)$_pRow['PRICE']);
+                                    $_sDiscountPrice = $_sBasePrice;
+                                    if ($_sPercent > 0) {
+                                        $_sDiscountPrice = round($_sBasePrice - ($_sBasePrice * ($_sPercent / 100)));
+                                    }
+                                    $_selectedPrice = [
+                                        'PRICE' => $_sBasePrice,
+                                        'DISCOUNT_PRICE' => $_sDiscountPrice,
+                                        'CURRENCY' => $_pRow['CURRENCY'],
+                                        'PRINT' => CCurrencyLang::CurrencyFormat($_sDiscountPrice, $_pRow['CURRENCY']),
+                                        'PRINT_OLD' => ($_sDiscountPrice < $_sBasePrice)
+                                            ? CCurrencyLang::CurrencyFormat($_sBasePrice, $_pRow['CURRENCY'])
+                                            : '',
+                                    ];
+                                    break 2; // use first available price
+                                }
+                            }
+                            $_secondItems[] = [
+                                'ROW_KEY' => $_rowKey,
+                                'ID' => $_id,
+                                'STORE_ID' => (int)$_sId,
+                                'CATEGORY' => $_categoryMap[(int)$_sId] ?? '',
+                                'AMOUNT' => $_sAmount,
+                                'NAME' => $_elem['NAME'],
+                                'CML2_ARTICLE' => $_article,
+                                'SELECTED_PRICE' => $_selectedPrice,
+                                'MEASURE_RATIO' => $_ratio,
+                                'QUANTITY_TRACE' => $_pd['QUANTITY_TRACE'] ?? 'N',
+                                'CAN_BUY_ZERO' => $_pd['CAN_BUY_ZERO'] ?? 'N',
+                                'TOTAL_QUANTITY' => $_sAmount,
+                                'ACTUAL_QUANTITY' => 0,
+                            ];
+                        }
+                    }
+
                     $arResult['ITEMS'][] = [
                         'ID' => $_id,
                         'IBLOCK_ID' => $_MARKDOWN_IB_ID,
@@ -874,6 +923,8 @@ if ($_currentSectionId > 0 && Loader::includeModule('iblock') && Loader::include
                         'MARKDOWN_DEFAULT_ROW_KEY' => $_markdownDefaultRowKey,
                         'MARKDOWN_STORES' => $_markdownStores,
                         'MARKDOWN_STORES_COUNT' => $_markdownStoreCount,
+                        'SECOND_ITEMS' => $_secondItems,
+                        'IS_MULTI_STORE_MARKDOWN' => $_isMultiStoreMarkdown,
                         'ACTUAL_QUANTITY' => $_actualQty,
                     ];
                 }
@@ -953,72 +1004,72 @@ if (Loader::includeModule("sotbit.privateprice")) {
 
 
 
-        // �������� ID �������/�������
-        $productIds = [];
-        foreach ($arResult['ITEMS'] as $item) {
+    // �������� ID �������/�������
+    $productIds = [];
+    foreach ($arResult['ITEMS'] as $item) {
+        if (!empty($item['OFFERS'])) {
+            foreach ($item['OFFERS'] as $offer) {
+                $productIds[] = $offer['ID'];
+            }
+        } else {
+            $productIds[] = $item['ID'];
+        }
+    }
+
+    if ($productIds) {
+        $res = StoreProductTable::getList([
+            'filter' => ['=PRODUCT_ID' => $productIds],
+            'select' => ['PRODUCT_ID', 'STORE_ID', 'AMOUNT']
+        ]);
+        $storeAmounts = [];
+        while ($row = $res->fetch()) {
+            $storeAmounts[$row['PRODUCT_ID']][$row['STORE_ID']] = (int)$row['AMOUNT'];
+        }
+
+        foreach ($arResult['ITEMS'] as &$item) {
             if (!empty($item['OFFERS'])) {
-                foreach ($item['OFFERS'] as $offer) {
-                    $productIds[] = $offer['ID'];
+                foreach ($item['OFFERS'] as &$offer) {
+                    $offer['STORE_AMOUNT'] = $storeAmounts[$offer['ID']] ?? [];
+                }
+                unset($offer);
+            } else {
+                $item['STORE_AMOUNT'] = $storeAmounts[$item['ID']] ?? [];
+            }
+        }
+        unset($item);
+    }
+    /*
+    // ���������� ������ �� ������ 51
+    if ($_GET['SORT']['CODE'] === 'PROPERTY_TRANSIT') {
+        $storeId = 51;
+
+        uasort($arResult['ITEMS'], function ($a, $b) use ($storeId) {
+            // ������� ����� �������� ���� ������� �� ������ 51
+            $aQty = 0;
+            if (!empty($a['OFFERS'])) {
+                foreach ($a['OFFERS'] as $offer) {
+                    $aQty += (int)($offer['STORE_AMOUNT'][$storeId] ?? 0);
                 }
             } else {
-                $productIds[] = $item['ID'];
-            }
-        }
-
-        if ($productIds) {
-            $res = StoreProductTable::getList([
-                'filter' => ['=PRODUCT_ID' => $productIds],
-                'select' => ['PRODUCT_ID', 'STORE_ID', 'AMOUNT']
-            ]);
-            $storeAmounts = [];
-            while ($row = $res->fetch()) {
-                $storeAmounts[$row['PRODUCT_ID']][$row['STORE_ID']] = (int)$row['AMOUNT'];
+                $aQty = (int)($a['STORE_AMOUNT'][$storeId] ?? 0);
             }
 
-            foreach ($arResult['ITEMS'] as &$item) {
-                if (!empty($item['OFFERS'])) {
-                    foreach ($item['OFFERS'] as &$offer) {
-                        $offer['STORE_AMOUNT'] = $storeAmounts[$offer['ID']] ?? [];
-                    }
-                    unset($offer);
-                } else {
-                    $item['STORE_AMOUNT'] = $storeAmounts[$item['ID']] ?? [];
+            $bQty = 0;
+            if (!empty($b['OFFERS'])) {
+                foreach ($b['OFFERS'] as $offer) {
+                    $bQty += (int)($offer['STORE_AMOUNT'][$storeId] ?? 0);
                 }
+            } else {
+                $bQty = (int)($b['STORE_AMOUNT'][$storeId] ?? 0);
             }
-            unset($item);
-        }
-        /*
-        // ���������� ������ �� ������ 51
-        if ($_GET['SORT']['CODE'] === 'PROPERTY_TRANSIT') {
-            $storeId = 51;
 
-            uasort($arResult['ITEMS'], function ($a, $b) use ($storeId) {
-                // ������� ����� �������� ���� ������� �� ������ 51
-                $aQty = 0;
-                if (!empty($a['OFFERS'])) {
-                    foreach ($a['OFFERS'] as $offer) {
-                        $aQty += (int)($offer['STORE_AMOUNT'][$storeId] ?? 0);
-                    }
-                } else {
-                    $aQty = (int)($a['STORE_AMOUNT'][$storeId] ?? 0);
-                }
-
-                $bQty = 0;
-                if (!empty($b['OFFERS'])) {
-                    foreach ($b['OFFERS'] as $offer) {
-                        $bQty += (int)($offer['STORE_AMOUNT'][$storeId] ?? 0);
-                    }
-                } else {
-                    $bQty = (int)($b['STORE_AMOUNT'][$storeId] ?? 0);
-                }
-
-                if ($_GET['SORT']['ORDER'] === 'asc,nulls') {
-                    return $aQty <=> $bQty; // ������� ������
-                } else {
-                    return $bQty <=> $aQty; // ������� ������
-                }
-            });
-        }
+            if ($_GET['SORT']['ORDER'] === 'asc,nulls') {
+                return $aQty <=> $bQty; // ������� ������
+            } else {
+                return $bQty <=> $aQty; // ������� ������
+            }
+        });
+    }
 
 */
 

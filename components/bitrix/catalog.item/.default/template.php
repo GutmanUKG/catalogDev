@@ -19,6 +19,9 @@ $canBuyZero = Bitrix\Main\Config\Option::get('catalog', 'default_can_buy_zero', 
 
 $this->setFrameMode(true);
 
+// Multi-store orphan markdown detection
+$isMultiStoreMarkdown = !empty($arResult['ITEM']['IS_MULTI_STORE_MARKDOWN']) && !empty($arResult['ITEM']['SECOND_ITEMS']);
+
 CModule::IncludeModule('catalog');
 
 if (!isset($arResult['ITEM'])) {
@@ -195,6 +198,11 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $isOffers) {
                     <?
                     }
                     ?>
+                    <? if (!empty($item['MARKDOWN_CATEGORY_LABELS'])): ?>
+                        <div class="product__markdown-category">
+                            <?= Loc::getMessage('CT_BCI_MARKDOWN_CATEGORY') ?>: <?= implode(', ', $item['MARKDOWN_CATEGORY_LABELS']) ?>
+                        </div>
+                    <? endif; ?>
                 </div>
                 <? if ($isOffers && $arParams['OFFERS_VIEW'] === 'COMBINED'): ?>
                     <div class="toggle-offers" id="<?= $itemIds['OFFERS_TOGGLER'] ?>">
@@ -408,6 +416,7 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $isOffers) {
                         </td>
                    <? }
                    break;
+                    /*
                 case 'PRICES':
                     foreach ($propertyValue as $priceCode => $priceValue) {
                         $itemIds['PRICES'][$priceCode] = $areaId . '_price_' . $priceCode;
@@ -515,6 +524,134 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $isOffers) {
                         <?
                     }
                     break;
+
+                    */
+                case 'PRICES':
+                    foreach ($propertyValue as $priceCode => $priceValue) {
+                        $itemIds['PRICES'][$priceCode] = $areaId . '_price_' . $priceCode;
+
+                        if ($priceCode != "Цена  OFFLINE KZT"): ?>
+
+                            <td class="product__property product__property--price"
+                                data-entity="price-block"
+                                data-code="<?= $priceCode ?>">
+
+                                <div class="wrap-product__property--price">
+
+                                    <? if (!$isOffers): ?>
+
+                                        <?
+                                        $priceData = $item['PRINT_PRICES'][$priceCode][$item['ITEM_QUANTITY_RANGE_SELECTED']] ?? null;
+
+                                        $basePrice = $priceData ? round((float)$priceData['PRICE'], 2) : null;
+                                        $discountPrice = $priceData ? round((float)$priceData['DISCOUNT_PRICE'], 2) : null;
+                                        ?>
+
+                                        <!-- OLD PRICE (сначала старая) -->
+                                        <? if ($priceData && $discountPrice !== $basePrice): ?>
+                                            <span class="product__property--old-price">
+                                <?= CCurrencyLang::CurrencyFormat(
+                                    $priceData['PRICE'],
+                                    $priceData['CURRENCY'],
+                                    true
+                                ); ?>
+                            </span>
+                                        <? endif; ?>
+
+                                        <!-- ACTUAL PRICE (потом актуальная) -->
+                                        <span id="<?= $itemIds['PRICES'][$priceCode] ?>">
+                            <?php
+                            if ($priceCode == "PRIVATE_PRICE") {
+                                if (!empty($arParams['ITEMS_PRIVAT_PRICES'][$arResult['ITEM']['ID']]["PRIVAT_PRICE_PRINT"])) {
+                                    echo $arParams['ITEMS_PRIVAT_PRICES'][$arResult['ITEM']['ID']]["PRIVAT_PRICE_PRINT"];
+                                } else {
+                                    echo \SotbitPrivatePriceMain::setPlaceholder($item[$arParams["SOTBIT_PRIVATE_PRICE_PRODUCT_UNIQUE_KEY"]], '');
+                                }
+                            } else {
+                                if ($priceCode == 'Цена дилерского портала KZT') {
+                                    if ($arParams["USER"]["UF_APPLY_PRICE"] == 1) {
+                                        if ($item['PRINT_PRICES']["Цена  OFFLINE KZT"][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'] != '') {
+                                            if ($arParams["USER"]["UF_APPLY_PRICE_FOR"] == 8) {
+                                                echo $item['PRINT_PRICES']["Цена  OFFLINE KZT"][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'];
+                                            } elseif ($arParams["USER"]["UF_APPLY_PRICE_FOR"] == 9) {
+                                                $arBrandNames = [];
+                                                foreach ($arParams["USER"]["UF_BRAND_FOR_PRICE"] as $key => $brandID) {
+                                                    $obBrand = CIBlockElement::GetByID($brandID);
+                                                    if ($arBrand = $obBrand->GetNext()) {
+                                                        $arBrandNames[] = $arBrand['NAME'];
+                                                    }
+                                                }
+                                                if (in_array($item["PROPERTIES"]["BREND_ATTR_S"]["VALUE"], $arBrandNames)) {
+                                                    echo $item['PRINT_PRICES']["Цена  OFFLINE KZT"][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'];
+                                                } else {
+                                                    echo $item['PRINT_PRICES'][$priceCode][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'];
+                                                }
+                                            } elseif ($arParams["USER"]["UF_APPLY_PRICE_FOR"] == 10) {
+                                                $arBrandNames = [];
+                                                foreach ($arParams["USER"]["UF_BRAND_FOR_PRICE"] as $key => $brandID) {
+                                                    $obBrand = CIBlockElement::GetByID($brandID);
+                                                    if ($arBrand = $obBrand->GetNext()) {
+                                                        $arBrandNames[] = $arBrand['NAME'];
+                                                    }
+                                                }
+                                                if (in_array($item["PROPERTIES"]["BREND_ATTR_S"]["VALUE"], $arBrandNames)) {
+                                                    echo $item['PRINT_PRICES'][$priceCode][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'];
+                                                } else {
+                                                    echo $item['PRINT_PRICES']["Цена  OFFLINE KZT"][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'];
+                                                }
+                                            } else {
+                                                echo $item['PRINT_PRICES']["Цена  OFFLINE KZT"][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'];
+                                            }
+                                        } else {
+                                            echo $item['PRINT_PRICES'][$priceCode][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'];
+                                        }
+                                    } else {
+                                        echo $item['PRINT_PRICES'][$priceCode][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'];
+                                    }
+                                }
+
+                                if ($priceCode == 'RRP') {
+                                    $db_res = CPrice::GetList(
+                                        array(),
+                                        array(
+                                            "PRODUCT_ID" => $item["ID"],
+                                            "CATALOG_GROUP_ID" => 8
+                                        )
+                                    );
+                                    if ($ar_res = $db_res->Fetch()) {
+                                        echo CurrencyFormat($ar_res["PRICE"], $ar_res["CURRENCY"]);
+                                    }
+                                }
+                            }
+                            ?>
+                        </span>
+
+                                    <? else: ?>
+
+                                        <span>
+                            <?= $item['MIN_PRICE'][$priceCode]
+                                ? Loc::getMessage(
+                                    'CT_BCI_TPL_MESS_PRICE_SIMPLE_MODE',
+                                    [
+                                        "#PRICE#" => \CCurrencyLang::CurrencyFormat(
+                                            $item['MIN_PRICE'][$priceCode],
+                                            \CCurrency::GetBaseCurrency()
+                                        )
+                                    ]
+                                )
+                                : '' ?>
+                        </span>
+
+                                        <span class="product__property--old-price"></span>
+
+                                    <? endif; ?>
+
+                                </div>
+                            </td>
+
+                        <?php endif;
+                    }
+                    break;
                 case 'QUANTITY':
                     ?>
                     <td>
@@ -543,43 +680,68 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $isOffers) {
         $quantity = (int)$item['ACTUAL_QUANTITY'];
         $showQuantity = $quantity > 0;
         ?>
-        
-        <!-- Кнопка "В корзину" — всегда в DOM -->
-        <button 
-            data-id="<?= $itemIds['QUANTITY'] ?>" 
-            class="btn btn-primary basket-item--add" 
-            style="<?= $showQuantity ? 'display: none;' : 'display: inline-block;' ?>">
-            В Корзину
-        </button>
 
-        <!-- Блок с количеством -->
-        <div class="bootstrap-touchspin input-group" 
-             id="<?= $itemIds['QUANTITY'] ?>" 
-             data-entity="quantity-block"
-             style="<?= $showQuantity ? 'display: flex;' : 'display: none;' ?>">
-            <span class="input-group-btn input-group-prepend">
-                <button class="btn bootstrap-touchspin-down"
-                        type="button"
-                        id="<?= $itemIds['QUANTITY_DECREMENT'] ?>"
-                        <?= $USER->IsAuthorized() ? "" : "disabled" ?>>
-                    <i class="ph-minus"></i>
-                </button>
-            </span>
-            <input class="touchspin-basic form-control fs-xs"
-                   type="text"
-                   value="<?= $quantity ?>"
-                   id="<?= $itemIds['QUANTITY_VALUE'] ?>"
-                   <?= $arParams["CATALOG_NOT_AVAILABLE"] == "Y" ? 'readonly' : '' ?>
-                   <?= $USER->IsAuthorized() ? "" : "disabled" ?>>
-            <span class="input-group-btn input-group-append">
-                <button class="btn bootstrap-touchspin-up"
-                        type="button"
-                        id="<?= $itemIds['QUANTITY_INCREMENT'] ?>"
-                        <?= $USER->IsAuthorized() ? "" : "disabled" ?>>
-                    <i class="ph-plus"></i>
-                </button>
-            </span>
-        </div>
+        <? if ($isMultiStoreMarkdown): ?>
+            <!-- Multi-store markdown: button opens modal -->
+            <button
+                data-id="<?= $itemIds['QUANTITY'] ?>"
+                class="btn btn-primary basket-item--add"
+                data-bs-toggle="modal"
+                data-bs-target="#markdownModal-<?= $item['ID'] ?>"
+                style="display: inline-block;">
+                В Корзину
+            </button>
+            <!-- Hidden quantity block (needed for JS init but not shown) -->
+            <div class="bootstrap-touchspin input-group"
+                 id="<?= $itemIds['QUANTITY'] ?>"
+                 data-entity="quantity-block"
+                 style="display: none;">
+                <span class="input-group-btn input-group-prepend">
+                    <button class="btn bootstrap-touchspin-down" type="button" id="<?= $itemIds['QUANTITY_DECREMENT'] ?>"><i class="ph-minus"></i></button>
+                </span>
+                <input class="touchspin-basic form-control fs-xs" type="text" value="0" id="<?= $itemIds['QUANTITY_VALUE'] ?>">
+                <span class="input-group-btn input-group-append">
+                    <button class="btn bootstrap-touchspin-up" type="button" id="<?= $itemIds['QUANTITY_INCREMENT'] ?>"><i class="ph-plus"></i></button>
+                </span>
+            </div>
+        <? else: ?>
+            <!-- Кнопка "В корзину" — всегда в DOM -->
+            <button
+                data-id="<?= $itemIds['QUANTITY'] ?>"
+                class="btn btn-primary basket-item--add"
+                style="<?= $showQuantity ? 'display: none;' : 'display: inline-block;' ?>">
+                В Корзину
+            </button>
+
+            <!-- Блок с количеством -->
+            <div class="bootstrap-touchspin input-group"
+                 id="<?= $itemIds['QUANTITY'] ?>"
+                 data-entity="quantity-block"
+                 style="<?= $showQuantity ? 'display: flex;' : 'display: none;' ?>">
+                <span class="input-group-btn input-group-prepend">
+                    <button class="btn bootstrap-touchspin-down"
+                            type="button"
+                            id="<?= $itemIds['QUANTITY_DECREMENT'] ?>"
+                            <?= $USER->IsAuthorized() ? "" : "disabled" ?>>
+                        <i class="ph-minus"></i>
+                    </button>
+                </span>
+                <input class="touchspin-basic form-control fs-xs"
+                       type="text"
+                       value="<?= $quantity ?>"
+                       id="<?= $itemIds['QUANTITY_VALUE'] ?>"
+                       <?= $arParams["CATALOG_NOT_AVAILABLE"] == "Y" ? 'readonly' : '' ?>
+                       <?= $USER->IsAuthorized() ? "" : "disabled" ?>>
+                <span class="input-group-btn input-group-append">
+                    <button class="btn bootstrap-touchspin-up"
+                            type="button"
+                            id="<?= $itemIds['QUANTITY_INCREMENT'] ?>"
+                            <?= $USER->IsAuthorized() ? "" : "disabled" ?>>
+                        <i class="ph-plus"></i>
+                    </button>
+                </span>
+            </div>
+        <? endif; ?>
     <? } else { ?>
         <div class="toggle-offers" id="<?= $itemIds['OFFERS_TOGGLER'] ?>">
             <span class="toggle-offers__label">
@@ -622,6 +784,117 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $isOffers) {
         ?>
     </tr>
 </tbody>
+<?
+if ($isMultiStoreMarkdown):
+    $secondItems = $item['SECOND_ITEMS'];
+    $mainItemId = $item['ID'];
+    $categoryDescriptions = [
+        56 => Loc::getMessage('CT_BCI_MARKDOWN_DESC_CAT_1'),
+        55 => Loc::getMessage('CT_BCI_MARKDOWN_DESC_CAT_2'),
+        58 => Loc::getMessage('CT_BCI_MARKDOWN_DESC_CAT_3'),
+        57 => Loc::getMessage('CT_BCI_MARKDOWN_DESC_CAT_4'),
+    ];
+    $categoryBadges = [
+        56 => 'КАТ-1',
+        55 => 'КАТ-2',
+        58 => 'КАТ-3',
+        57 => 'КАТ-4',
+    ];
+
+    $itemIds['SECOND_PRODUCTS'] = [];
+    foreach ($secondItems as $secondItem) {
+        $rowKey = $secondItem['ROW_KEY'];
+        $itemIds['SECOND_PRODUCTS'][$rowKey] = [
+            'ID' => $secondItem['ID'],
+            'QUANTITY' => $mainItemId . '_second_' . $rowKey . '_quantity',
+            'QUANTITY_DECREMENT' => $mainItemId . '_second_' . $rowKey . '_quantity-decrement',
+            'QUANTITY_VALUE' => $mainItemId . '_second_' . $rowKey . '_quantity-value',
+            'QUANTITY_INCREMENT' => $mainItemId . '_second_' . $rowKey . '_quantity-increment',
+        ];
+    }
+?>
+<div class="modal fade" id="markdownModal-<?=$mainItemId?>" tabindex="-1" aria-labelledby="markdownModalLabel-<?=$mainItemId?>" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title" id="markdownModalLabel-<?=$mainItemId?>"><?=Loc::getMessage('CT_BCI_MARKDOWN_MODAL_TITLE')?>: <?=htmlspecialcharsEx($item['NAME'])?></h5>
+                    <div class="bzd-markdown-item__article"><?=Loc::getMessage('CT_BCI_MARKDOWN_ARTICLE')?>: <?=$item['PROPERTIES']['CML2_ARTICLE']['VALUE']?></div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div class="bzd-markdown-wrapper">
+                    <div class="bzd-markdown-main">
+                        <?foreach ($secondItems as $secondItem):?>
+                            <?
+                            $rowKey = $secondItem['ROW_KEY'];
+                            $selectedPrice = $secondItem['SELECTED_PRICE'];
+                            $secondIds = $itemIds['SECOND_PRODUCTS'][$rowKey];
+                            ?>
+                            <div class="bzd-markdown-item" data-row-key="<?=$rowKey?>">
+                                <div class="bzd-markdown-item__info">
+                                    <div class="d-flex align-center g-1">
+                                        <div class="bzd-markdown-item__category">
+                                            <span class="badge bg-warning text-dark"><?=htmlspecialcharsEx($categoryBadges[(int)$secondItem['STORE_ID']] ?? '')?></span>
+                                            <span class="bzd-markdown-item__category-info" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=htmlspecialcharsEx($categoryDescriptions[$secondItem['STORE_ID']] ?? '')?>" style="cursor:pointer;"></span>
+                                        </div>
+                                        <div class="bzd-markdown-item__quantity-col">
+                                            <?=Loc::getMessage('CT_BCI_MARKDOWN_AVAILABLE')?>: <strong><?=$secondItem['AMOUNT']?></strong> <?=Loc::getMessage('CT_BCI_MARKDOWN_MEASURE')?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bzd-markdown-item__prices">
+                                    <?if (!empty($selectedPrice)):?>
+                                        <?if (!empty($selectedPrice['PRINT_OLD'])):?>
+                                            <span class="bzd-markdown-item__price-old"><?=$selectedPrice['PRINT_OLD']?></span>
+                                        <?endif;?>
+                                        <span class="bzd-markdown-item__price-current"><?=$selectedPrice['PRINT']?></span>
+                                    <?endif;?>
+                                </div>
+                                <div class="bzd-markdown-item__actions">
+                                    <button
+                                            type="button"
+                                            class="btn btn-primary btn-sm bzd-markdown-add-basket"
+                                            data-row-key="<?=$rowKey?>"
+                                            <?if ($secondItem['ACTUAL_QUANTITY'] > 0):?>style="display: none"<?endif;?>
+                                    ><?=Loc::getMessage('CT_BCI_MARKDOWN_ADD_TO_BASKET')?></button>
+                                    <div class="bzd-markdown-touchspin" <?if($secondItem['ACTUAL_QUANTITY'] < 1):?>style="display: none"<?endif;?>>
+                                        <div class="bootstrap-touchspin input-group" id="<?=$secondIds['QUANTITY']?>">
+                                            <span class="input-group-btn input-group-prepend">
+                                                <button class="btn bootstrap-touchspin-down" type="button" id="<?=$secondIds['QUANTITY_DECREMENT']?>">
+                                                    <i class="ph-minus"></i>
+                                                </button>
+                                            </span>
+                                            <input class="touchspin-basic form-control" type="text" value="<?=$secondItem['ACTUAL_QUANTITY']?>" id="<?=$secondIds['QUANTITY_VALUE']?>">
+                                            <span class="input-group-btn input-group-append">
+                                                <button class="btn bootstrap-touchspin-up" type="button" id="<?=$secondIds['QUANTITY_INCREMENT']?>">
+                                                    <i class="ph-plus"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?endforeach;?>
+
+                        <div class="bzd-markdown-categories-info mt-3">
+                            <p class="mb-1"><strong><?=Loc::getMessage('CT_BCI_MARKDOWN_DESC_TITLE')?>:</strong></p>
+                            <ul class="bzd-markdown-categories-list">
+                                <li><strong>КАТ-1</strong> - <?=$categoryDescriptions[56]?></li>
+                                <li><strong>КАТ-2</strong> - <?=$categoryDescriptions[55]?></li>
+                                <li><strong>КАТ-3</strong> - <?=$categoryDescriptions[58]?></li>
+                                <li><strong>КАТ-4</strong> - <?=$categoryDescriptions[57]?></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?endif;?>
 <?
 if ($isOffers && $arParams['OFFERS_VIEW'] !== 'BLOCK') {
     ?>

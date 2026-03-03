@@ -275,6 +275,39 @@ unset(
     $arResult['ITEM']['~DETAIL_PICTURE']
 );
 
+// Markdown category labels (КАТ-1..КАТ-4)
+$_markdownStoreCategoryMap = [
+    56 => 'КАТ-1',
+    55 => 'КАТ-2',
+    58 => 'КАТ-3',
+    57 => 'КАТ-4',
+];
+$arResult['ITEM']['MARKDOWN_CATEGORY_LABELS'] = [];
+
+if (!empty($arResult['ITEM']['IS_ORPHAN_MARKDOWN']) && !empty($arResult['ITEM']['MARKDOWN_STORES'])) {
+    // Orphan: store data already available
+    foreach ($arResult['ITEM']['MARKDOWN_STORES'] as $_sId => $_amt) {
+        if ($_amt > 0 && isset($_markdownStoreCategoryMap[(int)$_sId])) {
+            $arResult['ITEM']['MARKDOWN_CATEGORY_LABELS'][] = $_markdownStoreCategoryMap[(int)$_sId];
+        }
+    }
+} elseif (!empty($arResult['ITEM']['HAS_SECOND']) && !empty($arResult['ITEM']['SECOND_ITEM']['ID'])) {
+    // Regular markdown: fetch store amounts for the IB 37 item
+    $_mdStoreRes = CCatalogStoreProduct::GetList(
+        [],
+        ['PRODUCT_ID' => (int)$arResult['ITEM']['SECOND_ITEM']['ID'], 'STORE_ID' => array_keys($_markdownStoreCategoryMap)],
+        false,
+        false,
+        ['STORE_ID', 'AMOUNT']
+    );
+    while ($_mdRow = $_mdStoreRes->Fetch()) {
+        if ((float)$_mdRow['AMOUNT'] > 0 && isset($_markdownStoreCategoryMap[(int)$_mdRow['STORE_ID']])) {
+            $arResult['ITEM']['MARKDOWN_CATEGORY_LABELS'][] = $_markdownStoreCategoryMap[(int)$_mdRow['STORE_ID']];
+        }
+    }
+}
+unset($_markdownStoreCategoryMap);
+
     $arFilter = Array("PRODUCT_ID"=>$arResult['ITEM']['ID'],"STORE_ID"=>51);
     $res = CCatalogStoreProduct::GetList(Array(),$arFilter,false,false,Array());
     if ($arRes = $res->GetNext()){

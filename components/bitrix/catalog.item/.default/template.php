@@ -682,10 +682,9 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $isOffers) {
         ?>
 
         <? if ($isMultiStoreMarkdown): ?>
-            <!-- Multi-store markdown: button opens modal -->
+            <!-- Multi-store markdown: button opens modal only (no add-to-cart) -->
             <button
-                data-id="<?= $itemIds['QUANTITY'] ?>"
-                class="btn btn-primary basket-item--add"
+                class="btn btn-primary"
                 data-bs-toggle="modal"
                 data-bs-target="#markdownModal-<?= $item['ID'] ?>"
                 style="display: inline-block;">
@@ -894,6 +893,7 @@ if ($isMultiStoreMarkdown):
         </div>
     </div>
 </div>
+<script>(function(){var m=document.getElementById('markdownModal-<?=$mainItemId?>');if(m)document.body.appendChild(m);})();</script>
 <?endif;?>
 <?
 if ($isOffers && $arParams['OFFERS_VIEW'] !== 'BLOCK') {

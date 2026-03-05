@@ -60,7 +60,8 @@
 
 			// Orphan multi-store: override main "В Корзину" to open markdown modal
 			if (this.arResult.IS_ORPHAN_MARKDOWN && Array.isArray(this.arResult.SECOND_ITEMS) && this.arResult.SECOND_ITEMS.length > 1) {
-				var modalEl = document.getElementById('markdownModal-' + this.itemId);
+				var modalId = 'markdownModal-' + this.itemIds.ID;
+				var modalEl = document.getElementById(modalId);
 				if (modalEl && this.nodesQuantity.increment) {
 					var origIncrement = this.nodesQuantity.increment;
 					origIncrement.onclick = function(e) {
@@ -69,6 +70,16 @@
 						var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
 						modal.show();
 					};
+				}
+
+				// Auto-open markdown modal if redirected from listing with openMarkdownModal param
+				if (window.location.search.indexOf('openMarkdownModal=1') !== -1) {
+					setTimeout(function() {
+						if (modalEl) {
+							var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+							modal.show();
+						}
+					}, 300);
 				}
 			}
 

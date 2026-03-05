@@ -263,6 +263,37 @@ class MarkdownBasketCustomPrice
 
     protected static function extractBasePrice(int $productId, array $fields): float
     {
+        // First priority: MARKDOWN_BASE_PRICE passed from frontend (ensures price consistency)
+        $markdownBasePrice = static::extractMarkdownBasePrice($fields);
+        if ($markdownBasePrice > 0) {
+            static::log('extractBasePrice.fromMarkdownBasePrice', [
+                'productId' => $productId,
+                'markdownBasePrice' => $markdownBasePrice,
+            ]);
+            return $markdownBasePrice;
+        }
+
+        // For markdown items (IB 37), always use price type 7 (Базовая цена)
+        // Do NOT use GetOptimalPrice which may return OFFLINE (12) based on user settings
+        $markdownPriceTypeId = 7;
+        $priceRow = \Bitrix\Catalog\PriceTable::getList([
+            'select' => ['PRICE', 'CURRENCY'],
+            'filter' => [
+                '=PRODUCT_ID' => $productId,
+                '=CATALOG_GROUP_ID' => $markdownPriceTypeId,
+            ],
+            'limit' => 1,
+        ])->fetch();
+
+        if (!empty($priceRow['PRICE']) && (float)$priceRow['PRICE'] > 0) {
+            static::log('extractBasePrice.fromPriceType7', [
+                'productId' => $productId,
+                'price' => (float)$priceRow['PRICE'],
+            ]);
+            return (float)$priceRow['PRICE'];
+        }
+
+        // Fallback: check fields
         $basePrice = (float)($fields['BASE_PRICE'] ?? 0);
         if ($basePrice > 0) {
             return $basePrice;
@@ -273,14 +304,30 @@ class MarkdownBasketCustomPrice
             return $price;
         }
 
-        global $USER;
-        $groups = is_object($USER) ? $USER->GetUserGroupArray() : [];
-        $optimal = CCatalogProduct::GetOptimalPrice($productId, 1, $groups, 'N', [], SITE_ID);
-        if (!empty($optimal['RESULT_PRICE']['BASE_PRICE'])) {
-            return (float)$optimal['RESULT_PRICE']['BASE_PRICE'];
+        return 0.0;
+    }
+
+    protected static function extractMarkdownBasePrice(array $fields): float
+    {
+        // Check direct field
+        if (!empty($fields['MARKDOWN_BASE_PRICE']) && (float)$fields['MARKDOWN_BASE_PRICE'] > 0) {
+            return (float)$fields['MARKDOWN_BASE_PRICE'];
         }
-        if (!empty($optimal['RESULT_PRICE']['DISCOUNT_PRICE'])) {
-            return (float)$optimal['RESULT_PRICE']['DISCOUNT_PRICE'];
+
+        // Check PROPS array
+        if (!empty($fields['PROPS']) && is_array($fields['PROPS'])) {
+            foreach ($fields['PROPS'] as $prop) {
+                if (!is_array($prop)) {
+                    continue;
+                }
+                $code = (string)($prop['CODE'] ?? $prop['NAME'] ?? '');
+                if ($code === 'MARKDOWN_BASE_PRICE') {
+                    $value = (float)($prop['VALUE'] ?? 0);
+                    if ($value > 0) {
+                        return $value;
+                    }
+                }
+            }
         }
 
         return 0.0;

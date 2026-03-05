@@ -610,6 +610,7 @@ if ($_currentSectionId > 0 && Loader::includeModule('iblock') && Loader::include
                 // Build price columns from $arResult['PRICES']
                 $_priceCols = [];
                 $_priceCodesById = [];
+                $_priceNamesById = [];
                 if (!empty($arResult['PRICES'])) {
                     foreach ($arResult['PRICES'] as $_pk => $_pInfo) {
                         $_priceCols[$_pInfo['ID']] = [
@@ -617,6 +618,21 @@ if ($_currentSectionId > 0 && Loader::includeModule('iblock') && Loader::include
                             'NAME' => !empty($_pInfo['TITLE']) ? $_pInfo['TITLE'] : $_pInfo['CODE'],
                         ];
                         $_priceCodesById[$_pInfo['ID']] = $_pInfo['CODE'] ?? (string)$_pInfo['ID'];
+                        $_priceNamesById[$_pInfo['ID']] = !empty($_pInfo['TITLE']) ? $_pInfo['TITLE'] : $_pInfo['CODE'];
+                    }
+                }
+                // Fallback: if price names not available, get from catalog price groups
+                if (empty($_priceNamesById)) {
+                    $dbPriceType = CCatalogGroup::GetList([], [], false, false, ['ID', 'NAME', 'NAME_LANG']);
+                    while ($arPriceType = $dbPriceType->Fetch()) {
+                        $_priceNamesById[(int)$arPriceType['ID']] = !empty($arPriceType['NAME_LANG'])
+                            ? $arPriceType['NAME_LANG']
+                            : $arPriceType['NAME'];
+                        $_priceCodesById[(int)$arPriceType['ID']] = $arPriceType['NAME'];
+                        $_priceCols[(int)$arPriceType['ID']] = [
+                            'ID' => (int)$arPriceType['ID'],
+                            'NAME' => !empty($arPriceType['NAME_LANG']) ? $arPriceType['NAME_LANG'] : $arPriceType['NAME'],
+                        ];
                     }
                 }
 
@@ -683,7 +699,7 @@ if ($_currentSectionId > 0 && Loader::includeModule('iblock') && Loader::include
                         ? ($_id . '_' . $_markdownDefaultStoreId)
                         : '';
 
-                    // Build PRICE_MATRIX
+                    // Build PRICE_MATRIX - use original approach with all price types
                     $_matrix = [];
                     $_printPrices = [];
                     $_pricesByCode = [];
@@ -691,9 +707,10 @@ if ($_currentSectionId > 0 && Loader::includeModule('iblock') && Loader::include
                     $_minDiscountPrice = null;
                     $_priceCurrency = '';
                     $_pricesForItem = $_orphanPrices[$_id] ?? [];
+
                     foreach ($_pricesForItem as $_pgId => $_priceRows) {
-                        if (!isset($_priceCols[$_pgId])) continue;
-                        $_priceCode = $_priceCodesById[$_pgId] ?? (string)$_pgId;
+                        // Use price NAME for PRINT_PRICES key (template expects name like "Цена дилерского портала KZT")
+                        $_priceName = $_priceNamesById[$_pgId] ?? $_priceCodesById[$_pgId] ?? (string)$_pgId;
                         foreach ($_priceRows as $_pRow) {
                             $_rKey = ($_pRow['QUANTITY_FROM'] ?: 'ZERO') . '-' . ($_pRow['QUANTITY_TO'] ?: 'INF');
                             $_basePrice = round((float)$_pRow['PRICE']);
@@ -719,7 +736,7 @@ if ($_currentSectionId > 0 && Loader::includeModule('iblock') && Loader::include
                                 'CURRENCY' => $_pRow['CURRENCY'],
                                 'BASE_PRICE' => $_basePrice,
                             ];
-                            $_printPrices[$_priceCode][$_rKey] = [
+                            $_printPrices[$_priceName][$_rKey] = [
                                 'PRICE' => $_basePrice,
                                 'DISCOUNT_PRICE' => $_discountPrice,
                                 'CURRENCY' => $_pRow['CURRENCY'],
@@ -728,12 +745,12 @@ if ($_currentSectionId > 0 && Loader::includeModule('iblock') && Loader::include
                                     ? CCurrencyLang::CurrencyFormat($_basePrice, $_pRow['CURRENCY'])
                                     : '',
                             ];
-                            if (!isset($_pricesByCode[$_priceCode])) {
+                            if (!isset($_pricesByCode[$_priceName])) {
                                 $_discountDiff = $_basePrice - $_discountPrice;
                                 $_discountPercent = $_basePrice > 0
                                     ? round(($_discountDiff / $_basePrice) * 100, 2)
                                     : 0;
-                                $_pricesByCode[$_priceCode] = [
+                                $_pricesByCode[$_priceName] = [
                                     'VALUE' => $_basePrice,
                                     'DISCOUNT_VALUE' => $_discountPrice,
                                     'CURRENCY' => $_pRow['CURRENCY'],
@@ -824,34 +841,40 @@ if ($_currentSectionId > 0 && Loader::includeModule('iblock') && Loader::include
                     // Build SECOND_ITEMS for multi-store orphan markdown items
                     $_secondItems = [];
                     $_isMultiStoreMarkdown = false;
+
+                    // Get base price for SECOND_ITEMS - always use price type 7 for markdown items
+                    $_secondItemsBasePrice = $_minBasePrice ?? 0;
+                    $_secondItemsCurrency = $_priceCurrency !== '' ? $_priceCurrency : 'KZT';
+                    // For markdown (IB 37) always use price type 7 (Базовая цена)
+                    $_markdownPriceType = 7;
+                    if (!empty($_pricesForItem[$_markdownPriceType])) {
+                        $_pRow = reset($_pricesForItem[$_markdownPriceType]);
+                        $_secondItemsBasePrice = round((float)$_pRow['PRICE']);
+                        $_secondItemsCurrency = $_pRow['CURRENCY'] ?? $_secondItemsCurrency;
+                    }
+
                     if ($_markdownStoreCount > 1) {
                         $_isMultiStoreMarkdown = true;
                         $_categoryMap = [56 => 'КАТ-1', 55 => 'КАТ-2', 58 => 'КАТ-3', 57 => 'КАТ-4'];
                         foreach ($_markdownStores as $_sId => $_sAmount) {
                             $_sPercent = $_storePercents[(int)$_sId] ?? 0;
                             $_rowKey = $_id . '_' . $_sId;
-                            // Build per-store price from first available price type
-                            $_selectedPrice = [];
-                            foreach ($_pricesForItem as $_pgId => $_priceRows) {
-                                if (!isset($_priceCols[$_pgId])) continue;
-                                foreach ($_priceRows as $_pRow) {
-                                    $_sBasePrice = round((float)$_pRow['PRICE']);
-                                    $_sDiscountPrice = $_sBasePrice;
-                                    if ($_sPercent > 0) {
-                                        $_sDiscountPrice = round($_sBasePrice - ($_sBasePrice * ($_sPercent / 100)));
-                                    }
-                                    $_selectedPrice = [
-                                        'PRICE' => $_sBasePrice,
-                                        'DISCOUNT_PRICE' => $_sDiscountPrice,
-                                        'CURRENCY' => $_pRow['CURRENCY'],
-                                        'PRINT' => CCurrencyLang::CurrencyFormat($_sDiscountPrice, $_pRow['CURRENCY']),
-                                        'PRINT_OLD' => ($_sDiscountPrice < $_sBasePrice)
-                                            ? CCurrencyLang::CurrencyFormat($_sBasePrice, $_pRow['CURRENCY'])
-                                            : '',
-                                    ];
-                                    break 2; // use first available price
-                                }
+                            // Use base price from user's preferred price type
+                            $_sBasePrice = $_secondItemsBasePrice;
+                            $_sCurrency = $_secondItemsCurrency;
+                            $_sDiscountPrice = $_sBasePrice;
+                            if ($_sPercent > 0) {
+                                $_sDiscountPrice = $_sBasePrice - ($_sBasePrice * ($_sPercent / 100));
                             }
+                            $_selectedPrice = [
+                                'PRICE' => $_sBasePrice,
+                                'DISCOUNT_PRICE' => $_sDiscountPrice,
+                                'CURRENCY' => $_sCurrency,
+                                'PRINT' => CCurrencyLang::CurrencyFormat($_sDiscountPrice, $_sCurrency),
+                                'PRINT_OLD' => ($_sDiscountPrice < $_sBasePrice)
+                                    ? CCurrencyLang::CurrencyFormat($_sBasePrice, $_sCurrency)
+                                    : '',
+                            ];
                             $_secondItems[] = [
                                 'ROW_KEY' => $_rowKey,
                                 'ID' => $_id,

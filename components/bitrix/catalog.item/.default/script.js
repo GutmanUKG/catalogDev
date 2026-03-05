@@ -205,10 +205,32 @@
 			} else if (this.arParams.CATALOG_NOT_AVAILABLE === 'Y') {
 				return;
 			} else if (this.isMultiStoreMarkdown) {
-				this.initMarkdownItems();
+				this.initMarkdownDetailOpener();
 			} else {
 				this.initQuantity(this.obQuantity);
 			}
+		},
+		initMarkdownDetailOpener: function() {
+			var btn = this.node.querySelector('.bzd-open-markdown-detail');
+			if (!btn) {
+				return;
+			}
+			var detailUrl = btn.getAttribute('data-detail-url');
+			if (!detailUrl) {
+				return;
+			}
+			btn.addEventListener('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				if (typeof BX !== 'undefined' && BX.SidePanel && BX.SidePanel.Instance) {
+					BX.SidePanel.Instance.open(detailUrl, {
+						cacheable: false,
+						allowChangeHistory: false
+					});
+				} else {
+					window.location.href = detailUrl;
+				}
+			});
 		},
 		initToggler: function() {
 			const toggler = document.getElementById(this.offersTogglerId);
@@ -1059,122 +1081,6 @@
 					BX.message('BZI_PRODUCT_ADD_TO_BASKET') + " " + product.currentQuantity + " " + product.measureName,
 					'success'
 				]);
-			}
-		},
-		initMarkdownItems: function() {
-			if (!this.arResult.ITEM.SECOND_ITEMS || !this.arResult.ITEM_IDS.SECOND_PRODUCTS) {
-				return;
-			}
-
-			var secondItems = this.arResult.ITEM.SECOND_ITEMS;
-			var secondItemIds = this.arResult.ITEM_IDS.SECOND_PRODUCTS;
-			var measureName = this.arResult.ITEM.CATALOG_MEASURE_NAME || BX.message('CT_BCI_MARKDOWN_MEASURE') || '\u0448\u0442';
-
-			for (var i = 0; i < secondItems.length; i++) {
-				var secondItem = secondItems[i];
-				var rowKey = secondItem.ROW_KEY;
-				if (!secondItemIds[rowKey]) {
-					continue;
-				}
-
-				var secondIds = secondItemIds[rowKey];
-				var nodes = {
-					wrapper: document.getElementById(secondIds.QUANTITY),
-					increment: document.getElementById(secondIds.QUANTITY_INCREMENT),
-					value: document.getElementById(secondIds.QUANTITY_VALUE),
-					decrement: document.getElementById(secondIds.QUANTITY_DECREMENT),
-				};
-
-				if (!nodes.wrapper || !nodes.increment || !nodes.decrement || !nodes.value) {
-					continue;
-				}
-
-				var rowNode = document.querySelector('.bzd-markdown-item[data-row-key="' + rowKey + '"]');
-				var addButton = rowNode ? rowNode.querySelector('.bzd-markdown-add-basket') : null;
-				var touchspinWrapper = nodes.wrapper.closest('.bzd-markdown-touchspin');
-				var quantityTrace = secondItem.QUANTITY_TRACE === 'Y';
-				var canBuyZero = secondItem.CAN_BUY_ZERO === 'Y';
-				var maxQty = quantityTrace && !canBuyZero ? parseFloat(secondItem.TOTAL_QUANTITY) : Number.POSITIVE_INFINITY;
-				var actualQuantity = parseFloat(secondItem.ACTUAL_QUANTITY) || 0;
-
-				var toggleRowControls = function(quantity, button, counter) {
-					if (!button || !counter) { return; }
-					if (quantity > 0) {
-						button.style.display = 'none';
-						counter.style.display = '';
-					} else {
-						button.style.display = '';
-						counter.style.display = 'none';
-					}
-				};
-
-				var item = {
-					itemId: String(secondItem.ROW_KEY),
-					basketProductId: secondItem.ID,
-					name: secondItem.NAME || this.arResult.ITEM.NAME,
-					nodes: nodes,
-					currentQuantity: actualQuantity,
-					tmpQuantity: actualQuantity,
-					maxQuantity: maxQty,
-					minQuantity: 0,
-					measureRatio: parseFloat(secondItem.MEASURE_RATIO) || 1,
-					measureName: measureName,
-					propsAddedToBasket: [
-						{
-							NAME: 'Markdown Store',
-							CODE: 'MARKDOWN_STORE_ID',
-							VALUE: String(secondItem.STORE_ID),
-							SORT: 100
-						},
-						{
-							NAME: 'Markdown Category',
-							CODE: 'MARKDOWN_CATEGORY',
-							VALUE: String(secondItem.CATEGORY || ''),
-							SORT: 200
-						},
-						{
-							NAME: 'Markdown Row Key',
-							CODE: 'MARKDOWN_ROW_KEY',
-							VALUE: String(secondItem.ROW_KEY || ''),
-							SORT: 300
-						}
-					],
-					extraBasketFields: {
-						STORE_ID: String(secondItem.STORE_ID),
-						CATALOG_STORE_ID: String(secondItem.STORE_ID),
-						MARKDOWN_STORE_ID: String(secondItem.STORE_ID),
-						MARKDOWN_ROW_KEY: String(secondItem.ROW_KEY || ''),
-						MARKDOWN_CATEGORY: String(secondItem.CATEGORY || ''),
-						PRODUCT_XML_ID: 'markdown_' + String(secondItem.ROW_KEY || ''),
-						CATALOG_XML_ID: 'markdown_catalog_' + String(secondItem.ID || '')
-					},
-					onQuantityChanged: function(quantity) {
-						toggleRowControls(quantity, addButton, touchspinWrapper);
-					}
-				};
-
-				this.initQuantity(item);
-				toggleRowControls(item.currentQuantity, addButton, touchspinWrapper);
-
-				if (addButton) {
-					(function(incNode, itemRef, buttonRef){
-						buttonRef.addEventListener('click', function() {
-							if (itemRef.currentQuantity <= 0) {
-								incNode.click();
-							}
-						});
-					})(nodes.increment, item, addButton);
-				}
-			}
-
-			this.initCategoryTooltips();
-		},
-		initCategoryTooltips: function() {
-			var tooltipElements = document.querySelectorAll('.bzd-markdown-item__category-info[data-bs-toggle="tooltip"]');
-			for (var i = 0; i < tooltipElements.length; i++) {
-				if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-					new bootstrap.Tooltip(tooltipElements[i]);
-				}
 			}
 		},
 		redrawPrices: function (item) { //TODO: init price data once, not in every call of function
